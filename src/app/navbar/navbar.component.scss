@@ -19,3 +19,27 @@
   right: 10px;
   bottom: 10px;
 }
+
+.result .row-0 {
+  background: #F5FFEB;
+}
+
+.number {
+  font-family: "Traditional Arabic", "Times New Roman";
+  font-size: 18px;
+  white-space: nowrap;
+  color: green;
+}
+
+.match-term0 {
+  color: blue;
+  font-weight: bold;
+  font-size: 95%;
+}
+
+.searchFrame {
+  font-size: 16px;
+  border: 4px solid #D4DDCC;
+  background: #eaf3e2;
+  direction: ltr;
+}

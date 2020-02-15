@@ -108,13 +108,15 @@ export class NavbarComponent implements OnInit {
    let url = 'https://www.alfanous.org/api/search?query=';
     this.http.get<any>(url+this.searchInput+'&sortedby=mushaf&range=24').subscribe(res => {
       console.log(res);
-this.ayas = [];
+      this.ayas = [];
       if(res.search!= null){
         this.showListOfAyah = true;
         for(let i =res.search.interval.start ;i<= res.search.interval.end ; i++){
           debugger
-          console.log(res.search.ayas[i].aya.text);
-          this.ayas.push("<div>"+res.search.ayas[i].aya.text+"</div>");
+          console.log("<div>" + res.search.ayas[i].aya.text + "</div>");
+          let row = "<div class=\"result\"><div class=\"row-0\"><span class=\"number\">" + i + "." + res.search.ayas[i].aya.text + "</div></div>";
+          // this.ayas.push("<div>"+res.search.ayas[i].aya.text+"</div>");
+          this.ayas.push(row);
           // document.getElementById('target')[0].["innerHTML"] = this.ayas;
 
 
