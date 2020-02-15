@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   constructor() {
     this.selectedMotashabeh2 = { name: '    0     ', code: '0'};
 
-      this.nOfMotashabeh2 = [
+    this.nOfMotashabeh2 = [
       {name:'عدد المتشابهات', code:'0'},
       { name: '    1     ', code: '1'},
       { name: '    2     ', code: '2'},
@@ -41,6 +41,7 @@ export class NavbarComponent implements OnInit {
   selectedImage2: string = this.imges1[0];
   selectedClass: string = 'item active';
   i = 0;
+  i2 = 0;
 
   ngOnInit() {
   }
@@ -68,30 +69,29 @@ export class NavbarComponent implements OnInit {
   }
 
   OnRightClick2() {
-    this.i++;
+    this.i2++;
 
-    if(this.i <= this.imges2.length-1){
-      this.selectedImage2 = this.imges2[this.i];
+    if(this.i2 <= this.imges2.length-1){
+      this.selectedImage2 = this.imges2[this.i2];
     }else {
       this.selectedImage2 = this.imges2[0];
-      this.i = 0;
+      this.i2 = 0;
     }
 
 
   }
 
   OnLeftClick2() {
-    this.i--;
-    if(this.i > 0){
-      this.selectedImage2 = this.imges2[this.i-1];
+    this.i2--;
+    if(this.i2 > 0){
+      this.selectedImage2 = this.imges2[this.i2-1];
     }else {
-      this.selectedImage2 = this.imges2[this.imges1.length-1];
-      this.i = this.imges2.length;
+      this.selectedImage2 = this.imges2[this.imges2.length-1];
+      this.i2 = this.imges2.length;
     }
   }
 
   OnChange(e: any) {
-    debugger
-this.selectedMotashabeh2 = e.value;
+    this.selectedMotashabeh2 = e.value;
   }
 }

@@ -8,13 +8,15 @@ import {DropdownModule} from 'primeng/dropdown';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { SliderComponent } from './slider/slider.component';
+import { HolyQuranComponent } from './holy-quran/holy-quran.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SliderComponent
+    SliderComponent,
+    HolyQuranComponent
   ],
   imports: [
     BrowserModule,

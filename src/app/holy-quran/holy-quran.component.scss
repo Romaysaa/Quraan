@@ -1,0 +1,115 @@
+.quranPageHeader, .quranPageFooter {
+  direction: ltr;
+  text-align: center;
+  font-family: "Times New Roman";
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px;
+  color: #333;
+}
+.ui-helper-clearfix {
+  display: block;
+}
+
+
+.suraHeaderText {
+  font-family: "Times New Roman";
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  line-height: 49px;
+  width: 412px;
+}
+
+
+.quran {
+  font-size: 19px;
+  width: 500px;
+  margin: 4px 32px;
+  padding-top: 20px;
+  direction: ltr;
+  font-family: "Times New Roman";
+}
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+user agent stylesheet
+div {
+  display: block;
+}
+/*.aya {*/
+/*  background-color: #F7FCE3;*/
+/*}*/
+.ayaText{
+  ext-align: justify;
+  font-family: "KFGQPC Uthman Taha Naskh", KFGQPC_Naskh, serif;
+  font-size: 1.1em;
+  font-weight: normal;
+}.ayaText2{
+   ext-align: justify;
+   font-family: "KFGQPC Uthman Taha Naskh", KFGQPC_Naskh, serif;
+   font-size: 0.8em;
+   font-weight: normal;
+ }
+body {
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  background: #F6F6F6 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAAKCAMAAAB7ccqXAAAABGdBT…dzas8bAzZ2x3FeX1ktQhAQBAQBQUAQEAQEAUFAENgvyBRgAPwjsEAEXWYMAAAAAElFTkSuQmCC) repeat-y 50% 0;
+  line-height: normal;
+}
+
+.quranPageHeader, .quranPageFooter {
+  direction: ltr;
+  text-align: center;
+  font-family: "Times New Roman";
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px;
+  color: #333;
+}
+.qFrameBottom {
+  /*background: #F7FCE3 url(../img/frame.png) no-repeat 0 bottom;*/
+  height: 23px;
+}
+.qFrameTop {
+  /*background: #F7FCE3 url(../img/frame.png) no-repeat;*/
+  height: 23px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+.quranText {
+  direction: rtl;
+  font-size: 1.15em;
+  text-align: right;
+  width: 412px;
+  margin: 0px 30px;
+  padding: 16px 14px;
+  color: black;
+}
+.aya.selected, .aya.highlight {
+  background-color: #C4ECBD;
+}
+
+.suraHeaderFrame {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVIAAAAxCAMAAAC/HNGdAAAABGdBT…Pv65XrR499fZQL7f3revRhj/n6Wu7n34wvBF9I/+ftLwEGAPxNNwyhxR68AAAAAElFTkSuQmCC) no-repeat center center;
+  margin: 3px 0px 7px;
+}
+
+
+.sign {
+  font-family: "Times New Roman";
+  color:black;
+  font-size: 0.9em;
+}
+
+.qFrameMiddle {
+  //background: #F7FCE3 url(../img/frame.png) repeat-y -500px 0;
+  line-height: 2.35em;
+  font-family: "Traditional Arabic",Scheherazade,"Times New Roman";
+}
