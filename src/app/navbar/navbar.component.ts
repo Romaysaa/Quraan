@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SelectItem} from 'primeng/api';
+import {HttpClient} from "@angular/common/http";
 
 interface City {
   name: string;
@@ -16,9 +16,11 @@ export class NavbarComponent implements OnInit {
 
 
   selectedMotashabeh2: City;
+  showListOfAyah: boolean = false;
+  ayas: any[] = [];
 
 
-  constructor() {
+  constructor( private http: HttpClient) {
     this.selectedMotashabeh2 = { name: '    0     ', code: '0'};
 
     this.nOfMotashabeh2 = [
@@ -42,6 +44,7 @@ export class NavbarComponent implements OnInit {
   selectedClass: string = 'item active';
   i = 0;
   i2 = 0;
+  searchInput: string;
 
   ngOnInit() {
   }
@@ -93,5 +96,42 @@ export class NavbarComponent implements OnInit {
 
   OnChange(e: any) {
     this.selectedMotashabeh2 = e.value;
+  }
+
+  OnSearchClicked() {
+    debugger
+   while (this.searchInput.includes(' '))
+   {
+     this.searchInput = this.searchInput.replace(' ','%20');
+
+   }
+   let url = 'https://www.alfanous.org/api/search?query=';
+    this.http.get<any>(url+this.searchInput+'&sortedby=mushaf&range=24').subscribe(res => {
+      console.log(res);
+this.ayas = [];
+      if(res.search!= null){
+        this.showListOfAyah = true;
+        for(let i =res.search.interval.start ;i<= res.search.interval.end ; i++){
+          debugger
+          console.log(res.search.ayas[i].aya.text);
+          this.ayas.push("<div>"+res.search.ayas[i].aya.text+"</div>");
+          // document.getElementById('target')[0].["innerHTML"] = this.ayas;
+
+
+        }
+
+
+
+      }
+    }, err => {
+      console.log(err);
+      alert(err.message);
+    });
+
+  }
+
+  changeSearchInput(value) {
+    this.searchInput = value;
+
   }
 }

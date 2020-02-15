@@ -1,12 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">بحث</button>
-      <input class="form-control mr-sm-2" type="search" placeholder="بحث" aria-label="Search">
+      <button class="btn btn-outline-light my-2 my-sm-0" (click)="OnSearchClicked()"  >بحث</button>
+      <input #inp class="form-control mr-sm-2"  style="  font-family: 'Times New Roman';
+      " type="search" placeholder="بحث"  (input)="changeSearchInput(inp.value)"  aria-label="Search">
 <!--      <p-dropdown [options]="nOfMotashabeh"[optionLabel]="selectedMotashabeh"></p-dropdown>-->
 <!--      <p-dropdown [options]="nOfMotashabeh1" [(ngModel)]="selectedMotashabeh1"></p-dropdown>-->
 
-      <p-dropdown [options]="nOfMotashabeh2" (onChange)="OnChange($event)" [(ngModel)]="selectedMotashabeh2" optionLabel="name"></p-dropdown>
+      <p-dropdown [options]="nOfMotashabeh2"   (onChange)="OnChange($event)" [(ngModel)]="selectedMotashabeh2" optionLabel="name"></p-dropdown>
 
     </form>
   </div>
@@ -105,3 +106,6 @@
 </div>
 <!--<p>selected Motashabeh: {{selectedMotashabeh1 ? selectedMotashabeh1.code : 'none'}}</p>-->
 <!--<p>selected Motashabeh: {{selectedMotashabeh2 ? selectedMotashabeh2.code : 'none'}}</p>-->
+
+<div id="target" [innerHTML]="ayas" >
+</div>
