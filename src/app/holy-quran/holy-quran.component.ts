@@ -12,4 +12,11 @@ export class HolyQuranComponent implements OnInit {
   ngOnInit() {
   }
 
+  activeAya: number = 0;
+
+  aya_clicked(event, ayaNum) {
+    this.activeAya = ayaNum;
+    event.preventDefault();
+    event.stopPropagation();
+  }
 }

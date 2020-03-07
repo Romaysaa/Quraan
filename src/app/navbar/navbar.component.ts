@@ -103,20 +103,29 @@ export class NavbarComponent implements OnInit {
    while (this.searchInput.includes(' '))
    {
      this.searchInput = this.searchInput.replace(' ','%20');
-
    }
    let url = 'https://www.alfanous.org/api/search?query=';
-    this.http.get<any>(url+this.searchInput+'&sortedby=mushaf&range=24').subscribe(res => {
+    this.http.get<any>(url + '"' + this.searchInput + '"' + '&sortedby=mushaf&range=24').subscribe(res => {
       console.log(res);
       this.ayas = [];
       if(res.search!= null){
-        this.showListOfAyah = true;
+        this.showListOfAyah =!!(res.search.ayas);
         for(let i =res.search.interval.start ;i<= res.search.interval.end ; i++){
           debugger
           console.log("<div>" + res.search.ayas[i].aya.text + "</div>");
-          let row = "<div class=\"result\"><div class=\"row-0\"><span class=\"number\">" + i + "." + res.search.ayas[i].aya.text + "</div></div>";
+          let row = "<div  dir=\"rtl\" class=\"result\"><div class=\"row-0\"><span class=\"number\">" + i + "." + res.search.ayas[i].aya.text + "</div></div>";
           // this.ayas.push("<div>"+res.search.ayas[i].aya.text+"</div>");
-          this.ayas.push(row);
+          this.ayas.push({
+            رقم_الصفحة:res.search.ayas[i].position.page,
+            // رقم_الربع:res.search.ayas[i].position.rub,
+            رقم_الحزب:res.search.ayas[i].position.hizb,
+            رقم_الجزء:res.search.ayas[i].position.juz,
+            مكان_النزول:res.search.ayas[i].sura.arabic_type,
+            رقم_السورة:res.search.ayas[i].identifier.sura_id,
+            رقم_الأيه:res.search.ayas[i].identifier.aya_id,
+            السورة:res.search.ayas[i].identifier.sura_arabic_name,
+            الأيه:res.search.ayas[i].aya.text_no_highlight,
+            });
           // document.getElementById('target')[0].["innerHTML"] = this.ayas;
 
 
@@ -126,6 +135,7 @@ export class NavbarComponent implements OnInit {
 
       }
     }, err => {
+      this.showListOfAyah = false;
       console.log(err);
       alert(err.message);
     });

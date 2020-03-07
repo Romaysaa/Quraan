@@ -10,6 +10,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { SliderComponent } from './slider/slider.component';
 import { HolyQuranComponent } from './holy-quran/holy-quran.component';
 import {HttpClientModule} from '@angular/common/http';
+import { GridComponent } from './grid/grid.component';
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     NavbarComponent,
     SliderComponent,
-    HolyQuranComponent
+    HolyQuranComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import {HttpClientModule} from '@angular/common/http';
     DropdownModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
