@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {QuranInJson} from "../holy-quran/QuranInJson";
+import {QuranPages} from "../holy-quran/QuranPages";
 
 interface City {
   name: string;
@@ -8,7 +10,8 @@ interface City {
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
+  providers:[QuranInJson,QuranPages]
 })
 export class NavbarComponent implements OnInit {
 
@@ -18,9 +21,47 @@ export class NavbarComponent implements OnInit {
   selectedMotashabeh2: City;
   showListOfAyah: boolean = false;
   ayas: any[] = [];
+  ayat: any[] = [];
 
+  quran2=["بسم الله الرحمن الرحيم",
+  "الحمد لله رب العالمين",
+  "الرحمن الرحيم",
+  "مالك يوم الدين" ,
+  "إياك نعبد وإياك نستعين" ,
+  "اهدنا الصراط المستقيم" ,
+  "صراط الذين أنعمت عليهم غير المغضوب عليهم ولا الضالين"];
+  quran = [{
+    "index": "1",
+    "text": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
+  },
+    {
+      "index": "2",
+      "text": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ"
+    },
+    {
+      "index": "3",
+      "text": "الرَّحْمَٰنِ الرَّحِيمِ"
+    },
+    {
+      "index": "4",
+      "text": "مَالِكِ يَوْمِ الدِّينِ"
+    },
+    {
+      "index": "5",
+      "text": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ"
+    },
+    {
+      "index": "6",
+      "text": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ"
+    },
+    {
+      "index": "7",
+      "text": "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ"
+    }
+    ,
+];
 
-  constructor( private http: HttpClient) {
+  constructor( private http: HttpClient,private _quranInJson:QuranInJson) {
     this.selectedMotashabeh2 = { name: '    0     ', code: '0'};
 
     this.nOfMotashabeh2 = [
@@ -45,8 +86,20 @@ export class NavbarComponent implements OnInit {
   i = 0;
   i2 = 0;
   searchInput: string;
+  x:any[] = [];
 
   ngOnInit() {
+    debugger;
+      this._quranInJson.suras.forEach(sura=>{
+      sura.aya.forEach(aya=>{
+        if(aya.text.startsWith('إِنَّ الَّذِينَ كَفَرُوا')){
+          this.x.push(aya.text)
+        }
+      });
+    });
+    debugger;
+console.log(this.x[2]);
+console.log(this.x.length);
   }
   OnRightClick() {
     this.i++;
@@ -105,7 +158,7 @@ export class NavbarComponent implements OnInit {
      this.searchInput = this.searchInput.replace(' ','%20');
    }
    let url = 'https://www.alfanous.org/api/search?query=';
-    this.http.get<any>(url + '"' + this.searchInput + '"' + '&sortedby=mushaf&range=24').subscribe(res => {
+    this.http.get<any>(url + '"' + this.searchInput + '"' + '&sortedby=mushaf&range=all').subscribe(res => {
       console.log(res);
       this.ayas = [];
       if(res.search!= null){
@@ -142,8 +195,59 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  currentLength: number = 0;
+  prevLength: number = 0;
+  foundRes = false;
   changeSearchInput(value) {
+    debugger
+    this.currentLength = value.length;
     this.searchInput = value;
+    // let url = 'https://www.alfanous.org/api/search?query=';
+    // if (this.searchInput.includes(' ') && this.currentLength > this.prevLength && !this.foundRes) {
+    //   while (this.searchInput.includes(' ')) {
+    //     this.searchInput = this.searchInput.replace(' ', '%20');
+    //   }
+    //   this.http.get<any>(url + '"' + this.searchInput + '"' + '&sortedby=mushaf&range=all&&page=2').subscribe(res => {
+    //     console.log(res);
+    //     this.ayas = [];
+    //     if (res.search != null) {
+    //       this.foundRes = true;
+    //       this.showListOfAyah = !!(res.search.ayas);
+    //       for (let i = res.search.interval.start; i <= res.search.interval.end; i++) {
+    //         debugger
+    //         this.ayat.push(res.search.ayas[i].aya.text_no_highlight);
+    //         console.log("<div>" + res.search.ayas[i].aya.text + "</div>");
+    //         let row = "<div  dir=\"rtl\" class=\"result\"><div class=\"row-0\"><span class=\"number\">" + i + "." + res.search.ayas[i].aya.text + "</div></div>";
+    //         this.ayas.push(row);
+    //
+    //       }
+    //
+    //
+    //     }
+    //   }, err => {
+    //     this.showListOfAyah = false;
+    //     console.log(err);
+    //     alert(err.message);
+    //   });
+    //
+    // }
+
+
+    // this.prevLength = this.currentLength;
+    // if (!this.foundRes) {
+    //   debugger
+    //   let x :any[] = [];
+    //   this.suras.forEach((aya) => {
+    //     if (aya.text.includes(this.searchInput)){
+    //       x.push(aya.text);
+    //     }
+    //   });
+    //    this.quran2.forEach((aya) => {
+    //      if(aya.includes(this.searchInput))
+    //      {x.push(aya);}
+    //   });
+    //   console.log(x);
+    // }
 
   }
 }
