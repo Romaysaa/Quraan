@@ -61,7 +61,7 @@ export class NavbarComponent implements OnInit {
     ,
 ];
 
-  constructor( private http: HttpClient,private _quranInJson:QuranInJson) {
+  constructor( private http: HttpClient,private _quranInJson:QuranInJson,private _quranPages:QuranPages) {
     this.selectedMotashabeh2 = { name: '    0     ', code: '0'};
 
     this.nOfMotashabeh2 = [
@@ -86,20 +86,116 @@ export class NavbarComponent implements OnInit {
   i = 0;
   i2 = 0;
   searchInput: string;
-  x:any[] = [];
+  x:{text:string,index:string,sura:string}[] = [] ;
+arrOfWords:string[]=[];
+searchWord:string='';
+firstWord:string='';
 
   ngOnInit() {
     debugger;
-      this._quranInJson.suras.forEach(sura=>{
+    this._quranInJson.suras.forEach(sura=>{
       sura.aya.forEach(aya=>{
         if(aya.text.startsWith('إِنَّ الَّذِينَ كَفَرُوا')){
-          this.x.push(aya.text)
+          this.x.push({sura:sura.name,index:aya.index, text:aya.text})
         }
       });
     });
     debugger;
-console.log(this.x[2]);
-console.log(this.x.length);
+    console.log(this.x);
+    console.log(this.x.length);
+    // this._quranPages.pages[2].ayas.forEach(ayaInPage=>{
+    //   this.x = [];
+    //   this.arrOfWords = ayaInPage.text.split(' ');
+    //   this.firstWord = this.arrOfWords[0];
+    //   // for(let i = 0; i <= this.arrOfWords.length; i++){
+    //     if(this.firstWord.length > 5){
+    //       this.searchWord = this.searchWord + this.arrOfWords[0];
+    //
+    //     } else {
+    //       this.searchWord = this.arrOfWords[0] + ' ' + this.arrOfWords[1];
+    //     }
+    //   let countSuras = [];
+    //   this._quranInJson.suras.forEach(sura=>{
+    //     sura.aya.forEach(aya=>{
+    //       if(aya.text.startsWith(this.searchWord)){
+    //         this.x.push({text:aya.text,index:aya.index,sura:sura.name});
+    //         if(countSuras.indexOf(sura.name)<0){
+    //           countSuras.push(sura.name);
+    //         }
+    //       }
+    //     });
+    //   });
+    //   if(this.x.length==1){
+    //
+    //   } else if(this.x.length == 2){
+    //
+    //   }else if(this.x.length == 3){
+    //
+    //   }else if(this.x.length == 4){
+    //
+    //   }else if(this.x.length  > 4 ){
+    //     if(countSuras.length<=6||this.x.length<=7){
+    //       console.log('finished:')
+    //       console.log(this.x);
+    //
+    //     }else{
+    //       this.x = [];
+    //       countSuras = [];
+    //       this.searchWord = this.arrOfWords[0] + ' ' + this.arrOfWords[1]+ ' ' + this.arrOfWords[2];
+    //       this._quranInJson.suras.forEach(sura=>{
+    //         sura.aya.forEach(aya=>{
+    //           if(aya.text.startsWith(this.searchWord)){
+    //             this.x.push({text:aya.text,index:aya.index,sura:sura.name});
+    //             if(countSuras.indexOf(sura.name)<0){
+    //               countSuras.push(sura.name);
+    //             }
+    //           }
+    //         });
+    //       });
+    //       if(this.x.length==1){
+    //
+    //       } else if(this.x.length == 2){
+    //
+    //       }else if(this.x.length == 3){
+    //
+    //       }else if(this.x.length == 4){
+    //
+    //       }else if(this.x.length  > 4 ){
+    //         if(countSuras.length<=6||this.x.length<=7){
+    //           console.log('finished:')
+    //           console.log(this.x);
+    //
+    //         }else{
+    //             this.x = [];
+    //             countSuras = [];
+    //             this.searchWord = this.arrOfWords[0] + ' ' + this.arrOfWords[1]+ ' ' + this.arrOfWords[2]+ ' ' + this.arrOfWords[3];
+    //             this._quranInJson.suras.forEach(sura=>{
+    //               sura.aya.forEach(aya=>{
+    //                 if(aya.text.startsWith(this.searchWord)){
+    //                   this.x.push({text:aya.text,index:aya.index,sura:sura.name});
+    //                   if(countSuras.indexOf(sura.name)<0){
+    //                     countSuras.push(sura.name);
+    //                   }
+    //                 }
+    //               });
+    //             });
+    //             if(this.x.length==1){
+    //
+    //             } else if(this.x.length == 2){
+    //
+    //             }else if(this.x.length == 3){
+    //
+    //             }else if(this.x.length == 4){
+    //
+    //             }else if(this.x.length  > 4 ){
+    //         }
+    //         console.log('countSuras : '+ countSuras);
+    //       }
+    //     }
+    //   }
+    //   }
+    // });
+
   }
   OnRightClick() {
     this.i++;

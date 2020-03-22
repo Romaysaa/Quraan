@@ -108,7 +108,7 @@ export class QuranPages {
           },
         ],
       }, {
-        "pageNumber": "3",
+        "pageNumber": "4",
         "ayas": [
           {
             "index": "17",
