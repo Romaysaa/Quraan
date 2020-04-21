@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {QuranInJson} from "../holy-quran/QuranInJson";
 import {QuranPages} from "../holy-quran/QuranPages";
@@ -60,6 +60,7 @@ export class NavbarComponent implements OnInit {
     }
     ,
 ];
+  allMotashabehat: any[] = [];
 
   constructor( private http: HttpClient,private _quranInJson:QuranInJson,private _quranPages:QuranPages) {
     this.selectedMotashabeh2 = { name: '    0     ', code: '0'};
@@ -86,23 +87,126 @@ export class NavbarComponent implements OnInit {
   i = 0;
   i2 = 0;
   searchInput: string;
-  x:{text:string,index:string,sura:string}[] = [] ;
+  x:{text:string,index:string,sura:string,nOfWords:number,lastWord?:String,coloredWord?:String,color?:String,arrOfWords?:{word:String,color:String,nOfChar:number}[]}[] = [] ;
 arrOfWords:string[]=[];
+arr:{word:String,color:String,nOfChar:number,motashabeh:any[]}[] = [];
 searchWord:string='';
 firstWord:string='';
 
   ngOnInit() {
     debugger;
-    this._quranInJson.suras.forEach(sura=>{
-      sura.aya.forEach(aya=>{
-        if(aya.text.startsWith('إِنَّ الَّذِينَ كَفَرُوا')){
-          this.x.push({sura:sura.name,index:aya.index, text:aya.text})
+    // this._quranInJson.suras.forEach(sura=>{
+    //   sura.aya.forEach(aya=>{
+    //     if(aya.text.startsWith('إِنَّ الَّذِينَ كَفَرُوا')){
+    //       this.x.push({sura:sura.name,index:aya.index, text:aya.text})
+    //     }
+    //   });
+    // });
+    // debugger;
+    // console.log(this.x);
+    // console.log(this.x.length);
+
+
+    this._quranPages.pages[3].ayas.forEach(ayaInPage => {
+    this.arrOfWords = ayaInPage.text.split(' ');
+    // this.firstWord = this.arrOfWords[0];
+    // let i;
+    // if (this.firstWord.length > 3) {
+    //   i = 1;
+      this.searchWord = this.arrOfWords[0];
+    //
+    // } else {
+    //   i = 2;
+    //   this.searchWord = this.arrOfWords[0]+ ' ' + this.arrOfWords[1];
+    // }
+      this.arr = [];
+
+      for (let i=0; i <= this.arrOfWords.length; i++) {
+      this.x = [];
+      let countSuras = [];
+     if(i==0){
+       this.searchWord = this.arrOfWords[0];
+     }else{
+       this.searchWord = this.searchWord + ' ' + this.arrOfWords[i];
+     }
+      this._quranInJson.suras.forEach(sura => {
+        sura.aya.forEach(aya => {
+          if (aya.text.startsWith(this.searchWord)) {
+            this.x.push({text: aya.text, index: aya.index, sura: sura.name,coloredWord:this.arrOfWords[i],nOfWords:this.searchWord.split(" ").length,});
+            if (countSuras.indexOf(sura.name) < 0) {
+              countSuras.push(sura.name);
+            }
+          }
+        });
+      });//nOfChar:this.searchWord.length}
+      if (this.x.length == 1) {
+        this.x[this.x.length-1].lastWord = this.searchWord;
+        this.x[this.x.length-1].color ='red';
+        this.arr.push({word:this.arrOfWords[i],color:'red',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+        // this.x[this.x.length-1].arrOfWords = this.arr;
+        this.allMotashabehat.push(this.x);
+        console.log('finished:');
+        console.log(this.arr);
+        break;
+      }else if (this.x.length == 2) {
+        this.x[this.x.length-1].lastWord = this.searchWord;
+        this.x[this.x.length-1].color ='green';
+        this.arr.push({word:this.arrOfWords[i],color:'green',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+        // this.x[this.x.length-1].arrOfWords = this.arr;
+
+        this.allMotashabehat.push(this.x);
+        console.log('finished:');
+        console.log(this.arr);
+        break;
+
+      } else if (this.x.length == 3) {
+        this.x[this.x.length-1].lastWord = this.searchWord;
+        this.x[this.x.length-1].color ='blue';
+        this.arr.push({word:this.arrOfWords[i],color:'blue',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+        // this.x[this.x.length-1].arrOfWords = this.arr;
+
+        this.allMotashabehat.push(this.x);
+        console.log('finished:');
+        console.log(this.arr);
+        // break;
+
+      } else if (this.x.length == 4) {
+        this.x[this.x.length-1].lastWord = this.searchWord;
+        this.x[this.x.length-1].color ='yellow';
+        this.arr.push({word:this.arrOfWords[i],color:'yellow',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+        // this.x[this.x.length-1].arrOfWords = this.arr;
+
+        this.allMotashabehat.push(this.x);
+        console.log('finished:');
+        console.log(this.arr);
+        // break;
+
+      } else if (this.x.length > 4) {
+        if (countSuras.length <= 6 || this.x.length <= 7) {
+          this.x[this.x.length-1].lastWord = this.searchWord;
+          this.x[this.x.length-1].color ='burble';
+          this.arr.push({word:this.arrOfWords[i],color:'burble',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+          // this.x[this.x.length-1].arrOfWords = this.arr;
+
+          console.log('finished:');
+          console.log(this.arr);
+          this.allMotashabehat.push(this.x);
+          // break;
+
+        } else {
+          // this.x[this.x.length-1].color ='burble';
+          // this.x[this.x.length-1].arrOfWords.push({word:this.arrOfWords[i],color:'burble',nOfChar:this.arrOfWords[i].length});
+          this.arr.push({word:this.arrOfWords[i],color:'burble',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
         }
-      });
+      } else {
+        // this.x[this.x.length-1].color ='burble';
+        // this.x[this.x.length-1].arrOfWords.push({word:this.arrOfWords[i],color:'burble',nOfChar:this.arrOfWords[i].length});
+        this.arr.push({word:this.arrOfWords[i],color:'burble',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+      }
+    }
     });
-    debugger;
-    console.log(this.x);
-    console.log(this.x.length);
+
+
     // this._quranPages.pages[2].ayas.forEach(ayaInPage=>{
     //   this.x = [];
     //   this.arrOfWords = ayaInPage.text.split(' ');
@@ -195,6 +299,10 @@ firstWord:string='';
     //   }
     //   }
     // });
+    this.allMotashabehat.forEach(arr=>{
+      console.log('allMotashabehat: '+arr);
+      });
+
 
   }
   OnRightClick() {

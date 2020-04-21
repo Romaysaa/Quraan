@@ -1,0 +1,5 @@
+<a (click)="aya_clicked($event,17)" [class.active]="activeAya === 17" [href]="href" [style.top]="top" [style.left]="'35%'"
+   class="aya_link">
+  <span *ngFor="let s of spans" [style.height]="s.height" [style.left]="s.left" [style.top]="s.top"
+        [style.width]="s.width"></span>
+</a>

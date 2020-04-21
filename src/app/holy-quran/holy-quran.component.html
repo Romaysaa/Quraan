@@ -1,45 +1,21 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-1"></div>
+<!--    <div class="col-1"></div>-->
     <div class="col-10">
-      <div id="page" style="background-image: url(assets/t4.png);">
-        <a href="#17" class="aya_link" (click)="aya_clicked($event,17)" [class.active]="activeAya === 17">
-          <div style="top: 50px; left: 45px; width: 392px; height: 35px;"></div>
-          <div style="top: 90px; left: 100px; width: 337px; height: 35px;"></div>
-        </a>
-        <a href="#18" class="aya_link" (click)="aya_clicked($event,18)" [class.active]="activeAya === 18">
-          <div style="top: 90px; left: 0px; width: 90px; height: 35px;"></div>
+      <div id="page" style=" background-image: url(assets/t4.png);" >
+<!--        <div-->
+<!--          style=" background-image: url(assets/t4.png);" >-->
+          <div *ngFor="let inp of inputs"  >
+            <app-dynamic-aya [spans]="inp.spans" [top]="inp.top"  [href]="inp.href" [activeAya]="inp.activeAya" (onClick)="aya_clicked($event,17)"></app-dynamic-aya>
 
-          <div style="top: 130px; left: 265px; width: 172px; height: 35px;"></div>
-        </a>
-        <a href="#19" class="aya_link " (click)="aya_clicked($event,19)" [class.active]="activeAya === 19">
-          <div style="top: 135px; left: 45px; width: 195px; height: 35px;"></div>
-          <div style="top: 180px; left: 45px; width: 392px; height: 35px;"></div>
-          <div style="top: 220px; left: 140px; width: 297px; height: 35px;"></div>
-        </a><a href="#20" class="aya_link" (click)="aya_clicked($event,20)" [class.active]="activeAya === 20">
-        <div style="top: 225px; left: 45px; width: 70px; height: 35px;"></div>
-        <div style="top: 270px; left: 45px; width: 392px; height: 35px;"></div>
-        <div style="top: 315px; left: 45px; width: 392px; height: 35px;"></div>
-        <div style="top: 360px; left: 310px; width: 127px; height: 35px;"></div>
-      </a><a href="#21" class="aya_link" (click)="aya_clicked($event,21)" [class.active]="activeAya === 21">
-        <div style="top: 360px; left: 45px; width: 243px; height: 35px;"></div>
-        <div style="top: 400px; left: 170px; width: 267px; height: 35px;"></div>
-      </a><a href="#22" class="aya_link" (click)="aya_clicked($event,22)" [class.active]="activeAya === 22">
-        <div style="top: 400px; left: 0px; width: 145px; height: 35px"></div>
-        <div style="top: 440px; left: 0px; width: 437px; height: 35px;"></div>
-        <div style="top: 485px; left: 45px; width: 392px; height: 35px;"></div>
-        <div style="top: 530px; left: 380px; width: 95px; height: 35px;"></div>
-      </a><a href="#23" class="aya_link" (click)="aya_clicked($event,23)" [class.active]="activeAya === 23">
-        <div style="top: 530px; left: 45px; width: 315px; height: 35px;"></div>
-        <div style="top: 570px; left: 0px; width: 437px; height: 35px;"></div>
-        <div style="top: 610px; left: 330px; width: 106px; height: 35px;"></div>
-      </a><a href="#24" class="aya_link" (click)="aya_clicked($event,24)" [class.active]="activeAya === 24">
-        <div style="top: 610px; left: 0px; width: 310px; height: 35px;"></div>
-        <div style="top: 650px; left: 66px; width: 370px; height: 35px;"></div>
-      </a></div><!-- page -->
+          </div>
+<!--        </div>-->
+
+        </div><!-- page -->
     </div>
-    <div class="col-1"></div>
+<!--    <div class="col-1"></div>-->
 
   </div>
 </div>
+

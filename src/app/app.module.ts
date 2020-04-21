@@ -12,6 +12,7 @@ import { HolyQuranComponent } from './holy-quran/holy-quran.component';
 import {HttpClientModule} from '@angular/common/http';
 import { GridComponent } from './grid/grid.component';
 import {TableModule} from 'primeng/table';
+import { DynamicAyaComponent } from './dynamic-aya/dynamic-aya.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {TableModule} from 'primeng/table';
     NavbarComponent,
     SliderComponent,
     HolyQuranComponent,
-    GridComponent
+    GridComponent,
+    DynamicAyaComponent
   ],
   imports: [
     BrowserModule,

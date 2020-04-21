@@ -36,33 +36,52 @@ body {
 #page {
   position: absolute;
   top: 15px;
-  right: 220px;
+  left: 35%;
   height: 700px;
   width: 480px;
   margin: 0;
   padding: 0;
 }
 
-#page a:hover div {
-  background: yellow;
-  opacity: .2;
-  filter: alpha(opacity=25);
-}
+//#page a:hover div {
+//  background: yellow;
+//  opacity: .2;
+//  filter: alpha(opacity=25);
+//}
+//
+//#page a.active div {
+//  background: blue;
+//  opacity: .2;
+//  filter: alpha(opacity=25);
+//}
 
-#page a.active div {
-  background: blue;
-  opacity: .2;
-  filter: alpha(opacity=25);
-}
+
+// app-dynamic-aya  a:hover span {
+//  background: yellow;
+//  opacity: .2;
+//  filter: alpha(opacity=25);
+//}
+//
+//app-dynamic-aya  a.active span {
+//  background: blue;
+//  opacity: .2;
+//  filter: alpha(opacity=25);
+//}
 
 //#page a div.active span {
 //  background:red;
 //  opacity:.2; filter:alpha(opacity=25);
 //}
 
-#page div {
+//#page div {
+//  position: absolute;
+//}
+
+#page span {
   position: absolute;
 }
+
+
 
 #tafseer {
   position: absolute;
