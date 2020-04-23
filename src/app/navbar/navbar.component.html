@@ -14,6 +14,8 @@
 
   <img  class="logo" src="assets/Quran_logo.png" >
 </nav>
+<p-dropdown [options]="readers"   (onChange)="OnChangeReader($event)" [(ngModel)]="selectedReader" optionLabel="name"></p-dropdown>
+<button class="btn btn-outline-light my-2 my-sm-0" (click)="OnreaderClicked()"  >استماع</button>
 
 <!--<head>-->
 <!--  <title>Bootstrap Example</title>-->
