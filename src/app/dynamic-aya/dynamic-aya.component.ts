@@ -12,16 +12,14 @@ export class DynamicAyaComponent implements OnInit {
   @Input() activeAya: any;
   @Input() spans: any[];
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
-  // spans = [{top:'50px',left: '45px',width: '392px',height: '35px'},{top:'90px',left: '100px',width: '337px',height: '35px'}];//<span top="top: 50px; left: 45px; width: 392px; height: 35px;"></span>
-// <span top="top: 90px; left: 100px; width: 337px; height: 35px;"></span>
-
+  aya = '';
   constructor() { }
 
   ngOnInit() {
   }
 
   aya_clicked(event, ayaNum) {
-    this.onClick.emit(event)
+    this.onClick.emit(event);
     this.activeAya = ayaNum;
     // event.preventDefault();
     // event.stopPropagation();

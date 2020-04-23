@@ -5,13 +5,10 @@
     <div class="col-10">
       <div id="page" style=" background-image: url(assets/t4.png);" >
 <!--        <div-->
-<!--          style=" background-image: url(assets/t4.png);" >-->
           <div *ngFor="let inp of inputs"  >
             <app-dynamic-aya [spans]="inp.spans" [top]="inp.top"  [href]="inp.href" [activeAya]="inp.activeAya" (onClick)="aya_clicked($event,17)"></app-dynamic-aya>
-
           </div>
 <!--        </div>-->
-
         </div><!-- page -->
     </div>
 <!--    <div class="col-1"></div>-->
