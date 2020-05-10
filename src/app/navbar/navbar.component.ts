@@ -393,11 +393,10 @@ debugger
 
   }
 
-  // confirm() {
-  //   debugger
-  //   let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
-  //   this.http.get<any>(url).subscribe(res => {
-  //     console.log(res);
-  //   });
-  // }
+  GoDisabled() {
+    let url = "https://alquran.cloud/ayah?reference=2%3A7";
+    this.http.get<any>(url).subscribe(res => {
+      console.log(res);
+    });
+  }
 }

@@ -1,3 +1,40 @@
+<!--<nav class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">-->
+<!--  <p-dialog header="تفسير" [(visible)]="tafseer">-->
+<!--    {{tafseerText}}-->
+<!--  </p-dialog>-->
+<!--  <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--    <form class="form-inline my-2 my-lg-0">-->
+<!--      <button class="btn btn-outline-light my-2 my-sm-0" (click)="OnSearchClicked()"  >بحث</button>-->
+<!--      <input dir="rtl" #inp class="form-control mr-sm-2"  style="  font-family: 'Times New Roman';-->
+<!--      " type="search" placeholder="بحث"  (input)="changeSearchInput(inp.value)"  aria-label="Search">-->
+<!--      <p-dropdown [options]="nOfMotashabeh2"   (onChange)="OnChange($event)" [(ngModel)]="selectedMotashabeh2" optionLabel="name"></p-dropdown>-->
+<!--      <input id="disabled-input" type="text" size="30" pInputText />-->
+
+<!--      <button id="disabled-btn" type="button" (click)="GoDisabled()" pButton label="Go To"></button>-->
+<!--    </form>-->
+<!--  </div>-->
+
+<!--  <img  class="logo" src="assets/Quran_logo.png" >-->
+<!--</nav>-->
+<!--<div class="row">-->
+<!--  <div class="col">-->
+<!--<audio controls  src="{{audio}}"  preload=auto audioplayer>-->
+<!--</audio>-->
+<!--</div>-->
+<!--  <div class="col" style="margin-top: 10px">-->
+<!--  <p-dropdown [options]="readers"  (onChange)="OnChangeReader($event)" [(ngModel)]="selectedReader" optionLabel="name"></p-dropdown>-->
+<!--  </div>-->
+<!--  <div  class="col" style="margin-top: 10px">-->
+<!--    <button class="ui-dropdown-trigger-icon" (click)="OnSgdClicked()"  >سجدات</button>-->
+
+
+<!--  </div>-->
+<!--</div>-->
+
+<!--<app-holy-quran *ngIf="!showListOfAyah"></app-holy-quran>-->
+<!--<app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>-->
+<!--<app-grid [data]="sagdas"></app-grid>-->
+
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">
   <p-dialog header="تفسير" [(visible)]="tafseer">
     {{tafseerText}}
@@ -7,10 +44,10 @@
       <button class="btn btn-outline-light my-2 my-sm-0" (click)="OnSearchClicked()"  >بحث</button>
       <input dir="rtl" #inp class="form-control mr-sm-2"  style="  font-family: 'Times New Roman';
       " type="search" placeholder="بحث"  (input)="changeSearchInput(inp.value)"  aria-label="Search">
-<!--      <p-dropdown [options]="nOfMotashabeh"[optionLabel]="selectedMotashabeh"></p-dropdown>-->
-<!--      <p-dropdown [options]="nOfMotashabeh1" [(ngModel)]="selectedMotashabeh1"></p-dropdown>-->
-
       <p-dropdown [options]="nOfMotashabeh2"   (onChange)="OnChange($event)" [(ngModel)]="selectedMotashabeh2" optionLabel="name"></p-dropdown>
+            <input id="disabled-input" type="text" size="30" pInputText />
+
+            <button id="disabled-btn" type="button" (click)="GoDisabled()" pButton label="Go To"></button>
 
     </form>
   </div>
@@ -19,21 +56,21 @@
 </nav>
 <div class="row">
   <div class="col">
-<audio controls  src="{{audio}}"  preload=auto audioplayer>
-</audio>
-</div>
-  <div class="col" style="margin-top: 10px">
-  <p-dropdown [options]="readers"  (onChange)="OnChangeReader($event)" [(ngModel)]="selectedReader" optionLabel="name"></p-dropdown>
+    <audio controls  src="{{audio}}"  preload=auto audioplayer>
+    </audio>
   </div>
+  <div class="col" style="margin-top: 10px">
+    <p-dropdown [options]="readers"  (onChange)="OnChangeReader($event)" [(ngModel)]="selectedReader" optionLabel="name"></p-dropdown>
+  </div>
+  <div class="col" style="margin-top: 10px">
+    <p-dropdown [options]="tafser"  (onChange)="OnChangetafseer($event)" [(ngModel)]="selectedtafseer" optionLabel="name"></p-dropdown>
+  </div>
+</div>
   <div  class="col" style="margin-top: 10px">
     <button class="ui-dropdown-trigger-icon" (click)="OnSgdClicked()"  >سجدات</button>
 
 
-  </div>
 </div>
-
-<button type="text"  pButton icon="pi pi-check" label="Confirm"></button>
-
 <app-holy-quran *ngIf="!showListOfAyah"></app-holy-quran>
 <app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
 <app-grid [data]="sagdas"></app-grid>
