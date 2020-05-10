@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {QuranInJson} from "../holy-quran/QuranInJson";
 import {QuranPages} from "../holy-quran/QuranPages";
+import {Base64} from "js-base64";
+import toBase64 = Base64.toBase64;
+// import { Base64 } from 'js-base64';
+
 
 interface City {
   name: string;
@@ -61,6 +65,7 @@ export class NavbarComponent implements OnInit {
     ,
   ];
   allMotashabehat: any[] = [];
+  audio: any;
 
   constructor(private http: HttpClient, private _quranInJson: QuranInJson, private _quranPages: QuranPages) {
     this.selectedMotashabeh2 = {name: '    0     ', code: '0'};
@@ -81,13 +86,19 @@ export class NavbarComponent implements OnInit {
   readers: any[] = [
     {name: 'القراء', code: '0', en: "reader"},
 
-    {name: 'مشاري العفاسي', code: '1', en: 'ar.alafasy'},
-    // { name: '    2     ', code: '2'},
-    // { name: '    3     ', code: '3'},
-    // { name: '    4     ', code: '4'},
-    // { name: '    5     ', code: '5'},
-    // { name: '    6     ', code: '6'},
-    // { name: '    7     ', code: '7'},
+    {name: 'عبد الباسط مرتل', code: '1', en: 'ar.abdulbasitmurattal'},
+    {name: 'مشاري العفاسي', code: '2', en: 'ar.alafasy'},
+    {name: 'الحذيفي', code: '3', en: 'ar.hudhaify'},
+    {name: 'الحصري مجود', code: '4', en: 'ar.husarymujawwad'},
+    {name: 'الشريمي', code: '5', en: 'ar.saoodshuraym'},
+    {name: 'الحصري', code: '6', en: 'ar.husary'},
+    {name: 'احمد العجمي', code: '7', en: 'ar.ahmedajamy'},
+    {name: 'محمد جبريل', code: '8', en: 'ar.muhammadjibreel'},
+    {name: 'ابوبكر الشاطري', code: '9', en: 'ar.shaatree'},
+    {name: 'المنشاوي', code: '10', en: 'ar.minshawi'},
+    {name: 'المنشاوي مجود', code: '11', en: 'ar.minshawimujawwad'},
+    {name: 'عبدالله بصفار', code: '12', en: 'ar.abdullahbasfar'},
+
   ];
   selectedReader: any;
 
@@ -108,16 +119,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   debugger;
-    // this._quranInJson.suras.forEach(sura=>{
-    //   sura.aya.forEach(aya=>{
-    //     if(aya.text.startsWith('إِنَّ الَّذِينَ كَفَرُوا')){
-    //       this.x.push({sura:sura.name,index:aya.index, text:aya.text})
-    //     }
-    //   });
-    // });
-    // debugger;
-    // console.log(this.x);
-    // console.log(this.x.length);
 
 
     this._quranPages.pages[3].ayas.forEach(ayaInPage => {
@@ -261,98 +262,6 @@ export class NavbarComponent implements OnInit {
     });
 
 
-    // this._quranPages.pages[2].ayas.forEach(ayaInPage=>{
-    //   this.x = [];
-    //   this.arrOfWords = ayaInPage.text.split(' ');
-    //   this.firstWord = this.arrOfWords[0];
-    //   // for(let i = 0; i <= this.arrOfWords.length; i++){
-    //     if(this.firstWord.length > 5){
-    //       this.searchWord = this.searchWord + this.arrOfWords[0];
-    //
-    //     } else {
-    //       this.searchWord = this.arrOfWords[0] + ' ' + this.arrOfWords[1];
-    //     }
-    //   let countSuras = [];
-    //   this._quranInJson.suras.forEach(sura=>{
-    //     sura.aya.forEach(aya=>{
-    //       if(aya.text.startsWith(this.searchWord)){
-    //         this.x.push({text:aya.text,index:aya.index,sura:sura.name});
-    //         if(countSuras.indexOf(sura.name)<0){
-    //           countSuras.push(sura.name);
-    //         }
-    //       }
-    //     });
-    //   });
-    //   if(this.x.length==1){
-    //
-    //   } else if(this.x.length == 2){
-    //
-    //   }else if(this.x.length == 3){
-    //
-    //   }else if(this.x.length == 4){
-    //
-    //   }else if(this.x.length  > 4 ){
-    //     if(countSuras.length<=6||this.x.length<=7){
-    //       console.log('finished:')
-    //       console.log(this.x);
-    //
-    //     }else{
-    //       this.x = [];
-    //       countSuras = [];
-    //       this.searchWord = this.arrOfWords[0] + ' ' + this.arrOfWords[1]+ ' ' + this.arrOfWords[2];
-    //       this._quranInJson.suras.forEach(sura=>{
-    //         sura.aya.forEach(aya=>{
-    //           if(aya.text.startsWith(this.searchWord)){
-    //             this.x.push({text:aya.text,index:aya.index,sura:sura.name});
-    //             if(countSuras.indexOf(sura.name)<0){
-    //               countSuras.push(sura.name);
-    //             }
-    //           }
-    //         });
-    //       });
-    //       if(this.x.length==1){
-    //
-    //       } else if(this.x.length == 2){
-    //
-    //       }else if(this.x.length == 3){
-    //
-    //       }else if(this.x.length == 4){
-    //
-    //       }else if(this.x.length  > 4 ){
-    //         if(countSuras.length<=6||this.x.length<=7){
-    //           console.log('finished:')
-    //           console.log(this.x);
-    //
-    //         }else{
-    //             this.x = [];
-    //             countSuras = [];
-    //             this.searchWord = this.arrOfWords[0] + ' ' + this.arrOfWords[1]+ ' ' + this.arrOfWords[2]+ ' ' + this.arrOfWords[3];
-    //             this._quranInJson.suras.forEach(sura=>{
-    //               sura.aya.forEach(aya=>{
-    //                 if(aya.text.startsWith(this.searchWord)){
-    //                   this.x.push({text:aya.text,index:aya.index,sura:sura.name});
-    //                   if(countSuras.indexOf(sura.name)<0){
-    //                     countSuras.push(sura.name);
-    //                   }
-    //                 }
-    //               });
-    //             });
-    //             if(this.x.length==1){
-    //
-    //             } else if(this.x.length == 2){
-    //
-    //             }else if(this.x.length == 3){
-    //
-    //             }else if(this.x.length == 4){
-    //
-    //             }else if(this.x.length  > 4 ){
-    //         }
-    //         console.log('countSuras : '+ countSuras);
-    //       }
-    //     }
-    //   }
-    //   }
-    // });
     this.allMotashabehat.forEach(arr => {
       console.log('allMotashabehat: ' + arr);
     });
@@ -460,53 +369,6 @@ export class NavbarComponent implements OnInit {
   debugger
     this.currentLength = value.length;
     this.searchInput = value;
-    // let url = 'https://www.alfanous.org/api/search?query=';
-    // if (this.searchInput.includes(' ') && this.currentLength > this.prevLength && !this.foundRes) {
-    //   while (this.searchInput.includes(' ')) {
-    //     this.searchInput = this.searchInput.replace(' ', '%20');
-    //   }
-    //   this.http.get<any>(url + '"' + this.searchInput + '"' + '&sortedby=mushaf&range=all&&page=2').subscribe(res => {
-    //     console.log(res);
-    //     this.ayas = [];
-    //     if (res.search != null) {
-    //       this.foundRes = true;
-    //       this.showListOfAyah = !!(res.search.ayas);
-    //       for (let i = res.search.interval.start; i <= res.search.interval.end; i++) {
-    //         debugger
-    //         this.ayat.push(res.search.ayas[i].aya.text_no_highlight);
-    //         console.log("<div>" + res.search.ayas[i].aya.text + "</div>");
-    //         let row = "<div  dir=\"rtl\" class=\"result\"><div class=\"row-0\"><span class=\"number\">" + i + "." + res.search.ayas[i].aya.text + "</div></div>";
-    //         this.ayas.push(row);
-    //
-    //       }
-    //
-    //
-    //     }
-    //   }, err => {
-    //     this.showListOfAyah = false;
-    //     console.log(err);
-    //     alert(err.message);
-    //   });
-    //
-    // }
-
-
-    // this.prevLength = this.currentLength;
-    // if (!this.foundRes) {
-    //   debugger
-    //   let x :any[] = [];
-    //   this.suras.forEach((aya) => {
-    //     if (aya.text.includes(this.searchInput)){
-    //       x.push(aya.text);
-    //     }
-    //   });
-    //    this.quran2.forEach((aya) => {
-    //      if(aya.includes(this.searchInput))
-    //      {x.push(aya);}
-    //   });
-    //   console.log(x);
-    // }
-
   }
 
   OnChangeReader($event: any) {
@@ -515,19 +377,18 @@ export class NavbarComponent implements OnInit {
   }
 
   OnreaderClicked() {
-    let header = new HttpHeaders({'Access-Control-Allow-Origin': '*'});
-    // let options: {} = {headers: header};
 
-
-    // let header
-    //   =  res.setHeader('Access-Control-Allow-Origin', '*');
-    // let options = new RequestOptions({responseType: ResponseContentType.ArrayBuffer});
-    let options: {} = {responseType: 'audio/mpeg'};
-
-    let url = 'http://cdn.alquran.cloud/media/audio/ayah/';
-    this.http.get<any[]>(url+this.selectedReader+"/1",options).subscribe(res => {
-      debugger
-          console.log(res);
-    });
+    let options: {} = {responseType: 'audio/mp3'};
+    this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.selectedReader+'/5/high';
+    // this.http.get<any>(url,options).subscribe(res => {
+    //   debugger
+    //
+    //   // const audio = new Audio();
+    //   this.audio= url;
+    // this.audio= NavbarComponent.Enc64(res);
+    // res= btoa(JSON.stringify(this.audio));
+    // this.audio="data:audio/mp3;base64,"+res;
+    //     console.log(this.audio);
+    // });
   }
 }

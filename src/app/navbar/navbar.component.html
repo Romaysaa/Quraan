@@ -14,9 +14,20 @@
 
   <img  class="logo" src="assets/Quran_logo.png" >
 </nav>
-<p-dropdown [options]="readers"   (onChange)="OnChangeReader($event)" [(ngModel)]="selectedReader" optionLabel="name"></p-dropdown>
-<button class="btn btn-outline-light my-2 my-sm-0" (click)="OnreaderClicked()"  >استماع</button>
+<div class="row">
+  <div class="col">
+<audio controls  src="{{audio}}"  preload=auto audioplayer>
+</audio>
+</div>
+  <div class="col" style="margin-top: 10px">
+  <p-dropdown [options]="readers"  (onChange)="OnChangeReader($event)" [(ngModel)]="selectedReader" optionLabel="name"></p-dropdown>
+    <button class="ui-dropdown-trigger-icon" (click)="OnreaderClicked()"  >استماع</button>
 
+  </div>
+  <div  class="col" style="margin-top: 10px">
+  <button class="ui-dropdown-trigger-icon" (click)="OnreaderClicked()"  >استماع</button>
+</div>
+</div>
 <!--<head>-->
 <!--  <title>Bootstrap Example</title>-->
 <!--  <meta charset="utf-8">-->
