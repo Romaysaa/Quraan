@@ -13,6 +13,10 @@ import {HttpClientModule} from '@angular/common/http';
 import { GridComponent } from './grid/grid.component';
 import {TableModule} from 'primeng/table';
 import { DynamicAyaComponent } from './dynamic-aya/dynamic-aya.component';
+import {DialogModule} from 'primeng/dialog';
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ConfirmationService} from "primeng/api";
+
 
 
 @NgModule({
@@ -31,9 +35,11 @@ import { DynamicAyaComponent } from './dynamic-aya/dynamic-aya.component';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    TableModule
+    TableModule,
+    DialogModule,
+    ConfirmDialogModule
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

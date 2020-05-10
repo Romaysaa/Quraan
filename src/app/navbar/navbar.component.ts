@@ -3,8 +3,10 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {QuranInJson} from "../holy-quran/QuranInJson";
 import {QuranPages} from "../holy-quran/QuranPages";
 import {Base64} from "js-base64";
-import toBase64 = Base64.toBase64;
-// import { Base64 } from 'js-base64';
+import {DialogModule} from 'primeng/dialog';
+import {ConfirmationService} from "primeng/api";
+// import {ConfirmationService} from "primeng";
+
 
 
 interface City {
@@ -67,8 +69,9 @@ export class NavbarComponent implements OnInit {
   allMotashabehat: any[] = [];
   audio: any;
    sagdas: any[];
+   tafseer: boolean;
 
-  constructor(private http: HttpClient, private _quranInJson: QuranInJson, private _quranPages: QuranPages) {
+  constructor(private http: HttpClient,private confirmationService:ConfirmationService ,private _quranInJson: QuranInJson, private _quranPages: QuranPages) {
     this.selectedMotashabeh2 = {name: '    0     ', code: '0'};
 
     this.nOfMotashabeh2 = [
@@ -101,6 +104,12 @@ export class NavbarComponent implements OnInit {
     {name: 'عبدالله بصفار', code: '12', en: 'ar.abdullahbasfar'},
 
   ];
+  // ar.muyassar
+  tafser: any[] = [
+    {name: 'تفسير', code: '0', en: "تفسير"},
+
+    {name: 'الميسر', code: '1', en: 'ar.muyassar'},
+    {name: 'الجلالين', code: '2', en: 'ar.jalalayn'}]
   selectedReader: any;
 
 
@@ -340,6 +349,8 @@ export class NavbarComponent implements OnInit {
   prevLength: number = 0;
   foundRes = false;
    reader: string;
+  selectedtafseer: any;
+  tafseerText: any;
 
   changeSearchInput(value) {
   debugger
@@ -351,12 +362,42 @@ export class NavbarComponent implements OnInit {
   debugger
     this.selectedReader = $event.value;
     this.reader=$event.value.en;
+    let options: {} = {responseType: 'audio/mp3'};
+    this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.reader+'/5/high';
   }
-
+  // https://api.alquran.cloud/ayah/1/ar.jalalayn
   OnreaderClicked() {
 
     let options: {} = {responseType: 'audio/mp3'};
     this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.reader+'/5/high';
 
   }
+
+  OnayaClicked() {
+    this.tafseer = true;
+    let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
+    this.http.get<any>(url).subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  OnChangetafseer($event: any) {
+debugger
+    this.selectedtafseer=$event.value;
+    this.tafseer = true;
+    let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
+    this.http.get<any>(url).subscribe(res => {
+      this.tafseerText=res.data.text;
+      console.log(res);
+    });
+
+  }
+
+  // confirm() {
+  //   debugger
+  //   let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
+  //   this.http.get<any>(url).subscribe(res => {
+  //     console.log(res);
+  //   });
+  // }
 }
