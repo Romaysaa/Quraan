@@ -21,12 +21,12 @@
 </div>
   <div class="col" style="margin-top: 10px">
   <p-dropdown [options]="readers"  (onChange)="OnChangeReader($event)" [(ngModel)]="selectedReader" optionLabel="name"></p-dropdown>
-    <button class="ui-dropdown-trigger-icon" (click)="OnreaderClicked()"  >استماع</button>
-
   </div>
   <div  class="col" style="margin-top: 10px">
   <button class="ui-dropdown-trigger-icon" (click)="OnreaderClicked()"  >استماع</button>
-</div>
+    <button class="ui-dropdown-trigger-icon" (click)="OnSgdClicked()"  >سجدات</button>
+
+  </div>
 </div>
 <!--<head>-->
 <!--  <title>Bootstrap Example</title>-->
@@ -135,5 +135,8 @@
 
 <!--  </div>-->
 <!--</div>-->
+
 <app-holy-quran *ngIf="!showListOfAyah"></app-holy-quran>
 <app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
+<app-grid [data]="sagdas"></app-grid>
+

@@ -66,6 +66,7 @@ export class NavbarComponent implements OnInit {
   ];
   allMotashabehat: any[] = [];
   audio: any;
+   sagdas: any[];
 
   constructor(private http: HttpClient, private _quranInJson: QuranInJson, private _quranPages: QuranPages) {
     this.selectedMotashabeh2 = {name: '    0     ', code: '0'};
@@ -269,51 +270,6 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  OnRightClick() {
-    this.i++;
-
-    if (this.i <= this.imges1.length - 1) {
-      this.selectedImage = this.imges1[this.i];
-    } else {
-      this.selectedImage = this.imges1[0];
-      this.i = 0;
-    }
-
-
-  }
-
-  OnLeftClick() {
-    this.i--;
-    if (this.i > 0) {
-      this.selectedImage = this.imges1[this.i - 1];
-    } else {
-      this.selectedImage = this.imges1[this.imges1.length - 1];
-      this.i = this.imges1.length;
-    }
-  }
-
-  OnRightClick2() {
-    this.i2++;
-
-    if (this.i2 <= this.imges2.length - 1) {
-      this.selectedImage2 = this.imges2[this.i2];
-    } else {
-      this.selectedImage2 = this.imges2[0];
-      this.i2 = 0;
-    }
-
-
-  }
-
-  OnLeftClick2() {
-    this.i2--;
-    if (this.i2 > 0) {
-      this.selectedImage2 = this.imges2[this.i2 - 1];
-    } else {
-      this.selectedImage2 = this.imges2[this.imges2.length - 1];
-      this.i2 = this.imges2.length;
-    }
-  }
 
   OnChange(e: any) {
     this.selectedMotashabeh2 = e.value;
@@ -346,7 +302,6 @@ export class NavbarComponent implements OnInit {
             السورة: res.search.ayas[i].identifier.sura_arabic_name,
             الأيه: res.search.ayas[i].aya.text_no_highlight,
           });
-          // document.getElementById('target')[0].["innerHTML"] = this.ayas;
 
 
         }
@@ -358,12 +313,33 @@ export class NavbarComponent implements OnInit {
       console.log(err);
       alert(err.message);
     });
-
   }
+    OnSgdClicked()
+    {
+    debugger
+
+      let url = 'http://api.alquran.cloud/v1/sajda';
+      this.http.get<any>(url ).subscribe(res => {
+        console.log(res);
+        this.sagdas = [];
+        res.data.ayahs.forEach((sagd)=>{
+          sagd.surah=sagd.surah.name;
+          sagd.sajda=sagd.sajda.id;
+          this.sagdas.push(sagd);
+        })
+
+      }, err => {
+        this.showListOfAyah = false;
+        console.log(err);
+        alert(err.message);
+      });
+
+    }
 
   currentLength: number = 0;
   prevLength: number = 0;
   foundRes = false;
+   reader: string;
 
   changeSearchInput(value) {
   debugger
@@ -373,22 +349,14 @@ export class NavbarComponent implements OnInit {
 
   OnChangeReader($event: any) {
   debugger
-    this.selectedReader = $event.value.en;
+    this.selectedReader = $event.value;
+    this.reader=$event.value.en;
   }
 
   OnreaderClicked() {
 
     let options: {} = {responseType: 'audio/mp3'};
-    this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.selectedReader+'/5/high';
-    // this.http.get<any>(url,options).subscribe(res => {
-    //   debugger
-    //
-    //   // const audio = new Audio();
-    //   this.audio= url;
-    // this.audio= NavbarComponent.Enc64(res);
-    // res= btoa(JSON.stringify(this.audio));
-    // this.audio="data:audio/mp3;base64,"+res;
-    //     console.log(this.audio);
-    // });
+    this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.reader+'/5/high';
+
   }
 }
