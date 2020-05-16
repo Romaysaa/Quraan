@@ -71,7 +71,7 @@
 
 
 </div>
-<app-holy-quran *ngIf="!showListOfAyah"></app-holy-quran>
+<app-holy-quran *ngIf="!showListOfAyah"[allMotashabehat]="allMotashabehat"></app-holy-quran>
 <app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
 <app-grid [data]="sagdas"></app-grid>
 
