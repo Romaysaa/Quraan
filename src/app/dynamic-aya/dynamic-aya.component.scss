@@ -8,17 +8,21 @@ a{
   padding: 0;
   //background-color:  antiquewhite;
 }
-a span {
+.aya {
   position: absolute;
 }
-a:hover span {
-  background: yellow;
-  opacity: .2;
-  filter: alpha(opacity=25);
+.motashabeh {
+  position: absolute;
 }
+//a:hover span {
+//  background: yellow;
+//  opacity: .2;
+//  //filter: alpha(opacity=25);
+//
+//}
 
- a.active span {
-  background: blue;
-  opacity: .2;
-  filter: alpha(opacity=25);
-}
+// a.active span {
+//  background: blue;
+//  opacity: .2;
+//  filter: alpha(opacity=25);
+//}

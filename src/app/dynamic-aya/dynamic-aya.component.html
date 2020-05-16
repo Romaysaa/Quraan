@@ -1,5 +1,32 @@
-<a (click)="aya_clicked($event,17)" [class.active]="activeAya === 17" [href]="href" [style.top]="top" [style.left]="'35%'"
-   class="aya_link">
-  <span *ngFor="let s of spans" [style.height]="s.height" [style.left]="s.left" [style.top]="s.top"
-        [style.width]="s.width"></span>
-</a>
+
+  <a class="aya_link" (mouseenter)="onMouseEnter($event)" (mouseout)="onMouseOut($event)" (click)="aya_clicked($event,17)" [class.active]="activeAya === 17" [href]="href" [style.top]="top" [style.left]="'35%'"
+  >
+  <span class="aya" *ngFor="let s of spans" [style.height]="s.height" [style.left]="s.left" [style.top]="s.top"
+        [style.width]="s.width" [style.background]="bakgroundStyle.background"  [style.opacity]="bakgroundStyle.opacity"></span>
+  </a>
+
+
+  <a *ngIf="activeAya == 17" href="#aa">
+    <span dir="rtl" class="motashabeh" style="height: 20px;width: 80px;left: 470px;top: 45px;color: black" [style.background]="bakgroundStyle.background"  [style.opacity]="bakgroundStyle.motashOpacity">
+      البقرة (15)
+    </span>
+  </a>
+
+
+<!--  <a *ngIf="activeAya == 17" href="#uud" >-->
+<!--    <span  class="motashabeh"  style="height: 20px;width: 80px;left: 470px;top: 68px"[style.background]="bakgroundStyle.background"  [style.opacity]="bakgroundStyle.motashOpacity">-->
+<!--      النساء(25)-->
+<!--    </span>-->
+<!--  </a>-->
+<!--  <a *ngIf="activeAya == 17">-->
+<!--    <span class="motashabeh"  style="height: 30px;width: 80px;left: -50px;top: 45px;color: black">-->
+<!--      البقرة(15)-->
+<!--    </span>-->
+<!--  </a>-->
+
+<!--  <a *ngIf="activeAya == 17">-->
+<!--    <span  class="motashabeh"  style="height: 30px;left: -50px;top: 68px">-->
+<!--      النساء(25)-->
+<!--    </span>-->
+<!--  </a>-->
+
