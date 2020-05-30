@@ -123,7 +123,7 @@ export class NavbarComponent implements OnInit {
   searchInput: string;
   x: {suraWithIndex:string, text: string, index: string, sura: string, nOfWords: number, lastWord?: String, coloredWord?: String, color?: String, arrOfWords?: { word: String, color: String, nOfChar: number }[] }[] = [];
   arrOfWords: string[] = [];
-  arr: { word: String, color: String, nOfChar: number, motashabeh: any[] }[] = [];
+  arr: { ayaNum?:String,numOfCharsInWholeAya?:number,word: String, color: String, nOfChar: number, motashabeh: any[] }[] = [];
   searchWord: string = '';
   firstWord: string = '';
 
@@ -177,7 +177,7 @@ export class NavbarComponent implements OnInit {
         if (this.x.length == 1) {
           this.x[this.x.length-1].lastWord = this.searchWord;
           this.x[this.x.length-1].color ='red';
-          this.arr.push({word:this.arrOfWords[i],color:'red',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+          this.arr.push({ayaNum:this.x[0].index,numOfCharsInWholeAya:this.x[0].text.length,word:this.arrOfWords[i],color:'red',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
           this.x[this.x.length-1].arrOfWords = this.arr;
           if (this.allMotashabehat.indexOf(this.arr) < 0) {
             this.allMotashabehat.push(this.arr);
@@ -189,7 +189,7 @@ export class NavbarComponent implements OnInit {
         }else if (this.x.length == 2) {
           this.x[this.x.length-1].lastWord = this.searchWord;
           this.x[this.x.length-1].color ='green';
-          this.arr.push({word:this.arrOfWords[i],color:'green',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+          this.arr.push({ayaNum:this.x[0].index,numOfCharsInWholeAya:this.x[0].text.length,word:this.arrOfWords[i],color:'green',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
           this.x[this.x.length-1].arrOfWords = this.arr;
 
           if (this.allMotashabehat.indexOf(this.arr) < 0) {
@@ -202,7 +202,7 @@ export class NavbarComponent implements OnInit {
         } else if (this.x.length == 3) {
           this.x[this.x.length-1].lastWord = this.searchWord;
           this.x[this.x.length-1].color ='blue';
-          this.arr.push({word:this.arrOfWords[i],color:'blue',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+          this.arr.push({ayaNum:this.x[0].index,numOfCharsInWholeAya:this.x[0].text.length,word:this.arrOfWords[i],color:'blue',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
           this.x[this.x.length-1].arrOfWords = this.arr;
 
           if (this.allMotashabehat.indexOf(this.arr) < 0) {
@@ -215,7 +215,7 @@ export class NavbarComponent implements OnInit {
         } else if (this.x.length == 4) {
           this.x[this.x.length-1].lastWord = this.searchWord;
           this.x[this.x.length-1].color ='yellow';
-          this.arr.push({word:this.arrOfWords[i],color:'yellow',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+          this.arr.push({ayaNum:this.x[0].index,numOfCharsInWholeAya:this.x[0].text.length,word:this.arrOfWords[i],color:'yellow',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
           this.x[this.x.length-1].arrOfWords = this.arr;
 
           if (this.allMotashabehat.indexOf(this.arr) < 0) {
@@ -229,7 +229,7 @@ export class NavbarComponent implements OnInit {
           if (countSuras.length <= 6 || this.x.length <= 7) {
             this.x[this.x.length-1].lastWord = this.searchWord;
             this.x[this.x.length-1].color ='purple';
-            this.arr.push({word:this.arrOfWords[i],color:'purple',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
+            this.arr.push({ayaNum:this.x[0].index,numOfCharsInWholeAya:this.x[0].text.length,word:this.arrOfWords[i],color:'purple',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
             this.x[this.x.length-1].arrOfWords = this.arr;
 
             console.log('finished:');

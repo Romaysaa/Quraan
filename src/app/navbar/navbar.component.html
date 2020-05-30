@@ -44,7 +44,7 @@
       <button class="btn btn-outline-light my-2 my-sm-0" (click)="OnSearchClicked()"  >بحث</button>
       <input dir="rtl" #inp class="form-control mr-sm-2"  style="  font-family: 'Times New Roman';
       " type="search" placeholder="بحث"  (input)="changeSearchInput(inp.value)"  aria-label="Search">
-      <p-dropdown [options]="nOfMotashabeh2"   (onChange)="OnChange($event)" [(ngModel)]="selectedMotashabeh2" optionLabel="name"></p-dropdown>
+      <p-dropdown [options]="nOfMotashabeh2"   (onChange)="OnChange($event)" [(ngModel)]="selectedMotashabeh2" optionLabel="name" [ngModelOptions]="{standalone: true}"></p-dropdown>
             <input id="disabled-input" type="text" size="30" pInputText />
 
             <button id="disabled-btn" type="button" (click)="GoDisabled()" pButton label="Go To"></button>
