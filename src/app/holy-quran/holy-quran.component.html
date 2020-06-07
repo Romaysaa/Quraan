@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
 
-<!--    <div class="col-1"></div>-->
-    <div class="col-10">
-      <div id="page" style=" background-image: url(assets/t4.png);" >
+    <div class="col-3"></div>
+    <div class="col-6">
+      <img id="page" [src]="quranPageImage" alt="Please check your internet connection">
 <!--        <div-->
           <div *ngFor="let inp of inputs"  >
-            <app-dynamic-aya [spans]="inp.spans" [top]="inp.top"  [href]="inp.href" [activeAya]="inp.activeAya" (onClick)="aya_clicked($event,17)"></app-dynamic-aya>
+            <app-dynamic-aya  [isActive]="inp.isActive" [spans]="inp.spans" [href]="inp.href" [activeAya]="inp.activeAya" (onClick)="inp.isActive = true"></app-dynamic-aya>
           </div>
 <!--        </div>-->
-        </div><!-- page -->
+        <!-- page -->
     </div>
-<!--    <div class="col-1"></div>-->
+    <div class="col-3"></div>
 
   </div>
 </div>

@@ -27,15 +27,7 @@ export class NavbarComponent implements OnInit {
   selectedMotashabeh2: City;
   showListOfAyah: boolean = false;
   ayas: any[] = [];
-  ayat: any[] = [];
 
-  quran2 = ["بسم الله الرحمن الرحيم",
-    "الحمد لله رب العالمين",
-    "الرحمن الرحيم",
-    "مالك يوم الدين",
-    "إياك نعبد وإياك نستعين",
-    "اهدنا الصراط المستقيم",
-    "صراط الذين أنعمت عليهم غير المغضوب عليهم ولا الضالين"];
   quran = [{
     "index": "1",
     "text": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
@@ -121,147 +113,10 @@ export class NavbarComponent implements OnInit {
   i = 0;
   i2 = 0;
   searchInput: string;
-  x: {suraWithIndex:string, text: string, index: string, sura: string, nOfWords: number, lastWord?: String, coloredWord?: String, color?: String, arrOfWords?: { word: String, color: String, nOfChar: number }[] }[] = [];
-  arrOfWords: string[] = [];
-  arr: { ayaNum?:String,numOfCharsInWholeAya?:number,word: String, color: String, nOfChar: number, motashabeh: any[] }[] = [];
-  searchWord: string = '';
-  firstWord: string = '';
 
 
   ngOnInit() {
     debugger;
-    // this._quranInJson.suras.forEach(sura=>{
-    //   sura.aya.forEach(aya=>{
-    //     if(aya.text.startsWith('إِنَّ الَّذِينَ كَفَرُوا')){
-    //       this.x.push({sura:sura.name,index:aya.index, text:aya.text})
-    //     }
-    //   });
-    // });
-    // debugger;
-    // console.log(this.x);
-    // console.log(this.x.length);
-
-
-    this._quranPages.pages[3].ayas.forEach(ayaInPage => {
-      this.arrOfWords = ayaInPage.text.split(' ');
-      // this.firstWord = this.arrOfWords[0];
-      // let i;
-      // if (this.firstWord.length > 3) {
-      //   i = 1;
-      this.searchWord = this.arrOfWords[0];
-      //
-      // } else {
-      //   i = 2;
-      //   this.searchWord = this.arrOfWords[0]+ ' ' + this.arrOfWords[1];
-      // }
-      this.arr = [];
-
-      for (let i=0; i <= this.arrOfWords.length; i++) {
-        this.x = [];
-        let countSuras = [];
-        if(i==0){
-          this.searchWord = this.arrOfWords[0];
-        }else{
-          this.searchWord = this.searchWord + ' ' + this.arrOfWords[i];
-        }
-        this._quranInJson.suras.forEach(sura => {
-          sura.aya.forEach(aya => {
-            if (aya.text.startsWith(this.searchWord)) {
-              this.x.push({text: aya.text, index: aya.index, suraWithIndex: '('+aya.index+') '+sura.name, sura: sura.name,coloredWord:this.arrOfWords[i],nOfWords:this.searchWord.split(" ").length,});
-              if (countSuras.indexOf(sura.name) < 0) {
-                countSuras.push(sura.name);
-              }
-            }
-          });
-        });//nOfChar:this.searchWord.length}
-        if (this.x.length == 1) {
-          this.x[this.x.length-1].lastWord = this.searchWord;
-          this.x[this.x.length-1].color ='red';
-          this.arr.push({ayaNum:this.x[0].index,numOfCharsInWholeAya:this.x[0].text.length,word:this.arrOfWords[i],color:'red',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
-          this.x[this.x.length-1].arrOfWords = this.arr;
-          if (this.allMotashabehat.indexOf(this.arr) < 0) {
-            this.allMotashabehat.push(this.arr);
-          }
-
-          console.log('finished:');
-          console.log(this.arr);
-          break;
-        }else if (this.x.length == 2) {
-          this.x[this.x.length-1].lastWord = this.searchWord;
-          this.x[this.x.length-1].color ='green';
-          this.arr.push({ayaNum:this.x[0].index,numOfCharsInWholeAya:this.x[0].text.length,word:this.arrOfWords[i],color:'green',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
-          this.x[this.x.length-1].arrOfWords = this.arr;
-
-          if (this.allMotashabehat.indexOf(this.arr) < 0) {
-            this.allMotashabehat.push(this.arr);
-          }
-          console.log('finished:');
-          console.log(this.arr);
-          break;
-
-        } else if (this.x.length == 3) {
-          this.x[this.x.length-1].lastWord = this.searchWord;
-          this.x[this.x.length-1].color ='blue';
-          this.arr.push({ayaNum:this.x[0].index,numOfCharsInWholeAya:this.x[0].text.length,word:this.arrOfWords[i],color:'blue',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
-          this.x[this.x.length-1].arrOfWords = this.arr;
-
-          if (this.allMotashabehat.indexOf(this.arr) < 0) {
-            this.allMotashabehat.push(this.arr);
-          }
-          console.log('finished:');
-          console.log(this.arr);
-          // break;
-
-        } else if (this.x.length == 4) {
-          this.x[this.x.length-1].lastWord = this.searchWord;
-          this.x[this.x.length-1].color ='yellow';
-          this.arr.push({ayaNum:this.x[0].index,numOfCharsInWholeAya:this.x[0].text.length,word:this.arrOfWords[i],color:'yellow',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
-          this.x[this.x.length-1].arrOfWords = this.arr;
-
-          if (this.allMotashabehat.indexOf(this.arr) < 0) {
-            this.allMotashabehat.push(this.arr);
-          }
-          console.log('finished:');
-          console.log(this.arr);
-          // break;
-
-        } else if (this.x.length > 4) {
-          if (countSuras.length <= 6 || this.x.length <= 7) {
-            this.x[this.x.length-1].lastWord = this.searchWord;
-            this.x[this.x.length-1].color ='purple';
-            this.arr.push({ayaNum:this.x[0].index,numOfCharsInWholeAya:this.x[0].text.length,word:this.arrOfWords[i],color:'purple',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
-            this.x[this.x.length-1].arrOfWords = this.arr;
-
-            console.log('finished:');
-            console.log(this.arr);
-            if (this.allMotashabehat.indexOf(this.arr) < 0) {
-              this.allMotashabehat.push(this.arr);
-            }
-            // break;
-
-          } else {
-            // this.x[this.x.length-1].color ='purple';
-            // this.x[this.x.length-1].arrOfWords.push({word:this.arrOfWords[i],color:'purple',nOfChar:this.arrOfWords[i].length});
-            this.arr.push({word:this.arrOfWords[i],color:'purple',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
-            if (this.allMotashabehat.indexOf(this.arr) < 0) {
-              this.allMotashabehat.push(this.arr);
-            }
-          }
-        } else {
-          // this.x[this.x.length-1].color ='purple';
-          // this.x[this.x.length-1].arrOfWords.push({word:this.arrOfWords[i],color:'purple',nOfChar:this.arrOfWords[i].length});
-          this.arr.push({word:this.arrOfWords[i],color:'purple',nOfChar:this.arrOfWords[i].length,motashabeh:this.x});
-          if (this.allMotashabehat.indexOf(this.arr) < 0) {
-            this.allMotashabehat.push(this.arr);
-          }
-        }
-
-      }
-    });
-
-
-
-
   }
 
 

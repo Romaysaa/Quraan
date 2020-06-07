@@ -2,7 +2,7 @@
   <a class="aya_link" (mouseenter)="onMouseEnter($event)" (mouseout)="onMouseOut($event)" (click)="aya_clicked($event,17)" [class.active]="activeAya === 17" [href]="href" [style.top]="top" [style.left]="'35%'"
   >
   <span class="aya" *ngFor="let s of spans" [style.height]="s.height" [style.left]="s.left" [style.top]="s.top"
-        [style.width]="s.width" [style.background]="bakgroundStyle.background"  [style.opacity]="bakgroundStyle.opacity"></span>
+        [style.width]="s.width" [style.background]="isActive?bakgroundStyle2.background:bakgroundStyle.background"  [style.opacity]="bakgroundStyle.opacity"></span>
   </a>
 
 
