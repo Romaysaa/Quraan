@@ -78,7 +78,7 @@ export class HolyQuranComponent implements OnInit {
     this._quranPages.pages[pageNumber - 1].ayas.forEach(ayaInPage => {
       this.arrOfAyaWords = ayaInPage.text.split(' ');
       this.searchWord = this.arrOfAyaWords[0];
-      let isCheckIn = false;
+      let isCheckIn = false;""
       let ayaDetails: {
         aya: string,
         numOfCharsInWholeAya: number,
