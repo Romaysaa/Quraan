@@ -71,7 +71,7 @@
 
 
 </div>
-<app-holy-quran *ngIf="!showListOfAyah" [allMotashabehat]="allMotashabehat" [pageNumber]="4"></app-holy-quran>
+<app-holy-quran *ngIf="!showListOfAyah" [pageNumber]="4" (onClick)="onAyaClicked($event)"></app-holy-quran>
 <app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
 <app-grid [data]="sagdas"></app-grid>
 

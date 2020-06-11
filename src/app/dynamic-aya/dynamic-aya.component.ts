@@ -1,20 +1,25 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+
 @Component({
   selector: 'app-dynamic-aya',
   templateUrl: './dynamic-aya.component.html',
   styleUrls: ['./dynamic-aya.component.scss']
 })
 export class DynamicAyaComponent implements OnInit {
-  @Input() allMotashabehat: any[];
-  @Input() ayaNumber: number;
+  @Input() ayaNumber: String;
+  @Input() ayaId: number;
   @Input() href: String;
-  @Input() top: any;
-  @Input() left: any;
-  @Input() start: any;
-  @Input() end: any;
   @Input() activeAya: any;
   @Input() isActive: boolean;
-  @Input() spans: any[];
+  @Input() spans: { top: string; left: string; width: string; height: string }[];
+  @Input() arrOfColoredWords: { top: string; left: string; width: string;color:string }[];
+
+  @Input() motashabehatSpans: { isRight: boolean; top: string; name: string }[];
+  // test = [{name: "البقرة (15)", top: "45px", isRight: true,}, {
+  //   name: "الرعد (5)",
+  //   top: "75px",
+  //   isRight: true,
+  // }, {name: "الطور (15)", top: "45px", isRight: false,}];
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
   aya = '';
  
@@ -23,12 +28,13 @@ export class DynamicAyaComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    debugger
     this.ayaIsClicked = false;
   }
 
   aya_clicked(event, ayaNum) {
     debugger
-    this.onClick.emit(event);
+    this.onClick.emit(this.ayaNumber);
     // this.activeAya = ayaNum;
     // if(this.activeAya == this.href.split('#')[1])
     // this.ayaIsClicked = true;

@@ -58,7 +58,6 @@ export class NavbarComponent implements OnInit {
     }
     ,
   ];
-  allMotashabehat: any[] = [];
   audio: any;
    sagdas: any[];
    tafseer: boolean;
@@ -238,5 +237,9 @@ debugger
     this.http.get<any>(url).subscribe(res => {
       console.log(res);
     });
+  }
+
+  onAyaClicked($event: any) {
+    debugger
   }
 }
