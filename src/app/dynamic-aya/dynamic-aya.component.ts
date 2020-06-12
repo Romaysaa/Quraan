@@ -34,9 +34,9 @@ export class DynamicAyaComponent implements OnInit {
 
   }
 
-  aya_clicked(event, ayaNum) {
+  aya_clicked(event) {
     debugger
-    this.onClick.emit(this.ayaNumber);
+    this.onClick.emit(this.ayaId);
     // this.activeAya = ayaNum;
     // if(this.activeAya == this.href.split('#')[1])
     // this.ayaIsClicked = true;

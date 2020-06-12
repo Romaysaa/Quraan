@@ -1,5 +1,5 @@
 
-  <a class="aya_link" (mouseenter)="onMouseEnter($event)" (mouseout)="onMouseOut($event)" (click)="aya_clicked($event,17)" [class.active]="activeAya === 17" [href]="href"  [style.left]="'35%'"
+  <a class="aya_link" (mouseenter)="onMouseEnter($event)" (mouseout)="onMouseOut($event)" (click)="aya_clicked($event)" [class.active]="activeAya === 17" [href]="href"  [style.left]="'35%'"
   >
   <span class="aya" *ngFor="let s of spans" [style.height]="s.height" [style.left]="s.left" [style.top]="s.top"
         [style.width]="s.width" [style.background]="isActive?bakgroundStyle2.background:bakgroundStyle.background"  [style.opacity]="bakgroundStyle.opacity"></span>
@@ -12,7 +12,7 @@
     <span  *ngFor="let mot of motashabehatSpans ">
   <a [style.height]="mot.height" [style.top]="mot.top"  [style.left]="mot.isRight?'480px':'-50px'"  [style.background]="isActive?bakgroundStyle2.background:bakgroundStyle.background"  [style.opacity]="bakgroundStyle.motashOpacity" [style.overflow-y]="'auto'"
       class="motashabeh" dir="rtl" href="#aa"
-      style="width: 100px;color: black;">
+      style="width: 90px;color: black;">
       {{mot.moade3}}
 
       </a>

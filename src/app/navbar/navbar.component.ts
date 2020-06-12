@@ -113,9 +113,16 @@ export class NavbarComponent implements OnInit {
   i2 = 0;
   searchInput: string;
 
+  imges: any[] = [4,5,6,7,8,9,10,11];
+  selectedPage: number;
 
+
+
+ static ind = 0;
   ngOnInit() {
     debugger;
+    this.selectedPage = this.imges[0];
+
   }
 
 
@@ -202,13 +209,13 @@ export class NavbarComponent implements OnInit {
     this.selectedReader = $event.value;
     this.reader=$event.value.en;
     let options: {} = {responseType: 'audio/mp3'};
-    this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.reader+'/5/high';
+    this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.reader+'/'+this.ayaId+'/high';
   }
   // https://api.alquran.cloud/ayah/1/ar.jalalayn
   OnreaderClicked() {
 
     let options: {} = {responseType: 'audio/mp3'};
-    this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.reader+'/5/high';
+    this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.reader+'/'+this.ayaId+'/high';
 
   }
 
@@ -223,7 +230,7 @@ export class NavbarComponent implements OnInit {
   OnChangetafseer($event: any) {
 debugger
     this.selectedtafseer=$event.value;
-    this.tafseer = true;
+    // this.tafseer = true;
     let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
     this.http.get<any>(url).subscribe(res => {
       this.tafseerText=res.data.text;
@@ -232,14 +239,51 @@ debugger
 
   }
 
-  GoDisabled() {
-    let url = "https://alquran.cloud/ayah?reference=2%3A7";
-    this.http.get<any>(url).subscribe(res => {
-      console.log(res);
-    });
+  GoDisabled(page) {
+    this.selectedPage = page;
+    // let url = "https://alquran.cloud/ayah?reference=2%3A7";
+    // this.http.get<any>(url).subscribe(res => {
+    //   console.log(res);
+    // });
   }
-
+ayaId:string = '1';
   onAyaClicked($event: any) {
     debugger
+    this.ayaId = $event;
+
+    let options: {} = {responseType: 'audio/mp3'};
+   if(this.reader!=null&&this.reader!='') {
+     this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/' + this.reader + '/' + this.ayaId + '/high';
+   }
+   if(this.selectedtafseer!=null)
+    { this.tafseer = true;
+    let url = 'https://api.alquran.cloud/ayah/'+this.ayaId+'/'+this.selectedtafseer.en;
+    this.http.get<any>(url).subscribe(res => {
+      this.tafseerText=res.data.text;
+      console.log(res);
+    });}
+  }
+
+
+
+  OnRightClick() {
+    debugger
+    NavbarComponent.ind++;
+
+    if(NavbarComponent.ind <= this.imges.length-1){
+      this.selectedPage = this.imges[NavbarComponent.ind];
+    }else{
+      NavbarComponent.ind--;
+    }
+  }
+
+  OnLeftClick() {
+    debugger;
+    NavbarComponent.ind--;
+    if(NavbarComponent.ind > 0){
+      this.selectedPage = this.imges[NavbarComponent.ind-1];
+    } else{
+      NavbarComponent.ind++;
+    }
   }
 }

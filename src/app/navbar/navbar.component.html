@@ -45,9 +45,9 @@
       <input dir="rtl" #inp class="form-control mr-sm-2"  style="  font-family: 'Times New Roman';
       " type="search" placeholder="بحث"  (input)="changeSearchInput(inp.value)"  aria-label="Search">
       <p-dropdown [options]="nOfMotashabeh2"   (onChange)="OnChange($event)" [(ngModel)]="selectedMotashabeh2" optionLabel="name" [ngModelOptions]="{standalone: true}"></p-dropdown>
-            <input id="disabled-input" type="text" size="30" pInputText />
+            <input #inp id="disabled-input" type="text" size="30" pInputText />
 
-            <button id="disabled-btn" type="button" (click)="GoDisabled()" pButton label="Go To"></button>
+            <button id="disabled-btn" type="button" (click)="GoDisabled(inp.value)" pButton label="Go To"></button>
 
     </form>
   </div>
@@ -71,7 +71,21 @@
 
 
 </div>
-<app-holy-quran *ngIf="!showListOfAyah" [pageNumber]="4" (onClick)="onAyaClicked($event)"></app-holy-quran>
+<div *ngFor="let img of imges">
+  <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage " [pageNumber]="selectedPage" (onClick)="onAyaClicked($event)"></app-holy-quran>
+
+</div>
 <app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
 <app-grid [data]="sagdas"></app-grid>
 
+
+<div class="row">
+  <div class="col-5"></div>
+  <div class="col-7">
+    <button class="ui-dropdown-trigger-icon" style="align-items: center ;margin-right: 50px" (click)="OnLeftClick()">Previous</button>
+    <button class="ui-dropdown-trigger-icon" style="align-items: center ; padding-left: 20px;padding-right: 20px" (click)="OnRightClick()">Next
+    </button>
+  </div>
+
+
+</div>
