@@ -9,17 +9,22 @@
  </span>
   </a>
 
-  <span *ngFor="let mot of motashabehatSpans ">
-  <a  [style.background]="isActive?bakgroundStyle2.background:bakgroundStyle.background"  [style.left]="mot.isRight?'480px':'-50px'" [style.opacity]="bakgroundStyle.motashOpacity" [style.top]="mot.top"
-     class="motashabeh" dir="rtl" href="#aa"
-     style="height: 20px;width: 100px;color: black">
-      {{mot.name}}
+    <span  *ngFor="let mot of motashabehatSpans ">
+  <a [style.height]="mot.height" [style.top]="mot.top"  [style.left]="mot.isRight?'480px':'-50px'"  [style.background]="isActive?bakgroundStyle2.background:bakgroundStyle.background"  [style.opacity]="bakgroundStyle.motashOpacity" [style.overflow-y]="'auto'"
+      class="motashabeh" dir="rtl" href="#aa"
+      style="width: 100px;color: black;">
+      {{mot.moade3}}
 
-    <!--  </a>-->
-    <!--    <a *ngIf="activeAya == 17" href="#aa" dir="rtl" class="motashabeh" style="height: 20px;width: 80px;left: 470px;top: 80px;color: black" [style.background]="bakgroundStyle.background"  [style.opacity]="bakgroundStyle.motashOpacity" >-->
-    <!--      البقرة (15)-->
+      </a>
 
-  </a>
+<!--        <a *ngIf="activeAya == 17" href="#aa" dir="rtl" class="motashabeh" style="height: 20px;width: 80px;left: 470px;top: 80px;color: black" [style.background]="bakgroundStyle.background"  [style.opacity]="bakgroundStyle.motashOpacity" >-->
+<!--          البقرة (15) البقرة (15)البقرة (15)-->
+<!--          البقرة (15)-->
+<!--          البقرة (15)-->
+<!--          البقرة (15)-->
+
+
+<!--  </a>-->
   </span>
 
 <!--  <a *ngIf="activeAya == 17" href="#uud" >-->

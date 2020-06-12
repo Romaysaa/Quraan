@@ -14,11 +14,12 @@ export class DynamicAyaComponent implements OnInit {
   @Input() spans: { top: string; left: string; width: string; height: string }[];
   @Input() arrOfColoredWords: { top: string; left: string; width: string;color:string }[];
 
-  @Input() motashabehatSpans: { isRight: boolean; top: string; name: string }[];
+  // @Input() motashabehatSpans: { isRight: boolean; top: string; name: string,height: string }[];
+  @Input() motashabehatSpans: { isRight: boolean;  moade3: string,height: string ,top: string}[];
   // test = [{name: "البقرة (15)", top: "45px", isRight: true,}, {
   //   name: "الرعد (5)",
   //   top: "75px",
-  //   isRight: true,
+  //   isRight: false,
   // }, {name: "الطور (15)", top: "45px", isRight: false,}];
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
   aya = '';
@@ -30,6 +31,7 @@ export class DynamicAyaComponent implements OnInit {
   ngOnInit() {
     debugger
     this.ayaIsClicked = false;
+
   }
 
   aya_clicked(event, ayaNum) {
