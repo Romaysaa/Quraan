@@ -17,7 +17,8 @@ import {DialogModule} from 'primeng/dialog';
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ConfirmationService} from "primeng/api";
 
-
+import {SlideMenuModule} from 'primeng/slidemenu';
+import {MenuItem} from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {ConfirmationService} from "primeng/api";
     DynamicAyaComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,SlideMenuModule,
     AppRoutingModule,
     DropdownModule,
     FormsModule,
