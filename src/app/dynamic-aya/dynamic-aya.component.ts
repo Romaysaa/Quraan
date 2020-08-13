@@ -22,7 +22,7 @@ export class DynamicAyaComponent implements OnInit {
   //   isRight: false,
   // }, {name: "الطور (15)", top: "45px", isRight: false,}];
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
-  aya = '';
+  @Input()aya = '';
  
   bakgroundStyle2: { background: string; motashOpacity: number; opacity: number };
   private ayaIsClicked: boolean;

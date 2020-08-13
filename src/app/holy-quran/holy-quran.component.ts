@@ -16,8 +16,9 @@ export class HolyQuranComponent implements OnInit {
 
   marginTop: number = 50;
   inputs: ({
+    aya:string,
     ayaId:string,
-    spans: ({ top: string; left: string; width: string; height: string })[];
+    spans: ({aya:string, top: string; left: string; width: string; height: string })[];
     motashabehatSpans: { isRight: boolean;  moade3: string ,height: string,top: string }[];
     spansOfColoredWords: { top: string; left: string; width: string; color: string }[];
     isActive: boolean; href: string; activeAya: string
@@ -57,12 +58,18 @@ export class HolyQuranComponent implements OnInit {
     }[]
   }[] = [];
 
+  suras:string[] = ["البقرة","آل عمران","النساء","المائدة"];
   constructor(private _quranPages: QuranPages, private _quranInJson: QuranInJson,) {
+  }
+  findSuras(sura){
+    debugger
+    let index =  this.suras.indexOf(sura);
+    return index >= 0;
   }
 
   ngOnInit() {
     this.quranPageImage = "assets/" + this.pageNumber + ".png";
-    debugger;
+    // debugger;
 
     this.generateMotashabehatOfSelectedPage(this.pageNumber);
     console.log(this.allAyas);
@@ -112,23 +119,25 @@ export class HolyQuranComponent implements OnInit {
           this.searchWord = this.searchWord + ' ' + this.arrOfAyaWords[i];
         }
         this._quranInJson.suras.forEach(sura => {
-          sura.aya.forEach(aya => {
-            if (aya.text.startsWith(this.searchWord)) {
-              this.x.push({
-                id:ayaInPage.id,
-                errorFactor:ayaInPage.errorFactor,
-                text: aya.text,
-                index: aya.index,
-                suraWithIndex: sura.name + ' (' + aya.index + ') ',
-                sura: sura.name,
-                lastWord: this.searchWord
-              });
-              if (countSuras.indexOf(sura.name) < 0) {//to calculate number of suras for motashabeh
-                countSuras.push(sura.name);
-              }
-            }
-            // }
-          });
+         if(this.findSuras(sura.name)){
+           sura.aya.forEach(aya => {
+             if (aya.text.startsWith(this.searchWord)) {
+               this.x.push({
+                 id:ayaInPage.id,
+                 errorFactor:ayaInPage.errorFactor,
+                 text: aya.text,
+                 index: aya.index,
+                 suraWithIndex: sura.name + ' (' + aya.index + ') ',
+                 sura: sura.name,
+                 lastWord: this.searchWord
+               });
+               if (countSuras.indexOf(sura.name) < 0) {//to calculate number of suras for motashabeh
+                 countSuras.push(sura.name);
+               }
+             }
+             // }
+           });
+         }
         });
 
         if (this.x.length == 1) {
@@ -326,7 +335,9 @@ export class HolyQuranComponent implements OnInit {
       // console.log('ayasLines: ' + ayasLines);
       let spans = [];
       for (let i = 0; i < ayasLines.length; i++) {
+       let ayaText = '';
         spans.push({
+          aya:aya.aya,
           top: this.marginTop + 'px',
           left: temp.length != 0 ? i == 0 ? 60 + 'px' : 60 + (78 - ayasLines[i]) * 5 + 'px' : 60 + (78 - ayasLines[i]) * 5 + 'px',
           width: ayasLines[i] * 5 + 'px',
@@ -339,6 +350,7 @@ export class HolyQuranComponent implements OnInit {
       ayaEnd = this.marginTop;
       this.motashabehatSpans = [];
       this.inputs.push({
+        aya:aya.aya,
         ayaId:aya.id,
         isActive: false,
         href: '#' + aya.ayaIndex,
@@ -383,10 +395,17 @@ export class HolyQuranComponent implements OnInit {
       let lastWord = '';
       let isMoveToNextLine = false;
       let lineIndex = 0;
+      let previousColor;
+      let space=0;
       let left = parseInt(this.inputs[j].spans[lineIndex].left) + parseInt(this.inputs[j].spans[lineIndex].width);
       let top = this.inputs[j].spans[lineIndex].top.split("px")[0];
       for (let i = 0; i < this.allAyas[j].arrOfColoredWords.length; i++) {
         let width = 0;
+        if(previousColor == this.allAyas[j].arrOfColoredWords[i].color){
+          space = 0;
+        }else {
+          space = 2;
+        }
 
         if (i == 0) {
           width = this.allAyas[j].arrOfColoredWords[i].word.length * 5;
@@ -400,12 +419,12 @@ export class HolyQuranComponent implements OnInit {
           lastWord = this.allAyas[j].arrOfColoredWords[0].word;
 
         } else {
-          debugger;
+          // debugger;
           let currentWord = this.allAyas[j].arrOfColoredWords[i].word.split(lastWord)[1];
           width = currentWord.length * 5;
 
-          if ((left - width - 2) > 50) {
-            left = left - width - 2;
+          if ((left - width - space) > 50) {
+            left = left - width - space;
             this.spansOfColoredWords.push({
               top: parseInt(top) + 35 + "px",
               color: this.allAyas[j].arrOfColoredWords[i].color,
@@ -417,7 +436,7 @@ export class HolyQuranComponent implements OnInit {
             isMoveToNextLine = true;
             lineIndex++;
             top = this.inputs[j].spans[lineIndex].top.split("px")[0];
-            left = parseInt(this.inputs[j].spans[lineIndex].left) + parseInt(this.inputs[j].spans[lineIndex].width) - width - 2;
+            left = parseInt(this.inputs[j].spans[lineIndex].left) + parseInt(this.inputs[j].spans[lineIndex].width) - width - space;
             this.spansOfColoredWords.push({
               top: parseInt(top) + 35 + "px",
               color: this.allAyas[j].arrOfColoredWords[i].color,
@@ -429,6 +448,8 @@ export class HolyQuranComponent implements OnInit {
           lastWord = this.allAyas[j].arrOfColoredWords[i].word;
 
         }
+        previousColor = this.allAyas[j].arrOfColoredWords[i].color;
+
       }
       console.log(this.spansOfColoredWords);
       this.inputs[j].spansOfColoredWords = this.spansOfColoredWords;
@@ -438,7 +459,7 @@ export class HolyQuranComponent implements OnInit {
 
 
   private fillRightArrayFirst(index,mooade3: { suraWithIndex: string; aya: string }[],ayaStart,ayaEnd) {
-    debugger
+    // debugger
     let rightArr = '';
     for(let i = 0 ;i<mooade3.length;i++){
 
