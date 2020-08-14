@@ -312,4 +312,8 @@ ayaId:string = '1';
       NavbarComponent.ind++;
     }
   }
+
+  onchange(event) {
+    debugger
+  }
 }
