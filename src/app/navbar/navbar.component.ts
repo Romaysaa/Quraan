@@ -64,24 +64,21 @@ export class NavbarComponent implements OnInit {
    tafseer: boolean;
 
   constructor(private http: HttpClient,private confirmationService:ConfirmationService ,private _quranInJson: QuranInJson, private _quranPages: QuranPages) {
-    this.selectedMotashabeh2 = {name: '    0     ', code: '0'};
+    // this.selectedMotashabeh2 = {name: '    0     ', code: '0'};
 
     this.nOfMotashabeh2 = [
       {name: 'عدد المتشابهات', code: '0'},
-      {name: '    1     ', code: '1'},
-      {name: '    2     ', code: '2'},
-      {name: '    3     ', code: '3'},
-      {name: '    4     ', code: '4'},
-      {name: '    5     ', code: '5'},
-      {name: '    6     ', code: '6'},
-      {name: '    7     ', code: '7'},
+      {name: '    1         ', code: '1'},
+      {name: '    2         ', code: '2'},
+      {name: '    3         ', code: '3'},
+      {name: '    4         ', code: '4'},
+      {name: '    5         ', code: '5'},
+      {name: '    6         ', code: '6'},
+      {name: '    7         ', code: '7'},
     ];
 
   }
-
   readers: any[] = [
-    {name: 'القراء', code: '0', en: "reader"},
-
     {name: 'عبد الباسط مرتل', code: '1', en: 'ar.abdulbasitmurattal'},
     {name: 'مشاري العفاسي', code: '2', en: 'ar.alafasy'},
     {name: 'الحذيفي', code: '3', en: 'ar.hudhaify'},
@@ -96,12 +93,28 @@ export class NavbarComponent implements OnInit {
     {name: 'عبدالله بصفار', code: '12', en: 'ar.abdullahbasfar'},
 
   ];
+  soar: any[] = [
+    {name: 'الفاتحه', code: '1'},
+    {name: 'البقره', code: '2'},
+    {name: 'ال عمران', code: '3', en: 'ar.hudhaify'},
+    {name: 'النساء', code: '4', en: 'ar.husarymujawwad'},
+    {name: 'المائده', code: '5', en: 'ar.saoodshuraym'},
+    {name: 'الانعام', code: '6', en: 'ar.husary'},
+    {name: 'الاعراف', code: '7', en: 'ar.ahmedajamy'},
+    {name: 'الانفال', code: '8', en: 'ar.muhammadjibreel'},
+    {name: 'التوبه', code: '9', en: 'ar.shaatree'},
+    {name: 'يونس', code: '10', en: 'ar.minshawi'},
+    {name: 'هود', code: '11', en: 'ar.minshawimujawwad'},
+    {name: 'يوسف', code: '12', en: 'ar.abdullahbasfar'},
+
+  ];
   // ar.muyassar
   tafser: any[] = [
     {name: 'تفسير', code: '0', en: "تفسير"},
 
     {name: 'الميسر', code: '1', en: 'ar.muyassar'},
     {name: 'الجلالين', code: '2', en: 'ar.jalalayn'}]
+
   selectedReader: any;
 
 
@@ -194,10 +207,12 @@ export class NavbarComponent implements OnInit {
       alert(err.message);
     });
   }
+  sagdatFlag:boolean=false;
     OnSgdClicked()
     {
     debugger
 
+      this.sagdatFlag=true;
       let url = 'http://api.alquran.cloud/v1/sajda';
       this.http.get<any>(url ).subscribe(res => {
         console.log(res);
@@ -231,8 +246,8 @@ export class NavbarComponent implements OnInit {
 
   OnChangeReader($event: any) {
   debugger
-    this.selectedReader = $event.value;
-    this.reader=$event.value.en;
+    this.selectedReader = $event.en;
+    this.reader=$event.en;
     let options: {} = {responseType: 'audio/mp3'};
     this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.reader+'/'+this.ayaId+'/high';
   }
@@ -273,6 +288,7 @@ debugger
   }
 ayaId:string = '1';
   items: MenuItem[];
+  motshabhat: any[]=[];
   onAyaClicked($event: any) {
     debugger
     this.ayaId = $event;
@@ -315,5 +331,9 @@ ayaId:string = '1';
 
   onchange(event) {
     debugger
+  }
+externalMotsh:boolean=false;
+  changeMotshabeh() {
+    this.externalMotsh=true;
   }
 }

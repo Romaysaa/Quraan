@@ -1,58 +1,6 @@
-<!--<nav class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">-->
-<!--  <p-dialog header="تفسير" [(visible)]="tafseer">-->
-<!--    {{tafseerText}}-->
-<!--  </p-dialog>-->
-<!--  <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--    <form class="form-inline my-2 my-lg-0">-->
-<!--      <button class="btn btn-outline-light my-2 my-sm-0" (click)="OnSearchClicked()"  >بحث</button>-->
-<!--      <input dir="rtl" #inp class="form-control mr-sm-2"  style="  font-family: 'Times New Roman';-->
-<!--      " type="search" placeholder="بحث"  (input)="changeSearchInput(inp.value)"  aria-label="Search">-->
-<!--      <p-dropdown [options]="nOfMotashabeh2"   (onChange)="OnChange($event)" [(ngModel)]="selectedMotashabeh2" optionLabel="name"></p-dropdown>-->
-<!--      <input id="disabled-input" type="text" size="30" pInputText />-->
-
-<!--      <button id="disabled-btn" type="button" (click)="GoDisabled()" pButton label="Go To"></button>-->
-<!--    </form>-->
-<!--  </div>-->
-
-<!--  <img  class="logo" src="assets/Quran_logo.png" >-->
-<!--</nav>-->
-<!--<div class="row">-->
-<!--  <div class="col">-->
-<!--<audio controls  src="{{audio}}"  preload=auto audioplayer>-->
-<!--</audio>-->
-<!--</div>-->
-<!--  <div class="col" style="margin-top: 10px">-->
-<!--  <p-dropdown [options]="readers"  (onChange)="OnChangeReader($event)" [(ngModel)]="selectedReader" optionLabel="name"></p-dropdown>-->
-<!--  </div>-->
-<!--  <div  class="col" style="margin-top: 10px">-->
-<!--    <button class="ui-dropdown-trigger-icon" (click)="OnSgdClicked()"  >سجدات</button>-->
-
-
-<!--  </div>-->
-<!--</div>-->
-
-<!--<app-holy-quran *ngIf="!showListOfAyah"></app-holy-quran>-->
-<!--<app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>-->
-<!--<app-grid [data]="sagdas"></app-grid>-->
-
-<!--<div style="float: right" >-->
-<!--  <div class="sidenav">-->
-<!--    &lt;!&ndash;    <a style="padding-top: 100px" href="#">About</a>&ndash;&gt;-->
-<!--    <a style="padding-top: 100px" href="#">المصحف</a>-->
-<!--    <a href="#">القارئ</a>-->
-<!--    <a href="#">التفسير</a>-->
-<!--    <a href="#">متشابهات السور</a>-->
-<!--//عدد المتشابهات-->
-
-<!--  </div>-->
-<!--</div>-->
 <div >
-
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">
-
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">
   <div id="wrapper" >
-
-
     <input type="checkbox" id="menu" name="menu" class="menu-checkbox">
     <div class="menu">
       <label class="menu-toggle" for="menu"><span>Toggle</span></label>
@@ -63,72 +11,9 @@
           <div class="menu">
             <label class="menu-toggle" for="menu-3"><span>Toggle</span></label>
             <ul>
-              <li>
-                <a (click)="onchange($event)" >1</a>
+              <li  *ngFor="let motshabh of nOfMotashabeh2" (click)="onchange(motshabh)">
+                <a  >{{motshabh.code}}</a>
               </li>
-              <li>
-                <a (click)="onchange($event)" >2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>
-                <a href="#">4</a>
-              </li>
-              <li>
-                <a href="#">5</a>
-              </li>
-              <li>
-                <a href="#">6</a>
-              </li>
-              <li>
-                <a href="#">7</a>
-              </li>
-<!--              <li>-->
-<!--                <label for="menu-3-2">Menu-3-2</label>-->
-<!--                <input type="checkbox" id="menu-3-2" name="menu-3-2" class="menu-checkbox">-->
-<!--                <div class="menu">-->
-<!--                  <label class="menu-toggle" for="menu-3-2"><span>Toggle</span></label>-->
-<!--                  <ul>-->
-<!--                    <li>-->
-<!--                      <a href="#">2</a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <a href="#">3</a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <label for="menu-3-2-3">Menu-3-2-3</label>-->
-<!--                      <input type="checkbox" id="menu-3-2-3" name="menu-3-2-3" class="menu-checkbox">-->
-<!--                      <div class="menu">-->
-<!--                        <label class="menu-toggle" for="menu-3-2-3"><span>Toggle</span></label>-->
-<!--                        <ul>-->
-<!--                          <li>-->
-<!--                            <a href="#">Menu-3-2-3-1</a>-->
-<!--                          </li>-->
-<!--                          <li>-->
-<!--                            <a href="#">Menu-3-2-3-2</a>-->
-<!--                          </li>-->
-<!--                          <li>-->
-<!--                            <a href="#">Menu-3-2-3-3</a>-->
-<!--                          </li>-->
-<!--                          <li>-->
-<!--                            <a href="#">Menu-3-2-3-4</a>-->
-<!--                          </li>-->
-<!--                        </ul>-->
-<!--                      </div>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <a href="#">Menu-3-2-4</a>-->
-<!--                    </li>-->
-<!--                  </ul>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <a href="#">Menu-3-3</a>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <a href="#">Menu-3-4</a>-->
-<!--              </li>-->
             </ul>
           </div>
         </li>
@@ -153,45 +38,26 @@
           <div class="menu">
             <label class="menu-toggle" for="menu-5"><span>Toggle</span></label>
             <ul>
-              <li>
-                <a href="#">المنشاوي</a>
-              </li>
-              <li>
-                <a href="#">مشاري العفاسي</a>
-              </li>
-
-              <li>
-                <a href="#">السديسي</a>
-              </li>
-              <li>
-                <a href="#">الشريمي</a>
-              </li>
-              <li>
-                <a href="#">عبدالله بصفار</a>
-              </li>
-              <li>
-                <a href="#">محمد جبريل</a>
-              <li>
-                <a href="#">الحصري مجود</a>
-              </li>
-              <li>
-                <a href="#">احمد العجمي</a>
-              </li>
-              <li>
-                <a href="#">الحصري</a>
-              </li>
-              <li>
-                <a href="#">ابوبكر الشاطري</a>
+              <li *ngFor="let row of readers" (click)="OnChangeReader(row)">
+                <a href="#">{{row.name}}</a>
               </li>
             </ul>
           </div>
         </li>
         <li>
-          <a href="#">متشابهات السور</a>
+          <a (click)="changeMotshabeh()">متشابهات السور</a>
+        </li>
+        <li>
+          <div *ngIf="externalMotsh">
+            <p-dropdown  [options]="soar" optionLabel="name"></p-dropdown>
+          </div>
+        </li>
+        <li>
+          <a (click)="OnSgdClicked()">السجدات</a>
         </li>
       </ul>
     </div>
-  </div><!-- #wrapper -->
+  </div>
 
   <p-dialog header="تفسير" [(visible)]="tafseer">
     {{tafseerText}}
@@ -201,48 +67,19 @@
       <button class="btn btn-outline-light my-2 my-sm-0" (click)="OnSearchClicked()"  >بحث</button>
       <input dir="rtl" #inp class="form-control mr-sm-2"  style="  font-family: 'Times New Roman';
       " type="search" placeholder="بحث"  (input)="changeSearchInput(inp.value)"  aria-label="Search">
-<!--      <p-dropdown [options]="nOfMotashabeh2"   (onChange)="OnChange($event)" [(ngModel)]="selectedMotashabeh2" optionLabel="name" [ngModelOptions]="{standalone: true}"></p-dropdown>-->
-<!--      <input #inp id="disabled-input" type="text" size="30" pInputText />-->
-
-<!--      <button id="disabled-btn" type="button" (click)="GoDisabled(inp.value)" pButton label="Go To"></button>-->
-
     </form>
   </div>
 
   <img  class="logo" src="assets/Quran_logo.png" >
 </nav>
-<!--<div    style="float: right;">-->
-<!--  <p-slideMenu    [model]="items"></p-slideMenu>-->
-<!--</div>-->
 </div>
-
-
-<!--da mohm ll audio-->
-<!--<div class="row">-->
-<!--  <div class="col">-->
-<!--    <audio controls  src="{{audio}}"  preload=auto audioplayer>-->
-<!--    </audio>-->
-<!--  </div>-->
-<!--  <div class="col" style="margin-top: 10px">-->
-<!--    <p-dropdown [options]="readers"  (onChange)="OnChangeReader($event)" [(ngModel)]="selectedReader" optionLabel="name"></p-dropdown>-->
-<!--  </div>-->
-<!--  <div class="col" style="margin-top: 10px">-->
-<!--    <p-dropdown [options]="tafser"  (onChange)="OnChangetafseer($event)" [(ngModel)]="selectedtafseer" optionLabel="name"></p-dropdown>-->
-<!--  </div>-->
-<!--</div>-->
-<!--<div  class="col" style="margin-top: 10px">-->
-<!--  <button class="ui-dropdown-trigger-icon" (click)="OnSgdClicked()"  >سجدات</button>-->
-
-
-<!--</div>-->
-<div *ngFor="let img of imges">
-  <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage " [pageNumber]="selectedPage" (onClick)="onAyaClicked($event)"></app-holy-quran>
+<div  *ngFor="let img of imges">
+  <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag " [pageNumber]="selectedPage" (onClick)="onAyaClicked($event)"></app-holy-quran>
 
 </div>
+<app-grid *ngIf="sagdatFlag" [data]="sagdas"></app-grid>
+
 <app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
-<app-grid [data]="sagdas"></app-grid>
-
-
 <div class="row">
   <div class="col-5"></div>
   <div class="col-7">
@@ -250,6 +87,4 @@
     <button class="ui-dropdown-trigger-icon" style="align-items: center ; padding-left: 20px;padding-right: 20px" (click)="OnRightClick()">Next
     </button>
   </div>
-
-
 </div>
