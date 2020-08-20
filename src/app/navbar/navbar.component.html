@@ -63,24 +63,24 @@
     {{tafseerText}}
   </p-dialog>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <form class="form-inline my-2 my-lg-0">
+<!--    <form class="form-inline my-2 my-lg-0">-->
       <button class="btn btn-outline-light my-2 my-sm-0" (click)="OnSearchClicked()"  >بحث</button>
       <input dir="rtl" #inp class="form-control mr-sm-2"  style="  font-family: 'Times New Roman';
       " type="search" placeholder="بحث"  (input)="changeSearchInput(inp.value)"  aria-label="Search">
-    </form>
+<!--    </form>-->
   </div>
 
   <img  class="logo" src="assets/Quran_logo.png" >
 </nav>
 </div>
-<div  *ngFor="let img of imges">
+<div  *ngFor="let img of imges" style="margin-top: 20px">
   <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag " [pageNumber]="selectedPage" (onClick)="onAyaClicked($event)"></app-holy-quran>
 
 </div>
 <app-grid *ngIf="sagdatFlag" [data]="sagdas"></app-grid>
 
 <app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
-<div class="row">
+<div class="row" style="margin-top: 20px">
   <div class="col-5"></div>
   <div class="col-7">
     <button class="ui-dropdown-trigger-icon" style="align-items: center ;margin-right: 50px" (click)="OnLeftClick()">Previous</button>
