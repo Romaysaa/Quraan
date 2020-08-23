@@ -62,6 +62,7 @@ export class NavbarComponent implements OnInit {
   audio: any;
    sagdas: any[];
    tafseer: boolean;
+   isTafser: boolean=false;
 
   constructor(private http: HttpClient,private confirmationService:ConfirmationService ,private _quranInJson: QuranInJson, private _quranPages: QuranPages) {
     // this.selectedMotashabeh2 = {name: '    0     ', code: '0'};
@@ -109,15 +110,11 @@ export class NavbarComponent implements OnInit {
 
   ];
   repeat:any[]=[
-    {name: 'repeat', code: '0'},
-
-    {name: 'yes', code: '1'},
-    {name: 'no', code: '2'},
+    {name: 'repeat', code: '1'},
+    {name: 'no repeat', code: '2'},
   ]
   // ar.muyassar
   tafser: any[] = [
-    // {name: 'تفسير', code: '0', en: "تفسير"},
-
     {name: 'الميسر', code: '1', en: 'ar.muyassar'},
     {name: 'الجلالين', code: '2', en: 'ar.jalalayn'}]
 
@@ -298,17 +295,24 @@ ayaId:string = '1';
 
     let options: {} = {responseType: 'audio/mp3'};
    if(this.reader!=null&&this.reader!='') {
+     this.isAudio=true;
      this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/' + this.reader + '/' + this.ayaId + '/high';
    }
    if(this.selectedtafseer!=null)
-    { this.tafseer = true;
+    {
+      this.isTafser=true;
+    }
+  }
+
+  OntafserClick() {
+    debugger
+    this.tafseer = true;
     let url = 'https://api.alquran.cloud/ayah/'+this.ayaId+'/'+this.selectedtafseer.en;
     this.http.get<any>(url).subscribe(res => {
       this.tafseerText=res.data.text;
       console.log(res);
-    });}
+    });
   }
-
 
 
   OnRightClick() {
@@ -340,10 +344,11 @@ externalMotsh:boolean=false;
 
   selectedRepeat:any;
   isRepeat:boolean=false;
+  isAudio: boolean=false;
   onClickrepeat(event) {
     debugger
     this.selectedRepeat=event.value;
-    if(this.selectedRepeat.code==2){
+    if(this.selectedRepeat.code==1){
       this.isRepeat=false;
     }else
       this.isRepeat=true;
@@ -355,4 +360,5 @@ externalMotsh:boolean=false;
     this.selectedMotashabeh2 = motshabh.code;
 
   }
+
 }
