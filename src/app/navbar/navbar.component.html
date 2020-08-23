@@ -23,12 +23,10 @@
                     <div class="menu">
                       <label class="menu-toggle" for="menu-4"><span>Toggle</span></label>
                       <ul>
-                        <li>
-                          <a  href="#">الميسر</a>
+                        <li *ngFor="let row of tafser" (click)="OnChangetafseer(row)">
+                          <a  href="#">{{row.name}}</a>
                         </li>
-                        <li>
-                          <a href="#">الجلالين</a>
-                        </li>
+
                       </ul>
                     </div>
         </li>
@@ -72,6 +70,12 @@
 
   <img  class="logo" src="assets/Quran_logo.png" >
 </nav>
+  <div class="row"style="float: right" >
+    <div class="col" >
+<!--      preload=auto audioplayer-->
+  <audio controls  src="{{audio}}"  autoplay loop >
+  </audio>
+  </div>
 </div>
 <div  *ngFor="let img of imges" style="margin-top: 20px">
   <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag " [pageNumber]="selectedPage" (onClick)="onAyaClicked($event)"></app-holy-quran>

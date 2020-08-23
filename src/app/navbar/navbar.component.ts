@@ -110,7 +110,7 @@ export class NavbarComponent implements OnInit {
   ];
   // ar.muyassar
   tafser: any[] = [
-    {name: 'تفسير', code: '0', en: "تفسير"},
+    // {name: 'تفسير', code: '0', en: "تفسير"},
 
     {name: 'الميسر', code: '1', en: 'ar.muyassar'},
     {name: 'الجلالين', code: '2', en: 'ar.jalalayn'}]
@@ -260,6 +260,7 @@ export class NavbarComponent implements OnInit {
   }
 
   OnayaClicked() {
+    debugger
     this.tafseer = true;
     let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
     this.http.get<any>(url).subscribe(res => {
@@ -269,7 +270,7 @@ export class NavbarComponent implements OnInit {
 
   OnChangetafseer($event: any) {
 debugger
-    this.selectedtafseer=$event.value;
+    this.selectedtafseer=$event;
     // this.tafseer = true;
     let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
     this.http.get<any>(url).subscribe(res => {
