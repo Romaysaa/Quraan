@@ -11,7 +11,7 @@
           <div class="menu">
             <label class="menu-toggle" for="menu-3"><span>Toggle</span></label>
             <ul>
-              <li  *ngFor="let motshabh of nOfMotashabeh2" (click)="onchange(motshabh)">
+              <li  *ngFor="let motshabh of nOfMotashabeh2" (click)="onChange(motshabh)">
                 <a  >{{motshabh.code}}</a>
               </li>
             </ul>
@@ -71,11 +71,17 @@
   <img  class="logo" src="assets/Quran_logo.png" >
 </nav>
   <div class="row"style="float: right" >
-    <div class="col" >
-<!--      preload=auto audioplayer-->
-  <audio controls  src="{{audio}}"  autoplay loop >
-  </audio>
+    <div class="col"  *ngIf="!isRepeat">
+<!--      -->
+  <audio controls  src="{{audio}}"  autoplay loop ></audio>
   </div>
+    <div class="col" *ngIf="isRepeat">
+      <audio controls  src="{{audio}}"  preload=auto audioplayer ></audio>
+    </div>
+    <div class="col">
+      <p-dropdown  [options]="repeat" optionLabel="name" (onChange)="onClickrepeat($event)"></p-dropdown>
+
+    </div>
 </div>
 <div  *ngFor="let img of imges" style="margin-top: 20px">
   <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag " [pageNumber]="selectedPage" (onClick)="onAyaClicked($event)"></app-holy-quran>
@@ -91,4 +97,5 @@
     <button class="ui-dropdown-trigger-icon" style="align-items: center ; padding-left: 20px;padding-right: 20px" (click)="OnRightClick()">Next
     </button>
   </div>
+</div>
 </div>

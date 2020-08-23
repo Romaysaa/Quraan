@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   nOfMotashabeh2: City[];
 
 
-  selectedMotashabeh2: City;
+  selectedMotashabeh2: any;
   showListOfAyah: boolean = false;
   ayas: any[] = [];
 
@@ -108,6 +108,12 @@ export class NavbarComponent implements OnInit {
     {name: 'يوسف', code: '12', en: 'ar.abdullahbasfar'},
 
   ];
+  repeat:any[]=[
+    {name: 'repeat', code: '0'},
+
+    {name: 'yes', code: '1'},
+    {name: 'no', code: '2'},
+  ]
   // ar.muyassar
   tafser: any[] = [
     // {name: 'تفسير', code: '0', en: "تفسير"},
@@ -163,10 +169,6 @@ export class NavbarComponent implements OnInit {
   }
 
 
-
-  OnChange(e: any) {
-    this.selectedMotashabeh2 = e.value;
-  }
 
   OnSearchClicked() {
   debugger
@@ -330,11 +332,27 @@ ayaId:string = '1';
     }
   }
 
-  onchange(event) {
-    debugger
-  }
+
 externalMotsh:boolean=false;
   changeMotshabeh() {
     this.externalMotsh=true;
+  }
+
+  selectedRepeat:any;
+  isRepeat:boolean=false;
+  onClickrepeat(event) {
+    debugger
+    this.selectedRepeat=event.value;
+    if(this.selectedRepeat.code==2){
+      this.isRepeat=false;
+    }else
+      this.isRepeat=true;
+  }
+
+  onChange(motshabh: City) {
+    debugger
+
+    this.selectedMotashabeh2 = motshabh.code;
+
   }
 }
