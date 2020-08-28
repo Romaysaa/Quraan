@@ -5,7 +5,7 @@ export class QuranPages {
   pages: {
     pageNumber: string; ayas: ({
       index: string; id: string,
-      customMotashabehat: { motshabeh: string, id: string, color: any, word: string, errorFactor: string }[]; errorFactor: string; text: string
+      customMotashabehat: { motshabeh: string, id: string, color: any, word: string, lineIndex: string ,left?: string }[]; errorFactor: string; text: string
     })[]
   }[];
 
@@ -813,9 +813,9 @@ export class QuranPages {
 
           {
             customMotashabehat: [
-              {"motshabeh": "انظر الأعراف 189", "id": "1143", "color": "", "errorFactor": "", "word": ""},
-              {"motshabeh": "انظر الزمر 6", "id": "4064", "color": "", "errorFactor": "", "word": ""},
-              {"motshabeh": "", "id": "", "color": LightOrang, "errorFactor": "", "word": "وبث منهما"}
+              {"motshabeh": "انظر الأعراف 189", "id": "1143", "color": "", "lineIndex": "", "word": ""},
+              {"motshabeh": "انظر الزمر 6", "id": "4064", "color": "", "lineIndex": "", "word": ""},
+              {"motshabeh": "", "id": "", "color": LightOrang, "lineIndex": "1", "word": "وبث منهما     ","left":"412"}
             ],
             "id": "494", "errorFactor": "- 54",
             "index": "1",
@@ -829,9 +829,9 @@ export class QuranPages {
           },
           {
             customMotashabehat: [
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "فانكحوا", "errorFactor": ""},
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "طاب", "errorFactor": ""},
-              {"motshabeh": "المائدة 8", "id": "677", "color": LightBlue, "errorFactor": "", "word": "ألا تعدلوا"},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "فانكحوا   ", "lineIndex": "0","left":"120"},
+              {"motshabeh": "المائدة 8", "id": "677", "color": LightBlue, "lineIndex": "1", "word": "ألا تعدلوا  ","left":"130"},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "طاب     ", "lineIndex": "1","left":"350"},
 
             ],
             "id": "496", "errorFactor": "- 39",
@@ -840,10 +840,10 @@ export class QuranPages {
           },
           {
             customMotashabehat: [
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "هنيئا", "errorFactor": ""},
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "مريئا", "errorFactor": ""},
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "طبن", "errorFactor": ""},
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "فكلوه", "errorFactor": ""},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "طبن    ", "lineIndex": "1","left":"270"},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "فكلوه  ", "lineIndex": "1","left":"100"},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "هنيئا", "lineIndex": "2","left":"0"},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "مريئا  ", "lineIndex": "2","left":"0"},
             ],
             "id": "497", "errorFactor": "- 59",
             "index": "4",
@@ -851,12 +851,12 @@ export class QuranPages {
           },
           {
             customMotashabehat: [
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "وارزقوهم", "errorFactor": ""},
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "واكسوهم", "errorFactor": ""},
-              {"motshabeh": "النساء 8", "id": "501", "color": LightBlue, "errorFactor": "", "word": "وقولوا لهم"},
-              {"motshabeh": "النساء 8", "id": "501", "color": LightGreen, "errorFactor": "", "word": "قولا معروفا"},
-              {"motshabeh": "البقرة 235", "id": "242", "color": LightGreen, "errorFactor": "", "word": "قولا معروفا"},
-              {"motshabeh": "الأحزاب 32", "id": "3565", "color": LightGreen, "errorFactor": "", "word": "قولا معروفا"},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "وارزقوهم     ", "lineIndex": "1","left":"425"},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "واكسوهم      ", "lineIndex": "1","left":"330"},
+              {"motshabeh": "النساء 8", "id": "501", "color": LightBlue, "lineIndex": "1", "word": "وقولوا لهم  ","left":"170"},
+              {"motshabeh": "النساء 8", "id": "501", "color": LightGreen, "lineIndex": "1", "word": "قولا معروفا   ","left":"50"},
+              {"motshabeh": "البقرة 235", "id": "242", "color": LightGreen, "lineIndex": "1", "word": "a","left":"100"},
+              {"motshabeh": "الأحزاب 32", "id": "3565", "color": LightGreen, "lineIndex": "1", "word": "a","left":"100"},
 
             ],
             "id": "498", "errorFactor": "- 20",
@@ -865,15 +865,16 @@ export class QuranPages {
           },
           {
             customMotashabehat: [
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "ولا تأكلوها", "errorFactor": ""},
-              {"motshabeh": "النساء 131", "id": "624", "color": LightBlue, "errorFactor": "", "word": "غنيا"},
-              {"motshabeh": "النساء 135", "id": "628", "color": LightBlue, "errorFactor": "", "word": "غنيا"},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "ولا تأكلوها   ", "lineIndex": "2","left":"360"},
+              {"motshabeh": "النساء 131", "id": "624", "color": LightBlue, "lineIndex": "3", "word": "غنيا  ","left":"460"},
+              {"motshabeh": "النساء 135", "id": "628", "color": LightBlue, "lineIndex": "3", "word": "غ","left":""},
               {
                 "motshabeh": "الأحزاب 39",
                 "id": "3572",
                 "color": LightGreen,
-                "errorFactor": "",
-                "word": "وكفى بالله حسيبا"
+                "lineIndex": "4",
+                "word": "وكفى بالله حسيبا       ",
+                "left":"200"
               },
 
             ],

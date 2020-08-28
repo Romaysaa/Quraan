@@ -133,8 +133,8 @@ export class NavbarComponent implements OnInit {
   i2 = 0;
   searchInput: string;
 
-  imges: any[] = [4,5,6,7,8,9,10,11];
-  selectedPage: number;
+//4,5,6,7,8,9,10,11,
+  imges: any[] = [77,78,79,80,81,82,83,84,85];  selectedPage: number;
 
 
 
