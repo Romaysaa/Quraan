@@ -109,10 +109,8 @@ export class NavbarComponent implements OnInit {
 
   ];
   repeat:any[]=[
-    {name: 'repeat', code: '0'},
-
-    {name: 'yes', code: '1'},
-    {name: 'no', code: '2'},
+    {name: 'تكرار الأية', code: '0'},
+    {name: 'دون تكرار', code: '1'},
   ]
   // ar.muyassar
   tafser: any[] = [
@@ -354,5 +352,18 @@ externalMotsh:boolean=false;
 
     this.selectedMotashabeh2 = motshabh.code;
 
+  }
+
+  onMotahabehClick(ayaId: any) {
+    for(let i= 0 ;i < this._quranPages.pages.length; i++){
+      for(let j=0 ; j< this._quranPages.pages[i].ayas.length;j++){
+        if(this._quranPages.pages[i].ayas[j].id == ayaId.toString()){
+          this.selectedPage = parseInt(this._quranPages.pages[i].pageNumber);
+          console.log("move to page#:"+this.selectedPage  );
+          break;
+        }
+
+      }
+    }
   }
 }

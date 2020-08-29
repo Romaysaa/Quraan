@@ -12,10 +12,12 @@ export class HolyQuranComponent implements OnInit {
 
   @Input() pageNumber: number;
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() motahabehClick: EventEmitter<any> = new EventEmitter<any>();
 
 
   marginTop: number = 50;
   inputs: ({
+    ayat:any[];
     aya: string,
     ayaId: string,
     spans: ({ aya: string, top: string; left: string; width: string; height: string })[];
@@ -86,6 +88,10 @@ export class HolyQuranComponent implements OnInit {
   onAyaClick($event: any) {
     // inp.isActive = true
     this.onClick.emit($event)
+  }
+  onMotahabehClick($event: any) {
+    // inp.isActive = true
+    this.motahabehClick.emit($event)
   }
 
   addStaticMotashabehat(ayaInPage: { index: string; id: string; customMotashabehat: { motshabeh: string, id: string, color: string, word: string,lineIndex: string ,left?: string }[]; errorFactor: string; text: string }, ayaDetails: { aya: string; errorFactor: string; id: string; numOfCharsInWholeAya: number; ayaIndex: string; arrOfColoredWords: any[]; sura: string; suraWithIndex: string; mooade3: { suraWithIndex: string; aya?: string, id: string }[] }) {
@@ -385,6 +391,7 @@ export class HolyQuranComponent implements OnInit {
       ayaEnd = this.marginTop;
       this.motashabehatSpans = [];
       this.inputs.push({
+        ayat:[],
         aya: aya.aya,
         ayaId: aya.id,
         isActive: false,
@@ -505,11 +512,13 @@ export class HolyQuranComponent implements OnInit {
     }
   }
 
-  private fillRightArrayFirst(index, mooade3: { suraWithIndex: string; aya?: string, id: string }[], ayaStart, ayaEnd) {
-    // debugger
-    let rightArr = '';
-    for (let i = 0; i < mooade3.length; i++) {
 
+  private fillRightArrayFirst(index, mooade3: { suraWithIndex: string; aya?: string, id: string }[], ayaStart, ayaEnd) {
+    debugger
+    let rightArr = '';
+    let  ayat =[];
+    for (let i = 0; i < mooade3.length; i++) {
+      ayat.push(mooade3[i].aya);
       // if (this.lastTopRight == 0) {//for first aya contains motashabeh in page
       this.lastTopRight += 30;
       if (this.lastTopRight < ayaEnd + 10) {
@@ -540,6 +549,8 @@ export class HolyQuranComponent implements OnInit {
         return i;
       }
     }
+    this.inputs[index].ayat = ayat;
+
   }
 
 }
