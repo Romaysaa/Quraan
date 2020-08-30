@@ -121,6 +121,7 @@ export class NavbarComponent implements OnInit {
   selectedReader: any;
 
 
+
   imges1: any[] = ["assets/1/3.png", "assets/1/4.png"];
   imges2: any[] = ["assets/2/3.png", "assets/2/4.png"];
   selectedImage: string = this.imges1[0];
