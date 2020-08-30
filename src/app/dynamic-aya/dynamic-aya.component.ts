@@ -129,5 +129,10 @@ export class DynamicAyaComponent implements OnInit {
     // }
 
   }
+
+  getColor(color: string) {
+   debugger
+    return color;
+  }
 }
 

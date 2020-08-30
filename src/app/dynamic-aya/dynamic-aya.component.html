@@ -13,14 +13,16 @@
 </a>
 <span *ngIf="moade3&&moade3.length>0">
 <span  *ngFor="let mot of moade3"  dir="rtl" href="#aa"
-       style="width: 200px;color: black;"
+       style="width: 200px;"
        [style.height]="motashabehat.height"
 
 >
-<span class="motashabeh"  style="width: 120px;"
+<span class="motashabeh"  style="width: 120px"
       [style.left]="!motashabehat.isRight?'540px':'-95px'"
       [style.top]="mot.top">
   <a (contextmenu)="onMotashabehRightClick($event,mot)"
+     [style.color]="mot.color && mot.color!=''?mot.color:'black'"
+     [style.font-weight]="mot.color && mot.color!=''?'bold':'normal'"
      [style.background]="isActive?bakgroundStyle2.background:bakgroundStyle.background"
      [style.opacity]="bakgroundStyle.motashOpacity"
      style="width: 120px;"
@@ -28,7 +30,7 @@
       {{mot.suraWithIndex}}
       </a>
     </span>
-   <svg height="10" width="100"
+   <svg  height="10" width="100"
         [style.top]="lineTop"
         [style.left]="!motashabehat.isRight?'540px':'-95px'"
         class="motashabeh"
