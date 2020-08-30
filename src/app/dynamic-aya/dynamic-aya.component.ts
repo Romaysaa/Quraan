@@ -42,7 +42,6 @@ export class DynamicAyaComponent implements OnInit {
   listMenuItems: any[] = [
     {
       label: 'ذهاب الي الايه', command: (event) => {
-        debugger
         this.showList = false;
         this.onMotahabehClick.emit(this.selectedAyaID)
       }
@@ -50,7 +49,6 @@ export class DynamicAyaComponent implements OnInit {
     },
     {
       label: 'مقارنة مع الحالي', command: (event) => {
-        debugger
         this.ayas = [];
         this.ayas.push(this.aya);
         this.ayas.push(this.selectedmot.aya);
@@ -60,7 +58,6 @@ export class DynamicAyaComponent implements OnInit {
     },
     {
       label: 'مقارنة مع الجميع', command: (event) => {
-        debugger
         this.ayas = this.ayat;
         this.showList = false;
         this.OpenDialoge = true;
@@ -74,7 +71,6 @@ export class DynamicAyaComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    debugger
     this.moade3 = this.motashabehat.moade3;
     if(this.moade3){
     console.log("motashabehat::"+this.moade3[this.moade3.length-1].top);
@@ -93,7 +89,6 @@ export class DynamicAyaComponent implements OnInit {
   }
 
   aya_clicked(event) {
-    debugger
     this.onClick.emit(this.ayaId);
     // this.activeAya = ayaNum;
     // if(this.activeAya == this.href.split('#')[1])
@@ -118,7 +113,6 @@ export class DynamicAyaComponent implements OnInit {
   }
 
   onMotashabehRightClick(event, mot) {
-    debugger
     event.preventDefault();
     // if (!this.showList) {
     this.selectedmot = mot;

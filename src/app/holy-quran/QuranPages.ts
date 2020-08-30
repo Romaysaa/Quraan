@@ -831,7 +831,7 @@ export class QuranPages {
             customMotashabehat: [
               {"motshabeh": "", "id": "", "color": LightOrang, "word": "فانكحوا   ", "lineIndex": "0","left":"120","aya":""},
               {"motshabeh": "المائدة 8", "id": "677", "color": LightBlue, "lineIndex": "1", "word": "ألا تعدلوا  ","left":"130","aya":"يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ كُونُوا۟ قَوَّٰمِينَ لِلَّهِ شُهَدَآءَ بِٱلْقِسْطِ وَلَا يَجْرِمَنَّكُمْ شَنَـَٔانُ قَوْمٍ عَلَىٰٓ أَلَّا تَعْدِلُوا۟ ٱعْدِلُوا۟ هُوَ أَقْرَبُ لِلتَّقْوَىٰ وَٱتَّقُوا۟ ٱللَّهَ إِنَّ ٱللَّهَ خَبِيرٌۢ بِمَا تَعْمَلُونَ"},
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "طاب     ", "lineIndex": "1","left":"350","aya":""},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "طاب     ", "lineIndex": "1","left":"445","aya":""},
 
             ],
             "id": "496", "errorFactor": "- 39",
@@ -842,8 +842,8 @@ export class QuranPages {
             customMotashabehat: [
               {"motshabeh": "", "id": "", "color": LightOrang, "word": "طبن    ", "lineIndex": "1","left":"270","aya":""},
               {"motshabeh": "", "id": "", "color": LightOrang, "word": "فكلوه  ", "lineIndex": "1","left":"100","aya":""},
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "هنيئا", "lineIndex": "2","left":"0","aya":""},
-              {"motshabeh": "", "id": "", "color": LightOrang, "word": "مريئا  ", "lineIndex": "2","left":"0","aya":""},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "هنيئا  ", "lineIndex": "2","left":"458","aya":""},
+              {"motshabeh": "", "id": "", "color": LightOrang, "word": "مريئا  ", "lineIndex": "2","left":"420","aya":""},
             ],
             "id": "497", "errorFactor": "- 59",
             "index": "4",
@@ -853,8 +853,8 @@ export class QuranPages {
             customMotashabehat: [
               {"motshabeh": "", "id": "", "color": LightOrang, "word": "وارزقوهم     ", "lineIndex": "1","left":"425","aya":""},
               {"motshabeh": "", "id": "", "color": LightOrang, "word": "واكسوهم      ", "lineIndex": "1","left":"330","aya":""},
-              {"motshabeh": "النساء 8", "id": "501", "color": LightBlue, "lineIndex": "1", "word": "وقولوا لهم  ","left":"170","aya":"وَإِذَا حَضَرَ ٱلْقِسْمَةَ أُو۟لُوا۟ ٱلْقُرْبَىٰ وَٱلْيَتَٰمَىٰ وَٱلْمَسَٰكِينُ فَٱرْزُقُوهُم مِّنْهُ وَقُولُوا۟ لَهُمْ قَوْلًا مَّعْرُوفًا"},
-              {"motshabeh": "النساء 8", "id": "501", "color": LightGreen, "lineIndex": "1", "word": "قولا معروفا   ","left":"50","aya":"وَإِذَا حَضَرَ ٱلْقِسْمَةَ أُو۟لُوا۟ ٱلْقُرْبَىٰ وَٱلْيَتَٰمَىٰ وَٱلْمَسَٰكِينُ فَٱرْزُقُوهُم مِّنْهُ وَقُولُوا۟ لَهُمْ قَوْلًا مَّعْرُوفًا"},
+              {"motshabeh": "النساء 8", "id": "501", "color": LightBlue, "lineIndex": "1", "word": "وقولوا لهم  ","left":"262","aya":"وَإِذَا حَضَرَ ٱلْقِسْمَةَ أُو۟لُوا۟ ٱلْقُرْبَىٰ وَٱلْيَتَٰمَىٰ وَٱلْمَسَٰكِينُ فَٱرْزُقُوهُم مِّنْهُ وَقُولُوا۟ لَهُمْ قَوْلًا مَّعْرُوفًا"},
+              {"motshabeh": "النساء 8", "id": "501", "color": LightGreen, "lineIndex": "1", "word": "قولا معروفا   ","left":"200","aya":"وَإِذَا حَضَرَ ٱلْقِسْمَةَ أُو۟لُوا۟ ٱلْقُرْبَىٰ وَٱلْيَتَٰمَىٰ وَٱلْمَسَٰكِينُ فَٱرْزُقُوهُم مِّنْهُ وَقُولُوا۟ لَهُمْ قَوْلًا مَّعْرُوفًا"},
               {"motshabeh": "البقرة 235", "id": "242", "color": LightGreen, "lineIndex": "1", "word": "a","left":"100","aya":"كَذَٰلِكَ يُبَيِّنُ ٱللَّهُ لَكُمْ ءَايَٰتِهِۦ لَعَلَّكُمْ تَعْقِلُونَ"},
               {"motshabeh": "الأحزاب 32", "id": "3565", "color": LightGreen, "lineIndex": "1", "word": "a","left":"100","aya":"يَٰنِسَآءَ ٱلنَّبِىِّ لَسْتُنَّ كَأَحَدٍ مِّنَ ٱلنِّسَآءِ إِنِ ٱتَّقَيْتُنَّ فَلَا تَخْضَعْنَ بِٱلْقَوْلِ فَيَطْمَعَ ٱلَّذِى فِى قَلْبِهِۦ مَرَضٌ وَقُلْنَ قَوْلًا مَّعْرُوفًا"},
 
