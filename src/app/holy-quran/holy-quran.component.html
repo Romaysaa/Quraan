@@ -6,7 +6,18 @@
       <img style="border: 4px solid chocolate" id="page"  [src]="quranPageImage" alt="Please check your internet connection">
 <!--        <div-->
           <div *ngFor="let inp of inputs"  >
-            <app-dynamic-aya [aya]="inp.aya" [isActive]="inp.isActive" [spans]="inp.spans" [motashabehatSpans]="inp.motashabehatSpans" [arrOfColoredWords]="inp.spansOfColoredWords" [href]="inp.href" [ayaId]="inp.ayaId" [activeAya]="inp.activeAya" (onClick)="onAyaClick($event)"></app-dynamic-aya>
+            <app-dynamic-aya [aya]="inp.aya"
+                             [motashabehat]="inp.motashabehat"
+                             [ayat]="inp.ayat"
+                             [isActive]="inp.isActive"
+                             [spans]="inp.spans"
+                             [motashabehatSpans]="inp.motashabehatSpans"
+                             [arrOfColoredWords]="inp.spansOfColoredWords"
+                             [href]="inp.href"
+                             [ayaId]="inp.ayaId"
+                             [activeAya]="inp.activeAya"
+                             (onClick)="onAyaClick($event)"
+                             (onMotahabehClick)="onMotahabehClick($event)"></app-dynamic-aya>
           </div>
       <span  [class]="(pageNumber%2 != 0)?'triangle-right':'triangle-left'"></span>
 

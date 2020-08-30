@@ -86,8 +86,11 @@
 
     </div>
 </div>
-<div  *ngFor="let img of imges" style="margin-top: 20px">
-  <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag " [pageNumber]="selectedPage" (onClick)="onAyaClicked($event)"></app-holy-quran>
+<div  *ngFor="let img of imges" style="margin-top: 70px ">
+  <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag "
+                  [pageNumber]="selectedPage"
+                  (onClick)="onAyaClicked($event)"
+                  (motahabehClick)="onMotahabehClick($event)"></app-holy-quran>
 
 </div>
 <app-grid *ngIf="sagdatFlag" [data]="sagdas"></app-grid>
