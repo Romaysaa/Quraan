@@ -342,31 +342,31 @@ debugger
       while (numOfAyaChars >= 0) {
         if (isFirst) {
           temp = [];
-          if (numOfAyaChars >= 78 && ayasLines[ayasLines.length - 1] == 78) {
+          if (numOfAyaChars >= 80 && ayasLines[ayasLines.length - 1] == 80) {
             ayasLines = []
-          } else if (ayasLines[ayasLines.length - 1] < 78) {//if(ayasLines[ayasLines.length-1]<78)
+          } else if (ayasLines[ayasLines.length - 1] < 80) {//if(ayasLines[ayasLines.length-1]<80)
             temp = ayasLines;
             ayasLines = [];
-            numOfAyaChars = numOfAyaChars - (78 - temp[temp.length - 1]);
-            ayasLines.push(78 - temp[temp.length - 1]);
+            numOfAyaChars = numOfAyaChars - (80 - temp[temp.length - 1]);
+            ayasLines.push(80 - temp[temp.length - 1]);
             this.marginTop -= 43.75;
           }
         }
         if (numOfAyaChars >= 0) {
-          if (numOfAyaChars >= 78) {
-            ayasLines.push(78);
-            numOfAyaChars = numOfAyaChars - 78;
+          if (numOfAyaChars >= 80) {
+            ayasLines.push(80);
+            numOfAyaChars = numOfAyaChars - 80;
           } else {
             if (temp.length > 0) {
-              // numOfAyaChars=  numOfAyaChars - (78 - temp[temp.length - 1]);
+              // numOfAyaChars=  numOfAyaChars - (80 - temp[temp.length - 1]);
               ayasLines.push(numOfAyaChars);
-              if (numOfAyaChars < 78) {
+              if (numOfAyaChars < 80) {
                 break
               }
 
             } else {
               ayasLines.push(numOfAyaChars);
-              numOfAyaChars = numOfAyaChars - 78;
+              numOfAyaChars = numOfAyaChars - 80;
             }
 
           }
@@ -384,11 +384,11 @@ debugger
         spans.push({
           aya: aya.aya,
           top: this.marginTop + 'px',
-          left: temp.length != 0 ? i == 0 ? 60 + 'px' : 60 + (78 - ayasLines[i]) * 5 + 'px' : 60 + (78 - ayasLines[i]) * 5 + 'px',
+          left: temp.length != 0 ? i == 0 ? 60 + 'px' : 60 + (80 - ayasLines[i]) * 5 + 'px' : 60 + (80 - ayasLines[i]) * 5 + 'px',
           width: ayasLines[i] * 5 + 'px',
           height: '35px'
         });
-        if (i == ayasLines.length - 1 || i == 0 || ayasLines[i] == 78)
+        if (i == ayasLines.length - 1 || i == 0 || ayasLines[i] == 80)
           this.marginTop += 43.75;
         this.isShiftedVertically = i == ayasLines.length - 1;
       }
