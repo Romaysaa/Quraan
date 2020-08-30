@@ -6,7 +6,6 @@ import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} f
   styleUrls: ['./dynamic-aya.component.scss']
 })
 export class DynamicAyaComponent implements OnInit {
-  static lastTop = 50;
   @Input() ayaNumber: String;
   @Input() ayaId: number;
   @Input() href: String;
@@ -16,7 +15,8 @@ export class DynamicAyaComponent implements OnInit {
   @Input() arrOfColoredWords: { top: string; left: string; width: string;color:string }[];
   @Input() ayat:[];
   // @Input() motashabehatSpans: { isRight: boolean; top: string; name: string,height: string }[];
-  @Input() motashabehatSpans: { isRight: boolean;  moade3: string,height: string ,top: string}[];
+  @Input() motashabehatSpans: { isRight: boolean;  moade3: string,height: string ,top: string, isRightClicked:boolean}[];
+  @Input() motashabehat: { isRight: boolean; moade3: {top:string, suraWithIndex: string; aya?: string; id: string }[], height: string, top: string } = {top:'',height:'',isRight:true,moade3:[]};
   // test = [{name: "البقرة (15)", top: "45px", isRight: true,}, {
   //   name: "الرعد (5)",
   //   top: "75px",
@@ -49,7 +49,19 @@ export class DynamicAyaComponent implements OnInit {
 
     },
     {
-      label: 'عرض الكل', command: (event) => {
+      label: 'مقارنة مع الحالي', command: (event) => {
+        debugger
+        this.ayas = [];
+        this.ayas.push(this.aya);
+        this.ayas.push(this.selectedmot.aya);
+        this.showList = false;
+        this.OpenDialoge = true;
+      }
+    },
+    {
+      label: 'مقارنة مع الجميع', command: (event) => {
+        debugger
+        this.ayas = this.ayat;
         this.showList = false;
         this.OpenDialoge = true;
       }
@@ -58,10 +70,17 @@ export class DynamicAyaComponent implements OnInit {
   private showList: boolean = false;
   private OpenDialoge: boolean = false;
   selectedAyaID:number;
+  selectedmot:any;
   constructor() { }
 
   ngOnInit() {
     debugger
+    this.moade3 = this.motashabehat.moade3;
+    if(this.moade3){
+    console.log("motashabehat::"+this.moade3[this.moade3.length-1].top);
+    this.lineTop =(parseInt(this.moade3[this.moade3.length-1].top.replace('px','')) + 25 ).toString() +'px';
+    }
+
     if(this.motashabehatSpans && this.motashabehatSpans.length>0){
       this.motashabehatSpans.forEach(mot=>{
         if(mot.moade3){
@@ -85,6 +104,9 @@ export class DynamicAyaComponent implements OnInit {
     // event.stopPropagation();
   }
   bakgroundStyle= {background:"white",opacity: 0.0,motashOpacity:1};
+  moade3: any;
+  lineTop: any;
+  ayas: any[];
   onMouseEnter($event) {
     // if(!this.ayaIsClicked)
     this.bakgroundStyle = {background:"yellow",opacity: .2,motashOpacity:0.2};
@@ -95,15 +117,16 @@ export class DynamicAyaComponent implements OnInit {
     this.bakgroundStyle = {background:"white",opacity: 0.0,motashOpacity:1};
   }
 
-  onMotashabehRightClick(event, mot: { isRight: boolean; moade3: string; height: string; top: string }) {
+  onMotashabehRightClick(event, mot) {
     debugger
     event.preventDefault();
     // if (!this.showList) {
-      
-      this.selectedAyaID = 58;
+    this.selectedmot = mot;
+      this.selectedAyaID = mot.id;
       this.showList = true;
+      // mot.isRightClicked= false;
       // this.OpenDialoge = true;
-      let XL = event.clientX - this.contain.nativeElement.getBoundingClientRect().left + this.contain.nativeElement.scrollLeft;
+      let XL = event.clientX - this.contain.nativeElement.getBoundingClientRect().left + this.contain.nativeElement.scrollLeft - 200;
       let YL = event.clientY - this.contain.nativeElement.getBoundingClientRect().top + this.contain.nativeElement.scrollTop;
       this.listMenuStyle['top'] = YL + 'px';
       this.listMenuStyle['left'] = XL + 'px';
