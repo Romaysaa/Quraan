@@ -70,27 +70,24 @@
 
   <img  class="logo" src="assets/Quran_logo.png" >
 </nav>
-  <div *ngIf="isAudio" class="row"style="float: right" >
-    <div class="col"  *ngIf="!isRepeat&&!sagdatFlag">
+  <div class="row"style="float: right" >
+    <div class="col"  *ngIf="isAudio&&!isRepeat&&!sagdatFlag">
 <!--      -->
   <audio controls  src="{{audio}}"  autoplay loop ></audio>
   </div>
-    <div class="col" *ngIf="isRepeat&&!sagdatFlag">
+    <div class="col" *ngIf="isAudio&&isRepeat&&!sagdatFlag">
       <audio controls  src="{{audio}}"  preload=auto audioplayer ></audio>
     </div>
-    <div  class="col" *ngIf="!sagdatFlag">
+    <div  class="col" *ngIf="isAudio&&!sagdatFlag">
       <p-dropdown  [options]="repeat" optionLabel="name" (onChange)="onClickrepeat($event)"></p-dropdown>
     </div>
     <div  class="col" *ngIf="!sagdatFlag&&isTafser">
-      <button  class="col btn btn-outline-primary my-2 my-sm-0" (click)="OntafserClick()">tafseer</button>
+      <button  class="col btn btn-info my-2 my-sm-0" (click)="OntafserClick()">tafseer</button>
 
     </div>
 </div>
-<div  *ngFor="let img of imges" style="margin-top: 70px ">
-  <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag "
-                  [pageNumber]="selectedPage"
-                  (onClick)="onAyaClicked($event)"
-                  (motahabehClick)="onMotahabehClick($event)"></app-holy-quran>
+<div  *ngFor="let img of imges" style="margin-top: 20px">
+  <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag " [pageNumber]="selectedPage" (onClick)="onAyaClicked($event)"></app-holy-quran>
 
 </div>
 <app-grid *ngIf="sagdatFlag" [data]="sagdas"></app-grid>

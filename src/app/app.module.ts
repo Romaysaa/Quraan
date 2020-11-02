@@ -19,6 +19,11 @@ import {ConfirmationService} from "primeng/api";
 
 import {SlideMenuModule} from 'primeng/slidemenu';
 import {MenuModule} from "primeng/menu";
+import { RootComponent } from './root/root.component';
+import { MotashabhComponent } from './motashabh/motashabh.component';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import { ReadersComponent } from './readers/readers.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,12 @@ import {MenuModule} from "primeng/menu";
     SliderComponent,
     HolyQuranComponent,
     GridComponent,
-    DynamicAyaComponent
+    DynamicAyaComponent,
+    RootComponent,
+    MotashabhComponent,
+    HomeComponent,
+    FooterComponent,
+    ReadersComponent
   ],
   imports: [
     BrowserModule, SlideMenuModule,

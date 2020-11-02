@@ -272,11 +272,11 @@ export class NavbarComponent implements OnInit {
 debugger
     this.selectedtafseer=$event;
     // this.tafseer = true;
-    let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
-    this.http.get<any>(url).subscribe(res => {
-      this.tafseerText=res.data.text;
-      console.log(res);
-    });
+    // let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
+    // this.http.get<any>(url).subscribe(res => {
+    //   this.tafseerText=res.data.text;
+    //   console.log(res);
+    // });
 
   }
 
@@ -302,17 +302,22 @@ ayaId:string = '1';
    if(this.selectedtafseer!=null)
     {
       this.isTafser=true;
+      let url = 'https://api.alquran.cloud/ayah/'+this.ayaId+'/'+this.selectedtafseer.en;
+      this.http.get<any>(url).subscribe(res => {
+        this.tafseerText=res.data.text;
+        console.log(res);
+      });
     }
   }
 
   OntafserClick() {
     debugger
     this.tafseer = true;
-    let url = 'https://api.alquran.cloud/ayah/'+this.ayaId+'/'+this.selectedtafseer.en;
-    this.http.get<any>(url).subscribe(res => {
-      this.tafseerText=res.data.text;
-      console.log(res);
-    });
+    // let url = 'https://api.alquran.cloud/ayah/'+this.ayaId+'/'+this.selectedtafseer.en;
+    // this.http.get<any>(url).subscribe(res => {
+    //   this.tafseerText=res.data.text;
+    //   console.log(res);
+    // });
   }
 
 
@@ -362,4 +367,7 @@ externalMotsh:boolean=false;
 
   }
 
+  onMotahabehClick($event: any) {
+
+  }
 }
