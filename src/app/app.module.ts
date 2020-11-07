@@ -25,6 +25,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReadersComponent } from './readers/readers.component';
 import { QoraaComponent } from './qoraa/qoraa.component';
+import {AutoCompleteModule} from "primeng/autocomplete";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { QoraaComponent } from './qoraa/qoraa.component';
     HttpClientModule,
     TableModule,
     DialogModule,
-    ConfirmDialogModule, MenuModule,
+    ConfirmDialogModule, MenuModule,AutoCompleteModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]
