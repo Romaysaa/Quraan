@@ -24,6 +24,7 @@ import { MotashabhComponent } from './motashabh/motashabh.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReadersComponent } from './readers/readers.component';
+import {AutoCompleteModule} from "primeng/autocomplete";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { ReadersComponent } from './readers/readers.component';
     HttpClientModule,
     TableModule,
     DialogModule,
-    ConfirmDialogModule, MenuModule,
+    ConfirmDialogModule, MenuModule, AutoCompleteModule,
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]

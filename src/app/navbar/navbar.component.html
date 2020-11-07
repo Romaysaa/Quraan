@@ -1,80 +1,81 @@
+
 <div >
-  <nav *ngIf="!sagdatFlag"   class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">
-  <div id="wrapper" >
-    <input type="checkbox" id="menu" name="menu" class="menu-checkbox">
-    <div class="menu">
-      <label class="menu-toggle" for="menu"><span>Toggle</span></label>
-      <ul>
-        <li>
-          <label for="menu-3">عدد المتشابهات</label>
-          <input type="checkbox" id="menu-3" name="menu-3" class="menu-checkbox">
-          <div class="menu">
-            <label class="menu-toggle" for="menu-3"><span>Toggle</span></label>
-            <ul>
-              <li  *ngFor="let motshabh of nOfMotashabeh2" (click)="onChange(motshabh)">
-                <a  >{{motshabh.code}}</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li>
-                    <label for="menu-4">تفسير</label>
-                    <input type="checkbox" id="menu-4" name="menu-4" class="menu-checkbox">
-                    <div class="menu">
-                      <label class="menu-toggle" for="menu-4"><span>Toggle</span></label>
-                      <ul>
-                        <li *ngFor="let row of tafser" (click)="OnChangetafseer(row)">
-                          <a  href="#">{{row.name}}</a>
-                        </li>
+  <nav *ngIf="!sagdatFlag" class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">
+    <div id="wrapper" >
+      <input type="checkbox" id="menu" name="menu" class="menu-checkbox">
+      <div class="menu">
+        <label class="menu-toggle" for="menu"><span>Toggle</span></label>
+        <ul>
+          <li>
+            <label for="menu-3">عدد المتشابهات</label>
+            <input type="checkbox" id="menu-3" name="menu-3" class="menu-checkbox">
+            <div class="menu">
+              <label class="menu-toggle" for="menu-3"><span>Toggle</span></label>
+              <ul>
+                <li  *ngFor="let motshabh of nOfMotashabeh2" (click)="onChange(motshabh)">
+                  <a  >{{motshabh.code}}</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <label for="menu-4">تفسير</label>
+            <input type="checkbox" id="menu-4" name="menu-4" class="menu-checkbox">
+            <div class="menu">
+              <label class="menu-toggle" for="menu-4"><span>Toggle</span></label>
+              <ul>
+                <li *ngFor="let row of tafser" (click)="OnChangetafseer(row)">
+                  <a  href="#">{{row.name}}</a>
+                </li>
 
-                      </ul>
-                    </div>
-        </li>
-        <li>
-          <label for="menu-5">القراء</label>
-          <input type="checkbox" id="menu-5" name="menu-5" class="menu-checkbox">
-          <div class="menu">
-            <label class="menu-toggle" for="menu-5"><span>Toggle</span></label>
-            <ul>
-              <li *ngFor="let row of readers" (click)="OnChangeReader(row)">
-                <a href="#">{{row.name}}</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <a (click)="changeMotshabeh()">متشابهات السور</a>
-        </li>
-        <li>
-          <div *ngIf="externalMotsh">
-            <p-dropdown  [options]="soar" optionLabel="name"></p-dropdown>
-          </div>
-        </li>
-        <li>
-          <a (click)="OnSgdClicked()">السجدات</a>
-        </li>
-      </ul>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <label for="menu-5">القراء</label>
+            <input type="checkbox" id="menu-5" name="menu-5" class="menu-checkbox">
+            <div class="menu">
+              <label class="menu-toggle" for="menu-5"><span>Toggle</span></label>
+              <ul>
+                <li *ngFor="let row of readers" (click)="OnChangeReader(row)">
+                  <a href="#">{{row.name}}</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a (click)="changeMotshabeh()">متشابهات السور</a>
+          </li>
+          <li>
+            <div *ngIf="externalMotsh">
+              <p-dropdown  [options]="soar" optionLabel="name"></p-dropdown>
+            </div>
+          </li>
+          <li>
+            <a (click)="OnSgdClicked()">السجدات</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
 
-  <p-dialog header="تفسير" [(visible)]="tafseer">
-    {{tafseerText}}
-  </p-dialog>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-<!--    <form class="form-inline my-2 my-lg-0">-->
-      <button class="btn btn-outline-light my-2 my-sm-0" (click)="OnSearchClicked()"  >بحث</button>
-      <input dir="rtl" #inp class="form-control mr-sm-2"  style="  font-family: 'Times New Roman';
-      " type="search" placeholder="بحث"  (input)="changeSearchInput(inp.value)"  aria-label="Search">
-<!--    </form>-->
-  </div>
+    <p-dialog header="تفسير" [(visible)]="tafseer">
+      {{tafseerText}}
+    </p-dialog>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!--    <form class="form-inline my-2 my-lg-0">-->
+      <!--    <a href="search">اعدادات البحث </a>-->
+      <button class="btn btn-outline-light my-2 my-sm-0" (click)="doSearch()"  >بحث</button>
+      <p-autoComplete styleClass="prime-autoComplete-override" dir="rtl" [(ngModel)]="searchWord" [suggestions]="results" (completeMethod)="search($event)"></p-autoComplete>
+      <!--    </form>-->
+    </div>
 
-  <img  class="logo" src="assets/Quran_logo.png" >
-</nav>
+    <img  class="logo" src="assets/Quran_logo.png" >
+  </nav>
   <div class="row"style="float: right" >
     <div class="col"  *ngIf="isAudio&&!isRepeat&&!sagdatFlag">
-<!--      -->
-  <audio controls  src="{{audio}}"  autoplay loop ></audio>
-  </div>
+      <!--      -->
+      <audio controls  src="{{audio}}"  autoplay loop ></audio>
+    </div>
     <div class="col" *ngIf="isAudio&&isRepeat&&!sagdatFlag">
       <audio controls  src="{{audio}}"  preload=auto audioplayer ></audio>
     </div>
@@ -83,22 +84,30 @@
     </div>
     <div  class="col" *ngIf="!sagdatFlag&&isTafser">
       <button  class="col btn btn-info my-2 my-sm-0" (click)="OntafserClick()">tafseer</button>
-
     </div>
-</div>
-<div  *ngFor="let img of imges" style="margin-top: 20px">
-  <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag " [pageNumber]="selectedPage" (onClick)="onAyaClicked($event)"></app-holy-quran>
+  </div>
+  <div  *ngFor="let img of imges" style="margin-top: 70px ">
+    <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag "
+                    [pageNumber]="selectedPage"
+                    (onClick)="onAyaClicked($event)"
+                    [selectedMotashabeh2]="selectedMotashabeh2"
+                    (motahabehClick)="onMotahabehClick($event)"></app-holy-quran>
 
-</div>
-<app-grid *ngIf="sagdatFlag" [data]="sagdas"></app-grid>
+  </div>
+  <app-grid *ngIf="sagdatFlag" [data]="sagdas"></app-grid>
 
-<app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
-<div class="row" style="margin-top: 20px">
-  <div class="col-5"></div>
-  <div class="col-7" *ngIf="!sagdatFlag">
-    <button class="ui-dropdown-trigger-icon" style="align-items: center ;margin-right: 50px" (click)="OnLeftClick()">Previous</button>
-    <button class="ui-dropdown-trigger-icon" style="align-items: center ; padding-left: 20px;padding-right: 20px" (click)="OnRightClick()">Next
-    </button>
+  <app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
+  <div class="row" style="margin-top: 20px">
+    <div class="col-5"></div>
+    <div class="col-7">
+      <button class="ui-dropdown-trigger-icon" style="align-items: center ;margin-right: 50px" (click)="OnLeftClick()">Previous</button>
+      <button class="ui-dropdown-trigger-icon" style="align-items: center ; padding-left: 20px;padding-right: 20px" (click)="OnRightClick()">Next
+      </button>
+    </div>
   </div>
 </div>
+
+<div>
+
 </div>
+

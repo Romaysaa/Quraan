@@ -11,6 +11,7 @@ import {QuranInJson} from "./QuranInJson";
 export class HolyQuranComponent implements OnInit {
 
   @Input() pageNumber: number;
+  @Input() selectedMotashabeh2: string;
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
   @Output() motahabehClick: EventEmitter<any> = new EventEmitter<any>();
 
@@ -65,7 +66,7 @@ export class HolyQuranComponent implements OnInit {
       color:string
     }[]
   }[] = [];
-
+  static lastTop = 10;
   constructor(private _quranPages: QuranPages, private _quranInJson: QuranInJson,) {
   }
 
@@ -77,6 +78,7 @@ export class HolyQuranComponent implements OnInit {
 
   ngOnInit() {
     // debugger;
+    HolyQuranComponent.lastTop = 10;
     this.quranPageImage = "assets/" + this.pageNumber + ".png";
 
     this.generateMotashabehatOfSelectedPage(this.pageNumber);
@@ -576,7 +578,7 @@ debugger
     // this.inputs[index].ayat = ayat;
 
   }
-  static lastTop = 10;
+
 
   private addMoade3(index: number, moade3: { suraWithIndex: string; aya?: string; id: string ,color:string}[], ayaStart: number, ayaEnd: number) {
     let motashabehat: { isRight: boolean; moade3: any[], height: string, top: string } = {top:'',height:'',isRight:true,moade3:[]};
@@ -587,6 +589,20 @@ debugger
       HolyQuranComponent.lastTop += 25
     }
     if(moade3 && moade3.length>0){
+      // for(let i=0;i<moade3.length&&i<parseInt(this.selectedMotashabeh2);i++){
+      //   if(moade3[i].suraWithIndex!="") {
+      //         arr.push({
+      //           top: HolyQuranComponent.lastTop + 'px',
+      //           suraWithIndex: moade3[i].suraWithIndex,
+      //           aya: moade3[i].aya,
+      //           id: moade3[i].id,
+      //           color:moade3[i].color
+      //         });
+      //         HolyQuranComponent.lastTop += 25
+      //
+      //   }
+      // }
+
       moade3.forEach(m=>{
         if(m.suraWithIndex!="") {
           arr.push({

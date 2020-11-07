@@ -1,3 +1,4 @@
+
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {QuranInJson} from "../holy-quran/QuranInJson";
@@ -7,6 +8,7 @@ import {DialogModule} from 'primeng/dialog';
 import {ConfirmationService} from "primeng/api";
 // import {ConfirmationService} from "primeng";
 import {MenuItem} from 'primeng/api';
+import {Search} from "../holy-quran/search";
 
 
 
@@ -18,7 +20,7 @@ interface City {
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  providers:[QuranInJson,QuranPages]
+  providers:[QuranInJson,QuranPages,Search]
 })
 export class NavbarComponent implements OnInit {
 
@@ -29,42 +31,18 @@ export class NavbarComponent implements OnInit {
   showListOfAyah: boolean = false;
   ayas: any[] = [];
 
-  quran = [{
-    "index": "1",
-    "text": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
-  },
-    {
-      "index": "2",
-      "text": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ"
-    },
-    {
-      "index": "3",
-      "text": "الرَّحْمَٰنِ الرَّحِيمِ"
-    },
-    {
-      "index": "4",
-      "text": "مَالِكِ يَوْمِ الدِّينِ"
-    },
-    {
-      "index": "5",
-      "text": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ"
-    },
-    {
-      "index": "6",
-      "text": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ"
-    },
-    {
-      "index": "7",
-      "text": "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ"
-    }
-    ,
-  ];
   audio: any;
-   sagdas: any[];
-   tafseer: boolean;
-   isTafser: boolean=false;
+  sagdas: any[];
+  tafseer: boolean;
+  isAudio: boolean;
+  isTafser: boolean;
 
-  constructor(private http: HttpClient,private confirmationService:ConfirmationService ,private _quranInJson: QuranInJson, private _quranPages: QuranPages) {
+  constructor(private http: HttpClient,
+              private confirmationService:ConfirmationService ,
+              private _quranInJson: QuranInJson,
+              private _quranPages: QuranPages,
+              private _search: Search
+  ) {
     // this.selectedMotashabeh2 = {name: '    0     ', code: '0'};
 
     this.nOfMotashabeh2 = [
@@ -110,16 +88,17 @@ export class NavbarComponent implements OnInit {
 
   ];
   repeat:any[]=[
-    {name: 'repeat', code: '1'},
-    {name: 'no repeat', code: '2'},
+    {name: 'تكرار الأية', code: '0'},
+    {name: 'دون تكرار', code: '1'},
   ]
   // ar.muyassar
   tafser: any[] = [
+    // {name: 'تفسير', code: '0', en: "تفسير"},
+
     {name: 'الميسر', code: '1', en: 'ar.muyassar'},
     {name: 'الجلالين', code: '2', en: 'ar.jalalayn'}]
 
   selectedReader: any;
-
 
 
   imges1: any[] = ["assets/1/3.png", "assets/1/4.png"];
@@ -131,13 +110,14 @@ export class NavbarComponent implements OnInit {
   i2 = 0;
   searchInput: string;
 
-  imges: any[] = [4,5,6,7,8,9,10,11];
-  selectedPage: number;
+//4,5,6,7,8,9,10,11,77,78,79,80,81,82,83,84,85
+  imges: any[] = [77,4,5,6,7,8,9,10,11];  selectedPage: number;
 
 
 
- static ind = 0;
+  static ind = 0;
   ngOnInit() {
+    this.selectedMotashabeh2 = '7';
     debugger;
     this.selectedPage = this.imges[0];
     this.items = [
@@ -169,7 +149,7 @@ export class NavbarComponent implements OnInit {
 
 
   OnSearchClicked() {
-  debugger
+    debugger
     while (this.searchInput.includes(' ')) {
       this.searchInput = this.searchInput.replace(' ', '%20');
     }
@@ -180,7 +160,7 @@ export class NavbarComponent implements OnInit {
       if (res.search != null) {
         this.showListOfAyah = !!(res.search.ayas);
         for (let i = res.search.interval.start; i <= res.search.interval.end; i++) {
-        debugger
+          debugger
           console.log("<div>" + res.search.ayas[i].aya.text + "</div>");
           let row = "<div  dir=\"rtl\" class=\"result\"><div class=\"row-0\"><span class=\"number\">" + i + "." + res.search.ayas[i].aya.text + "</div></div>";
           // this.ayas.push("<div>"+res.search.ayas[i].aya.text+"</div>");
@@ -208,44 +188,44 @@ export class NavbarComponent implements OnInit {
     });
   }
   sagdatFlag:boolean=false;
-    OnSgdClicked()
-    {
+  OnSgdClicked()
+  {
     debugger
 
-      this.sagdatFlag=true;
-      let url = 'http://api.alquran.cloud/v1/sajda';
-      this.http.get<any>(url ).subscribe(res => {
-        console.log(res);
-        this.sagdas = [];
-        res.data.ayahs.forEach((sagd)=>{
-          sagd.surah=sagd.surah.name;
-          sagd.sajda=sagd.sajda.id;
-          this.sagdas.push(sagd);
-        })
+    this.sagdatFlag=true;
+    let url = 'http://api.alquran.cloud/v1/sajda';
+    this.http.get<any>(url ).subscribe(res => {
+      console.log(res);
+      this.sagdas = [];
+      res.data.ayahs.forEach((sagd)=>{
+        sagd.surah=sagd.surah.name;
+        sagd.sajda=sagd.sajda.id;
+        this.sagdas.push(sagd);
+      })
 
-      }, err => {
-        this.showListOfAyah = false;
-        console.log(err);
-        alert(err.message);
-      });
+    }, err => {
+      this.showListOfAyah = false;
+      console.log(err);
+      alert(err.message);
+    });
 
-    }
+  }
 
   currentLength: number = 0;
   prevLength: number = 0;
   foundRes = false;
-   reader: string;
+  reader: string;
   selectedtafseer: any;
   tafseerText: any;
 
   changeSearchInput(value) {
-  debugger
+    debugger
     this.currentLength = value.length;
     this.searchInput = value;
   }
 
   OnChangeReader($event: any) {
-  debugger
+    debugger
     this.selectedReader = $event.en;
     this.reader=$event.en;
     let options: {} = {responseType: 'audio/mp3'};
@@ -258,18 +238,8 @@ export class NavbarComponent implements OnInit {
     this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/'+this.reader+'/'+this.ayaId+'/high';
 
   }
-
-  OnayaClicked() {
-    debugger
-    this.tafseer = true;
-    let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
-    this.http.get<any>(url).subscribe(res => {
-      console.log(res);
-    });
-  }
-
   OnChangetafseer($event: any) {
-debugger
+    debugger
     this.selectedtafseer=$event;
     // this.tafseer = true;
     // let url = "https://api.alquran.cloud/ayah/1/"+this.selectedtafseer.en;
@@ -277,9 +247,7 @@ debugger
     //   this.tafseerText=res.data.text;
     //   console.log(res);
     // });
-
   }
-
   GoDisabled(page) {
     this.selectedPage = page;
     // let url = "https://alquran.cloud/ayah?reference=2%3A7";
@@ -287,19 +255,18 @@ debugger
     //   console.log(res);
     // });
   }
-ayaId:string = '1';
+  ayaId:string = '1';
   items: MenuItem[];
   motshabhat: any[]=[];
   onAyaClicked($event: any) {
     debugger
     this.ayaId = $event;
-
     let options: {} = {responseType: 'audio/mp3'};
-   if(this.reader!=null&&this.reader!='') {
-     this.isAudio=true;
-     this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/' + this.reader + '/' + this.ayaId + '/high';
-   }
-   if(this.selectedtafseer!=null)
+    if(this.reader!=null&&this.reader!='') {
+      this.isAudio=true;
+      this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/' + this.reader + '/' + this.ayaId + '/high';
+    }
+    if(this.selectedtafseer!=null)
     {
       this.isTafser=true;
       let url = 'https://api.alquran.cloud/ayah/'+this.ayaId+'/'+this.selectedtafseer.en;
@@ -309,7 +276,6 @@ ayaId:string = '1';
       });
     }
   }
-
   OntafserClick() {
     debugger
     this.tafseer = true;
@@ -318,10 +284,7 @@ ayaId:string = '1';
     //   this.tafseerText=res.data.text;
     //   console.log(res);
     // });
-  }
-
-
-  OnRightClick() {
+  }  OnRightClick() {
     debugger
     NavbarComponent.ind++;
 
@@ -343,18 +306,17 @@ ayaId:string = '1';
   }
 
 
-externalMotsh:boolean=false;
+  externalMotsh:boolean=false;
   changeMotshabeh() {
     this.externalMotsh=true;
   }
 
   selectedRepeat:any;
   isRepeat:boolean=false;
-  isAudio: boolean=false;
   onClickrepeat(event) {
     debugger
     this.selectedRepeat=event.value;
-    if(this.selectedRepeat.code==1){
+    if(this.selectedRepeat.code==2){
       this.isRepeat=false;
     }else
       this.isRepeat=true;
@@ -367,7 +329,156 @@ externalMotsh:boolean=false;
 
   }
 
-  onMotahabehClick($event: any) {
+  onMotahabehClick(ayaId: any) {
+    debugger
+    for(let i= 0 ;i < this._quranPages.pages.length; i++){
+      for(let j=0 ; j< this._quranPages.pages[i].ayas.length;j++){
+        if(this._quranPages.pages[i].ayas[j].id == ayaId.toString()){
+          this.selectedPage = parseInt(this._quranPages.pages[i].pageNumber);
+          console.log("move to page#:"+this.selectedPage  );
+          break;
+        }
+
+      }
+    }
+  }
+
+  results: string[];
+  searchWord: any;
+  hasTashkeel:boolean =false;
+
+  searchInOptions = [
+    {name: 'عموم القران', id:1 },
+    {name: 'بداية الايات', id: 2},
+  ];
+  searchIn = this. searchInOptions[0];
+  search(event) {
+    debugger
+    this.searchWord = event.query;
+    this.results = [];
+    let word = event.query.replace(new RegExp(String.fromCharCode(1617, 124, 1614, 124, 1611, 124, 1615, 124, 1612, 124, 1616, 124, 1613, 124, 1618,3161,1552 ), "g"), "");
+    if(word!=event.query){
+      this.hasTashkeel = true;
+      this._search.table_othmani.forEach(aya => {
+        if(this.searchIn.id == 1){
+          if(aya.AyaText_Othmani.includes(event.query)){
+            this.results.push(aya.AyaText_Othmani)
+          }
+        }else {
+          if(aya.AyaText_Othmani.startsWith(event.query)){
+            this.results.push(aya.AyaText_Othmani)
+          }
+        }
+
+
+      });
+    } else{
+      this.hasTashkeel = false;
+      this._search.table_othmani.forEach(aya => {
+        // let text = aya.AyaText_Othmani.replace(new RegExp(String.fromCharCode(1617, 124, 1614, 124, 1611, 124, 1615, 124, 1612, 124, 1616, 124, 1613, 124, 1618,3161,1552), "g"), "");
+
+        if(this.searchIn.id == 1){
+          if(aya.AyaText.includes(event.query)){
+            this.results.push(aya.AyaText_Othmani)
+          }
+        }else {
+          if(aya.AyaText.startsWith(event.query)){
+            this.results.push(aya.AyaText_Othmani)
+          }
+        }
+
+      });
+    }
+
+  }
+
+  doSearch(){
+    debugger;
+    if(this.hasTashkeel){
+      this._search.table_othmani.forEach(aya=>{
+        if(aya.nOFSura>=1&&aya.nOFSura<5) {
+
+          if (this.searchIn.id == 1) {
+            if (aya.AyaText_Othmani.includes(this.searchWord)) {
+              this.ayas.push({
+                رقم_السورة: aya.nOFSura,
+                بداية_السورة: aya.suraStart,
+                الربع: aya.rub,
+                الجزء: aya.joz,
+                رقم_الجزء: aya.nOFJoz,
+                الحزب: aya.hezb,
+                رقم_الحزب: aya.nOFHezb,
+                رقم_الصفحة: aya.nOFPage,
+                بداية_الربع: aya.rubStart,
+                بداية_الصفحة: aya.pageStart,
+                اسم_السورة: aya.Sura_Name,
+                الآية: aya.AyaText_Othmani,
+              });
+            }
+          } else {
+            if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
+              this.ayas.push({
+                رقم_السورة: aya.nOFSura,
+                بداية_السورة: aya.suraStart,
+                الربع: aya.rub,
+                الجزء: aya.joz,
+                رقم_الجزء: aya.nOFJoz,
+                الحزب: aya.hezb,
+                رقم_الحزب: aya.nOFHezb,
+                رقم_الصفحة: aya.nOFPage,
+                بداية_الربع: aya.rubStart,
+                بداية_الصفحة: aya.pageStart,
+                اسم_السورة: aya.Sura_Name,
+                الآية: aya.AyaText_Othmani,
+              });
+            }
+          }
+        }
+      });
+    }else {  this._search.table_othmani.forEach(aya=>{
+      if(aya.nOFSura>=1&&aya.nOFSura<5) {
+
+        if (this.searchIn.id == 1) {
+          if (aya.AyaText.includes(this.searchWord)) {
+            this.ayas.push({
+              رقم_السورة: aya.nOFSura,
+              بداية_السورة: aya.suraStart,
+              الربع: aya.rub,
+              الجزء: aya.joz,
+              رقم_الجزء: aya.nOFJoz,
+              الحزب: aya.hezb,
+              رقم_الحزب: aya.nOFHezb,
+              رقم_الصفحة: aya.nOFPage,
+              بداية_الربع: aya.rubStart,
+              بداية_الصفحة: aya.pageStart,
+              اسم_السورة: aya.Sura_Name,
+              الآية: aya.AyaText_Othmani,
+            });
+          }
+        } else {
+          if (aya.AyaText.startsWith(this.searchWord)) {
+            this.ayas.push({
+              رقم_السورة: aya.nOFSura,
+              بداية_السورة: aya.suraStart,
+              الربع: aya.rub,
+              الجزء: aya.joz,
+              رقم_الجزء: aya.nOFJoz,
+              الحزب: aya.hezb,
+              رقم_الحزب: aya.nOFHezb,
+              رقم_الصفحة: aya.nOFPage,
+              بداية_الربع: aya.rubStart,
+              بداية_الصفحة: aya.pageStart,
+              اسم_السورة: aya.Sura_Name,
+              الآية: aya.AyaText_Othmani,
+            });
+          }
+        }
+      }
+    });
+    }
+
+    console.log(this.ayas)
+    this.showListOfAyah = true;
 
   }
 }

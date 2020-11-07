@@ -166,3 +166,14 @@ p {
 /* fade in checked menu */
 .menu-checkbox:checked + .menu{
   transform: translate3d(0, 0, 0)}
+
+
+
+:host {
+  ::ng-deep .prime-autoComplete-override {
+
+    .ui-autocomplete-list-item  {
+      text-align: right !important;
+    }
+  }
+}

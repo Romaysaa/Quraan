@@ -72,7 +72,7 @@ export class DynamicAyaComponent implements OnInit {
 
   ngOnInit() {
     this.moade3 = this.motashabehat.moade3;
-    if(this.moade3){
+    if(this.moade3 && this.moade3.length>0){
     console.log("motashabehat::"+this.moade3[this.moade3.length-1].top);
     this.lineTop =(parseInt(this.moade3[this.moade3.length-1].top.replace('px','')) + 25 ).toString() +'px';
     }
@@ -102,6 +102,7 @@ export class DynamicAyaComponent implements OnInit {
   moade3: any;
   lineTop: any;
   ayas: any[];
+  title: any = '';
   onMouseEnter($event) {
     // if(!this.ayaIsClicked)
     this.bakgroundStyle = {background:"yellow",opacity: .2,motashOpacity:0.2};
@@ -130,9 +131,9 @@ export class DynamicAyaComponent implements OnInit {
 
   }
 
-  getColor(color: string) {
-   debugger
-    return color;
+  onMoueHover(word: { top: string; left: string; width: string; color: string }) {
+    debugger
+    this.title = this.aya;
   }
 }
 
