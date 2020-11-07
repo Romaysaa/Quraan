@@ -12,4 +12,27 @@ export class RootComponent implements OnInit {
   ngOnInit() {
   }
 
+  callReader($event: MouseEvent) {
+    
+  }
+
+  callFehres($event: MouseEvent) {
+    
+  }
+
+  callTafser($event: MouseEvent) {
+    
+  }
+
+  callSearch($event: MouseEvent) {
+    
+  }
+
+  callMotashabh($event: MouseEvent) {
+    
+  }
+
+  callHome($event: MouseEvent) {
+    
+  }
 }

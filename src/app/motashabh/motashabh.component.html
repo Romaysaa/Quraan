@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
+<head>  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script></head>
 <html lang="ar" dir="rtl">
 <!--<![endif]-->
 
 
 <body class="rtl">
 
-<!--[if lt IE 7]>
-<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-<![endif]-->
 <section id="wrapper">
 
   <!-- Page Content-->
@@ -33,57 +29,13 @@
                     <input name="filter" class="form-control" type="text" placeholder="بحث">
                   </div>
                 </div>
-                <div class="col-md-5 col-sm-5 col-xs-12">
-                  <button type="button" class="btn bg-warning btn-block dropdown-button" data-toggle="dropdown-categories" data-activates="dropdown-categories">
-                    التصنيف
-                    <i class="fa fa-angle-down"></i>
-                  </button>
-                  <!-- Dropdown Structure -->
-                  <ul id="dropdown-categories" class="dropdown-content">
-                    <li><a data-grid="main" data-reset>عرض الجميع</a></li>
-                    <li>
-                      <a data-grid="main" data-filter="category_id:4"
-                         data-label="category::كتب القراءات"
-                         data-reset>كتب القراءات
-                      </a>
-                    </li>
-                    <li>
-                      <a data-grid="main" data-filter="category_id:5"
-                         data-label="category::كتب التفاسير"
-                         data-reset>كتب التفاسير
-                      </a>
-                    </li>
-                    <li>
-                      <a data-grid="main" data-filter="category_id:6"
-                         data-label="category::كتب الروايات"
-                         data-reset>كتب الروايات
-                      </a>
-                    </li>
-                    <li>
-                      <a data-grid="main" data-filter="category_id:7"
-                         data-label="category::برامج القراءات الالكترونية"
-                         data-reset>برامج القراءات الالكترونية
-                      </a>
-                    </li>
-                    <li>
-                      <a data-grid="main" data-filter="category_id:8"
-                         data-label="category::مصاحف القراءات"
-                         data-reset>مصاحف القراءات
-                      </a>
-                    </li>
-                    <li>
-                      <a data-grid="main" data-filter="category_id:9"
-                         data-label="category::المصاحف برواية قالون عن نافع"
-                         data-reset>المصاحف برواية قالون عن نافع
-                      </a>
-                    </li>
-                    <li>
-                      <a data-grid="main" data-filter="category_id:10"
-                         data-label="category::المصاحف برواية ورش عن نافع"
-                         data-reset>المصاحف برواية ورش عن نافع
-                      </a>
-                    </li>
-                  </ul>
+                <div class="input-field">
+                  <input type="checkbox" name="remember" (click)="omomClicked($event)" class="filled-in" id="filled-in-box1" value="1">
+                  <label for="filled-in-box1" class="check">عموم القران</label>
+                </div>
+                <div class="input-field">
+                  <input type="checkbox" name="remember" (click)="ayatClicked($event)" class="filled-in" id="filled-in-box2" value="1">
+                  <label for="filled-in-box2" class="check">وصل الايات</label>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
                   <button type="submit" class="btn btn-default btn-block waves-effect waves-light dropdown-toggle" data-toggle="dropdown">
@@ -93,7 +45,29 @@
               </div>
             </form>
 
-            <div class="col-lg-12">
+
+            <div class="row">
+
+            <p-dropdown  [options]="soar" (onClick)="ayatClicked($event)" optionLabel="name"></p-dropdown>
+            </div>
+            <div class="row"> </div>
+            <div *ngIf="soraSelected&&!partSelected" class="row">
+              <p>من سوره</p>
+              <p-dropdown  [options]="soar" (onClick)="ayatClicked($event)" optionLabel="name"></p-dropdown>
+
+              <p>الي </p>
+
+              <p-dropdown  [options]="soar" (onClick)="ayatClicked($event)" optionLabel="name"></p-dropdown>
+            </div>
+            <div *ngIf="partSelected&&!soraSelected" class="row">
+              <p>من جزء</p>
+              <p-dropdown  [options]="soar" (onClick)="ayatClicked($event)" optionLabel="name"></p-dropdown>
+
+              <p>الي </p>
+
+              <p-dropdown  [options]="soar" (onClick)="ayatClicked($event)" optionLabel="name"></p-dropdown>
+            </div>
+              <div class="col-lg-12">
               <div class="data-grid_applied" data-grid="main"></div>
             </div>
 
@@ -285,66 +259,9 @@
 
 
   <!-- footer -->
-  <footer id="footer">
-    <div class="top-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="section-title">
-              <h5>عن المقرأة</h5>
-            </div>
-            <p>المقرأة : هي مشروع عالمي لتعليم القرآن الكريم من الحرمين الشريفين للمسلمين في شتى أنحاء العالم مشافهة لمن زار الحرمين الشريفين وعن بعد عبر الانترنت لمن كان في بلده</p>
-          </div>
-          <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="section-title">
-              <h5>خريطة الموقع</h5>
-            </div>
-            <ul class="list-unstyled no-margin no-padding col-md-6 col-sm-6">
-              <li><a href="https://maqraa.com/ar/">الرئيسية</a></li>
-              <li><a href="https://maqraa.com/ar/about/">عن المقرأة</a></li>
-              <li><a href="https://maqraa.com/ar/program/">قائمة المقارئ</a></li>
-            </ul>
-            <ul class="list-unstyled no-margin col-md-6 col-sm-6">
-              <li><a href="https://maqraa.com/ar/quran/364794/" >مكتبة القرآن</a></li>
-              <li><a href="https://maqraa.com/ar/library/" >المكتبة</a></li>
-              <li><a href="https://maqraa.com/ar/news/" >الأخبار</a></li>
-            </ul>
-          </div>
-          <div class="col-md-2 col-sm-6 col-xs-12">
-            <div class="section-title">
-              <h5>تابعنا على</h5>
-            </div>
-            <div class="social">
-              <a class="btn-floating fb-bg waves-effect waves-light" href="https://www.facebook.com/Maqraa1" target="_blank"><i class="fa fa-facebook"></i></a>
-              <a class="btn-floating tw-bg waves-effect waves-light" href="https://twitter.com/Maqraa1" target="_blank"><i class="fa fa-twitter"></i></a>
-              <a class="btn-floating yt-bg waves-effect waves-light" href="https://www.youtube.com/user/Maqraa" target="_blank"><i class="fa fa-youtube"></i></a>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 col-xs-12 subscribe">
-            <div class="section-title">
-              <h5>القائمة البريدية</h5>
-              <p>ضع بريدك الإلكترونى هنا وتعرف على أخبار المقرأة واستلم كل جديد لدينا</p>
-            </div>
-            <form action="//maqraa.us8.list-manage.com/subscribe/post?u=f70c4f590ef215fa528b99b83&amp;id=b523ba0141" method="post" accept-charset="utf-8" class="form-inline special-form">
-              <div class="input-field">
-                <input id="mce-EMAIL" type="email" placeholder="أكتب بريدك هنا" name="EMAIL" class="required email" required>
-                <button type="submit" class="btn bg-warning wave-effect">إرسل</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bottom-footer">
-      <div class="container text-center">
-        <p>&copy; 2020. <span>لمقرأة الحرمين.</span> كافة الحقوق محفوظة.</p>
-      </div>
-    </div>
-  </footer>
 </section>
 
 <!-- Footer-scripts -->
-<script src="https://maqraa.com/cache/assets/frontend.midade.scripts.0ce63be2d7f0ac8253b2f14ba32a25b0_1550416996.js"></script>
 
 
 
