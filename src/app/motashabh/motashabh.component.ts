@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Search} from "../holy-quran/search";
 
 @Component({
   selector: 'app-motashabh',
@@ -12,9 +13,9 @@ export class MotashabhComponent implements OnInit {
     {name: 'السور', code: '2'},
     {name: 'الجزء', code: '3'},
 
-  ];;
+  ];
 
-  constructor() { }
+  constructor(private _search: Search) { }
 
   ngOnInit() {
   }
