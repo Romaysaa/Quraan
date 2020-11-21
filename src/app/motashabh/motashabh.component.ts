@@ -40,9 +40,8 @@ export class MotashabhComponent implements OnInit {
 
       if(index<0) {
         this.soras.push({
-
-          اسم_السورة: aya.Sura_Name,          الجزء: aya.joz,
-
+          اسم_السورة: aya.Sura_Name,
+          nOFSura: aya.nOFSura,
         });
       }
     });
@@ -119,7 +118,7 @@ export class MotashabhComponent implements OnInit {
       if(index<0) {
         this.rob.push({
           rub: aya.rub,
-
+          ayaId: aya.id,
         });
       }
     });
@@ -193,13 +192,13 @@ export class MotashabhComponent implements OnInit {
 
   fromSoraFun($event: any) {
     debugger
-    this.fromSora=$event.value.اسم_السورة;
-    this.result.push(this.fromSora);
+    this.fromSora=$event.value.nOFSura;
+    // this.result.push(this.fromSora);
   }
 
   toSoraFun($event: any) {
-    this.toSora=$event.value.اسم_السورة;
-    this.result.push(this.toSora);
+    this.toSora=$event.value.nOFSura;
+    // this.result.push(this.toSora);
 
   }
 
@@ -211,11 +210,11 @@ export class MotashabhComponent implements OnInit {
     this.toAya=$event.value.id;
   }
   fromRobFun($event: any) {
-    this.fromRob=$event.value.rub;
+    this.fromRob=$event.value.ayaId;
   }
 
   toRobFun($event: any) {
-    this.toRob=$event.value.rub;
+    this.toRob=$event.value.ayaId;
 
   }
   fromHezpFun($event: any) {
@@ -243,10 +242,15 @@ export class MotashabhComponent implements OnInit {
 
   saveSearch() {
     debugger
-    this.result.push({"from sora":this.fromSora},{"fromHezp":this.fromHezp},
-      {"fromRob":this.fromRob},{"fromPart":this.fromPart},{"fromPage":this.fromPage},{"fromAya":this.fromAya},
-      {"toHezp":this.toHezp},{"toRob":this.toRob},{"toAya":this.toAya},{"toPart":this.toPart},
-      {"toSora":this.toSora},{"toPage":this.toPage},{"omomQuaanBoolean":this.omomQuraan});
+    this.result.push(
+      {"fromSora":this.fromSora,"toSora":this.toSora,
+        "fromPart":this.fromPart,"toPart":this.toPart,
+        "fromHezp":this.fromHezp,"toHezp":this.toHezp,
+        "fromRob":this.fromRob,"toRob":this.toRob,
+        "fromPage":this.fromPage,"toPage":this.toPage,
+        "fromAya":this.fromAya,"toAya":this.toAya,
+        "omomQuaanBoolean":this.omomQuraan
+      });
 
        localStorage.setItem('result',JSON.stringify(this.result));
         let finalResult=  JSON.parse(localStorage.getItem('result'));
