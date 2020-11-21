@@ -30,6 +30,8 @@ export class MotashabhComponent implements OnInit {
   constructor(private _search: Search,private router:Router) { }
 
   ngOnInit() {
+    this.soras.push({          اسم_السورة:"."});
+
     this._search.table_othmani.forEach(aya=>{
 
       let index =   this.soras.findIndex(sura=>{
@@ -38,11 +40,13 @@ export class MotashabhComponent implements OnInit {
 
       if(index<0) {
         this.soras.push({
+
           اسم_السورة: aya.Sura_Name,          الجزء: aya.joz,
 
         });
       }
     });
+    this.parts.push({الجزء:"."})
     this._search.table_othmani.forEach(aya=>{
 
       let index =   this.parts.findIndex(sura=>{
@@ -56,6 +60,7 @@ export class MotashabhComponent implements OnInit {
         });
       }
     });
+    this.hezb.push({nOFHezb:"."})
     this._search.table_othmani.forEach(aya=>{
 
       let index =   this.hezb.findIndex(sura=>{
@@ -69,7 +74,9 @@ export class MotashabhComponent implements OnInit {
         });
       }
     });
-
+    this.pages.push({
+      nOFPage: ".",
+    });
     this._search.table_othmani.forEach(aya=>{
 
       let index =   this.pages.findIndex(sura=>{
@@ -83,7 +90,10 @@ export class MotashabhComponent implements OnInit {
         });
       }
     });
-    this._search.table_othmani.forEach(aya=>{
+    this.ayat.push({
+      id:".",
+
+    });    this._search.table_othmani.forEach(aya=>{
 
       let index =   this.ayat.findIndex(sura=>{
         return aya.id ==sura.id
@@ -96,7 +106,10 @@ export class MotashabhComponent implements OnInit {
         });
       }
     });
+    this.rob.push({
+      rub:".",
 
+    });
     this._search.table_othmani.forEach(aya=>{
 
       let index =   this.rob.findIndex(sura=>{
@@ -111,9 +124,9 @@ export class MotashabhComponent implements OnInit {
       }
     });
   }
-
+  omomQuraan:boolean=false;
   omomClicked($event: MouseEvent) {
-    
+    this.omomQuraan=true;
   }
   soraSelected:boolean=false;
   partSelected:boolean=false;
@@ -233,7 +246,7 @@ export class MotashabhComponent implements OnInit {
     this.result.push({"from sora":this.fromSora},{"fromHezp":this.fromHezp},
       {"fromRob":this.fromRob},{"fromPart":this.fromPart},{"fromPage":this.fromPage},{"fromAya":this.fromAya},
       {"toHezp":this.toHezp},{"toRob":this.toRob},{"toAya":this.toAya},{"toPart":this.toPart},
-      {"toSora":this.toSora},{"toPage":this.toPage});
+      {"toSora":this.toSora},{"toPage":this.toPage},{"omomQuaanBoolean":this.omomQuraan});
 
        localStorage.setItem('result',JSON.stringify(this.result));
         let finalResult=  JSON.parse(localStorage.getItem('result'));
@@ -242,4 +255,7 @@ export class MotashabhComponent implements OnInit {
         alert("تم حفظ الاعدادات ")
   }
 
+  wasatClicked($event: MouseEvent) {
+    this.omomQuraan=false;
+  }
 }
