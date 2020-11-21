@@ -26,6 +26,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ReadersComponent } from './readers/readers.component';
 import { QoraaComponent } from './qoraa/qoraa.component';
 import {AutoCompleteModule} from "primeng/autocomplete";
+import {NavbarModule} from "./navbar/navbar/navbar.module";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import {AutoCompleteModule} from "primeng/autocomplete";
     HomeComponent,
     FooterComponent,
     ReadersComponent,
-    QoraaComponent
+    QoraaComponent,NavbarComponent
   ],
   imports: [
     BrowserModule, SlideMenuModule,
@@ -49,7 +50,7 @@ import {AutoCompleteModule} from "primeng/autocomplete";
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    TableModule,
+    TableModule,NavbarModule,
     DialogModule,
     ConfirmDialogModule, MenuModule,AutoCompleteModule
   ],
