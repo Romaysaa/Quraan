@@ -440,10 +440,10 @@ debugger
         this.allAyas[index].mooade3.forEach(m => {
           ayat.push(m.aya);
         });
-        this.inputs[index].fromSoraAyat = ayat;
+        this.inputs[index].ayat = ayat;
       }
     }
-
+    
   }
 
   private drawColoredWords() {
@@ -542,9 +542,9 @@ debugger
   private fillRightArrayFirst(index, mooade3: { suraWithIndex: string; aya?: string, id: string }[], ayaStart, ayaEnd) {
     // debugger
     let rightArr = '';
-    // let  fromSoraAyat =[];
+    // let  ayat =[];
     for (let i = 0; i < mooade3.length; i++) {
-      // fromSoraAyat.push(mooade3[i].aya);
+      // ayat.push(mooade3[i].aya);
       // if (this.lastTopRight == 0) {//for first aya contains motashabeh in page
       this.lastTopRight += 30;
       if (this.lastTopRight < ayaEnd + 10) {
@@ -575,7 +575,7 @@ debugger
         return i;
       }
     }
-    // this.inputs[index].fromSoraAyat = fromSoraAyat;
+    // this.inputs[index].ayat = ayat;
 
   }
 
