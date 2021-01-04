@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Search} from "../holy-quran/search";
-import {QuranInJson} from "../holy-quran/QuranInJson";
-import {QuranPages} from "../holy-quran/QuranPages";
 import {Router} from "@angular/router";
 
 @Component({
@@ -22,7 +20,8 @@ export class MotashabhComponent implements OnInit {
   soras: any[] = [];
   rob: any[] = [];
   hezb: any[] = [];
-  ayat: any[] = [];
+  fromSoraAyat: any[] = [];
+  toSoraAyat: any[] = [];
   pages: any[] = [];
   result:any[]=[];
 
@@ -30,19 +29,21 @@ export class MotashabhComponent implements OnInit {
   constructor(private _search: Search,private router:Router) { }
 
   ngOnInit() {
-    this.soras.push({          اسم_السورة:"."});
-
+    this.soras.push({اسم_السورة: ".", nOfAyas: 0});
+    let currentSura = "الفاتحة";
+    let nOfAyas = 0;
     this._search.table_othmani.forEach(aya=>{
-
-      let index =   this.soras.findIndex(sura=>{
-        return aya.Sura_Name ==sura.اسم_السورة
-      });
-
-      if(index<0) {
+      debugger
+      if (currentSura == aya.Sura_Name) {
+        nOfAyas++;
+      } else {
         this.soras.push({
-          اسم_السورة: aya.Sura_Name,
+          اسم_السورة: currentSura,
           nOFSura: aya.nOFSura,
+          nOfAyas: nOfAyas
         });
+        currentSura = aya.Sura_Name;
+        nOfAyas = 1;
       }
     });
     this.parts.push({الجزء:"."})
@@ -85,22 +86,6 @@ export class MotashabhComponent implements OnInit {
       if(index<0) {
         this.pages.push({
           nOFPage: aya.nOFPage,
-
-        });
-      }
-    });
-    this.ayat.push({
-      id:".",
-
-    });    this._search.table_othmani.forEach(aya=>{
-
-      let index =   this.ayat.findIndex(sura=>{
-        return aya.id ==sura.id
-      });
-
-      if(index<0) {
-        this.ayat.push({
-          id: aya.id,
 
         });
       }
@@ -193,11 +178,99 @@ export class MotashabhComponent implements OnInit {
   fromSoraFun($event: any) {
     debugger
     this.fromSora=$event.value.nOFSura;
-    // this.result.push(this.fromSora);
+
+    this.fromSoraAyat = [];
+    this.fromSoraAyat.push({
+      id: ".",
+
+    });
+    let nOfAyas = $event.value.nOfAyas;
+    let index = 0;
+    while (index < nOfAyas) {
+      index++;
+      this.fromSoraAyat.push({
+        id: index,
+      });
+    }
   }
 
   toSoraFun($event: any) {
+    debugger
     this.toSora=$event.value.nOFSura;
+
+    if (this.toSora) {
+      debugger
+      this.parts = [];
+      this.hezb = [];
+      this.pages = [];
+      this.rob = [];
+
+      this.parts.push({الجزء: '.'});
+      this.hezb.push({nOFHezb: "."});
+      this.rob.push({rub: "."});
+      this.pages.push({nOFPage: "."});
+
+      this._search.table_othmani.forEach(aya => {
+
+        if (parseInt(aya.nOFSura) <= parseInt(this.toSora) && parseInt(aya.nOFSura) >= parseInt(this.fromSora)) {
+          let index = this.parts.findIndex(sura => {
+            return aya.nOFJoz == sura.الجزء
+          });
+
+          if (index < 0) {
+            this.parts.push({
+              الجزء: aya.nOFJoz,
+
+            });
+          }
+
+          index = this.hezb.findIndex(sura => {
+            return aya.nOFHezb == sura.nOFHezb
+          });
+
+          if (index < 0) {
+            this.hezb.push({
+              nOFHezb: aya.nOFHezb,
+
+            });
+          }
+
+          index = this.pages.findIndex(sura => {
+            return aya.nOFPage == sura.nOFPage
+          });
+
+          if (index < 0) {
+            this.pages.push({
+              nOFPage: aya.nOFPage,
+
+            });
+          }
+
+          index = this.rob.findIndex(sura => {
+            return aya.rub == sura.rub
+          });
+
+          if (index < 0) {
+            this.rob.push({
+              rub: aya.rub,
+              ayaId: aya.id,
+            });
+          }
+
+        }
+
+      });
+    }
+    this.toSoraAyat = [];
+    this.toSoraAyat.push({id: "."});
+    let nOfAyas = $event.value.nOfAyas;
+    let index = 0;
+    while (index < nOfAyas) {
+      index++;
+      this.toSoraAyat.push({
+        id: index,
+      });
+    }
     // this.result.push(this.toSora);
 
   }
@@ -224,6 +297,23 @@ export class MotashabhComponent implements OnInit {
 
   toHezpFun($event: any) {
     this.toHezp=$event.value.nOFHezb;
+    if (this.toHezp) {
+      this._search.table_othmani.forEach(aya => {
+
+        let index = this.hezb.findIndex(sura => {
+          return aya.nOFHezb == sura.nOFHezb
+        });
+
+        if (index < 0) {
+          this.hezb.push({
+            nOFHezb: aya.nOFHezb,
+
+          });
+        }
+      });
+
+    }
+
   }
   fromPageFun($event: any) {
     this.fromPage=$event.value.nOFPage;

@@ -440,7 +440,7 @@ debugger
         this.allAyas[index].mooade3.forEach(m => {
           ayat.push(m.aya);
         });
-        this.inputs[index].ayat = ayat;
+        this.inputs[index].fromSoraAyat = ayat;
       }
     }
 
@@ -542,9 +542,9 @@ debugger
   private fillRightArrayFirst(index, mooade3: { suraWithIndex: string; aya?: string, id: string }[], ayaStart, ayaEnd) {
     // debugger
     let rightArr = '';
-    // let  ayat =[];
+    // let  fromSoraAyat =[];
     for (let i = 0; i < mooade3.length; i++) {
-      // ayat.push(mooade3[i].aya);
+      // fromSoraAyat.push(mooade3[i].aya);
       // if (this.lastTopRight == 0) {//for first aya contains motashabeh in page
       this.lastTopRight += 30;
       if (this.lastTopRight < ayaEnd + 10) {
@@ -575,7 +575,7 @@ debugger
         return i;
       }
     }
-    // this.inputs[index].ayat = ayat;
+    // this.inputs[index].fromSoraAyat = fromSoraAyat;
 
   }
 

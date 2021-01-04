@@ -1,0 +1,17 @@
+
+
+:host {
+  ::ng-deep .sora {
+    .ui-dropdown {
+      min-width: 100px !important;
+    }
+
+  }
+
+  ::ng-deep .aya {
+    .ui-dropdown {
+      min-width: 50px !important;
+    }
+
+  }
+}

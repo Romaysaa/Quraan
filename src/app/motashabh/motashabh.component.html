@@ -39,95 +39,114 @@
                 </div>
               </div>
                 <div class="row">
-                 <div class="col-3">
-                  <label for="filled-in-box2" class="check">من سوره :</label></div>
-                  <div class="col-3">
 
-                    <p-dropdown [options]="soras" [(ngModel)]="fromSora" (onChange)="fromSoraFun($event)" optionLabel="اسم_السورة"></p-dropdown></div>
-                  <div class="col-3">
+                  <div class="col-6">
+                    <div class="row-cols-6">
+                      <label for="filled-in-box2" style="float: right;margin-top: 5px">من سوره :</label>
 
-                    <label for="filled-in-box2" class="check">الي سوره :</label></div>
-                  <div class="col-3">
+                      <p-dropdown (onChange)="fromSoraFun($event)"
+                                  [(ngModel)]="fromSora"
+                                  [options]="soras"
+                                  [style]="{float:'right'}"
+                                  class="sora"
+                                  optionLabel="اسم_السورة"></p-dropdown>
+                    </div>
 
-                  <p-dropdown  [options]="soras" (onChange)="toSoraFun($event)"  optionLabel="اسم_السورة"></p-dropdown>
+                    <div class="row-cols-6">
+                      <label class="check" for="filled-in-box2" style="float: right;margin-right: 10px;margin-top: 5px">من
+                        ايه :</label>
+
+                      <p-dropdown (onChange)="fromAyaFun($event)" [options]="fromSoraAyat"
+                                  [style]="{float:'right','margin-right': '5px'}" class="aya"
+                                  optionLabel="id"></p-dropdown>
+                    </div>
+                  </div>
+
+
+                  <div class="col-6">
+                    <div class="row-cols-6">
+                      <label class="check" for="filled-in-box2" style="float: right;margin-top: 5px">الي سوره :</label>
+                      <p-dropdown (onChange)="toSoraFun($event)"
+                                  [options]="soras"
+                                  [style]="{float:'right'}" class="sora"
+                                  optionLabel="اسم_السورة">
+                      </p-dropdown>
+                    </div>
+
+                    <div class="row-cols-6">
+                      <label class="check" for="filled-in-box2" style="float: right;margin-right: 10px;margin-top: 5px">الي
+                        ايه :</label>
+                      <p-dropdown (onChange)="toAyaFun($event)"
+                                  [options]="toSoraAyat"
+                                  [style]="{float:'right','margin-right': '5px'}" class="aya"
+                                  optionLabel="id">
+                      </p-dropdown>
+                    </div>
                 </div>
+
+
                 </div>
 
               <div class="row">
 
-               <div class="col-3">
 
-                  <label for="filled-in-box2" class="check">من جزء :</label>
+                <div class="col-6">
+                  <label class="check" for="filled-in-box2" style="float: right;margin-top: 15px">من جزء :</label>
+
+                  <p-dropdown (onChange)="fromPartFun($event)" [options]="parts"
+                              [style]="{float:'right',margin:'10px',width:'200px'}" optionLabel="الجزء"></p-dropdown>
               </div>
-                <div class="col-3">
+                <div class="col-6">
+                  <label class="check" for="filled-in-box2" style="float: right;margin-top: 15px">الي جزء :</label>
 
-                  <p-dropdown  [options]="parts" (onChange)="fromPartFun($event)"  optionLabel="الجزء"></p-dropdown>
-              </div>
-                <div class="col-3">
-                  <label for="filled-in-box2" class="check">الي جزء :</label>
-              </div>
-                <div class="col-3">
-
-                  <p-dropdown  [options]="parts" (onChange)="toPartFun($event)"  optionLabel="الجزء"></p-dropdown>
-              </div>
-                </div>
-              <div class="row">
-                <div class="col-3">
-
-                  <label for="filled-in-box2" class="check">من حزب :</label></div>
-                  <div class="col-3">
-
-                  <p-dropdown  [options]="hezb"  (onChange)="fromHezpFun($event)" optionLabel="nOFHezb"></p-dropdown>
-                  </div>
-                <div class="col-3">
-
-                    <label for="filled-in-box2" class="check">الي حزب :</label>
-                </div>
-                <div class="col-3">
-
-                      <p-dropdown  [options]="hezb"  (onChange)="toHezpFun($event)" optionLabel="nOFHezb"></p-dropdown>
+                  <p-dropdown (onChange)="toPartFun($event)"
+                              [options]="parts"
+                              [style]="{float:'right',margin:'10px',width:'200px'}" optionLabel="الجزء"></p-dropdown>
                 </div>
               </div>
               <div class="row">
-                  <div class="col-3">
-                    <label for="filled-in-box2" class="check">من ربع :</label>
+                <div class="col-6">
+                  <label class="check" for="filled-in-box2" style="float: right;margin-top: 10px">من حزب :</label>
+                  <p-dropdown (onChange)="fromHezpFun($event)"
+                              [options]="hezb"
+                              [style]="{float:'right',margin:'0 5px 10px 10px',width:'200px'}" optionLabel="nOFHezb"></p-dropdown>
+                </div>
+                <div class="col-6">
+                  <label class="check" for="filled-in-box2" style="float: right;margin-top: 10px">الي حزب :</label>
+                  <p-dropdown (onChange)="toHezpFun($event)"
+                              [options]="hezb"
+                              [style]="{float:'right',margin:'0 5px 10px 10px',width:'200px'}" optionLabel="nOFHezb"></p-dropdown>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <label class="check" for="filled-in-box2" style="float: right;margin-top: 10px">من ربع :</label>
+                  <p-dropdown (onChange)="fromRobFun($event)"
+                              [options]="rob"
+                              [style]="{float:'right',margin:'0 10px 10px 10px',width:'200px'}" optionLabel="rub"></p-dropdown>
                   </div>
-                  <div class="col-3">
-                  <p-dropdown  [options]="rob" (onChange)="fromRobFun($event)" optionLabel="rub"></p-dropdown>
-                  </div>
-                  <div class="col-3">
-                  <label for="filled-in-box2" class="check">الي ربع :</label>
-                  </div>
-                <div class="col-3">
-                      <p-dropdown  [options]="rob"  (onChange)="toRobFun($event)" optionLabel="rub"></p-dropdown>
+                <div class="col-6">
+                  <label class="check" for="filled-in-box2" style="float: right;margin-top: 10px">الي ربع :</label>
+                  <p-dropdown (onChange)="toRobFun($event)"
+                              [options]="rob"
+                              [style]="{float:'right',margin:'0 10px 10px 10px',width:'200px'}" optionLabel="rub"></p-dropdown>
                 </div>
                 </div>
 
               <div class="row">
-                <div class="col-3">
-                  <label for="filled-in-box2" class="check">من صفحه :</label></div>
-                  <div class="col-3">
-                  <p-dropdown  [options]="pages" (onChange)="fromPageFun($event)" optionLabel="nOFPage"></p-dropdown>
+                <div class="col-6">
+                  <label class="check" for="filled-in-box2" style="float: right;margin-top: 10px">من صفحه :</label>
+                  <p-dropdown (onChange)="fromPageFun($event)"
+                              [options]="pages"
+                              [style]="{float:'right',margin:'0 0 10px 10px',width:'200px'}" optionLabel="nOFPage"></p-dropdown>
                   </div>
-                <div class="col-3">
-                    <label for="filled-in-box2" class="check">الي صفحه :</label>
-                </div>
-                <div class="col-3">
-                  <p-dropdown  [options]="pages"  (onChange)="toPageFun($event)" optionLabel="nOFPage"></p-dropdown>
-                </div>
-              </div>
+                <div class="col-6">
+                  <label class="check" for="filled-in-box2" style="float: right;margin-top: 10px">الي صفحه :</label>
 
-
-              <div class="row">
-                <div class="col-3">
-                  <label for="filled-in-box2" class="check">من ايه :</label></div>
-                  <div class="col-3">
-                    <p-dropdown  [options]="ayat" (onChange)="fromAyaFun($event)"  optionLabel="id"></p-dropdown></div>
-                <div class="col-3">
-                      <label for="filled-in-box2" class="check">الي ايه :</label>
-                </div>
-            <div class="col-3">
-              <p-dropdown  [options]="ayat"  (onChange)="toAyaFun($event)" optionLabel="id"></p-dropdown>
+                  <p-dropdown (onChange)="toPageFun($event)"
+                              [options]="pages"
+                              [style]="{float:'right',margin:'0 0 10px 10px',width:'200px'}" optionLabel="nOFPage"></p-dropdown>
                 </div>
               </div>
 
