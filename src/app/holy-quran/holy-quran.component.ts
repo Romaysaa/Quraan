@@ -443,7 +443,7 @@ debugger
         this.inputs[index].ayat = ayat;
       }
     }
-    
+
   }
 
   private drawColoredWords() {
