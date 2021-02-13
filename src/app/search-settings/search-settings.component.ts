@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Search} from '../../holy-quran/search';
+import {Search} from '../holy-quran/search';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-settings',
-  templateUrl: '../search-settings.component.html',
-  styleUrls: ['../search-settings.component.scss']
+  templateUrl: './search-settings.component.html',
+  styleUrls: ['./search-settings.component.scss']
 })
 export class SearchSettingsComponent implements OnInit {
   soar: any[] = [
@@ -38,8 +38,8 @@ export class SearchSettingsComponent implements OnInit {
   toHezp: any = {};
   fromPage: any = {};
   toPage: any = {};
-
-  constructor(private _search: Search, private router: Router) {
+   _search: Search = new Search();
+  constructor( private router: Router) {
   }
 
   ngOnInit() {

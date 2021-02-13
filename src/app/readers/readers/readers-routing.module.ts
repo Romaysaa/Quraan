@@ -4,7 +4,7 @@ import {ReadersComponent} from "../readers.component";
 
 
 const routes: Routes = [ {
-  path: '',
+  path: 'readers',
   component: ReadersComponent,
 },
 ];

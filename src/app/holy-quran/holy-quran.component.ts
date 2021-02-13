@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {QuranPages} from "./QuranPages";
-import {QuranInJson} from "./QuranInJson";
+import {QuranPages} from './QuranPages';
+import {QuranInJson} from './QuranInJson';
 
 
 @Component({
@@ -10,16 +10,15 @@ import {QuranInJson} from "./QuranInJson";
 })
 export class HolyQuranComponent implements OnInit {
 
+  static lastTop = 10;
   @Input() pageNumber: number;
   @Input() selectedMotashabeh2: string;
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
   @Output() motahabehClick: EventEmitter<any> = new EventEmitter<any>();
-
-
   marginTop: number = 50;
   inputs: ({
-    motashabehat: { isRight: boolean; moade3: any[], height: string, top: string};
-    ayat:any[];
+    motashabehat: { isRight: boolean; moade3: any[], height: string, top: string };
+    ayat: any[];
     aya: string,
     ayaId: string,
     spans: ({ aya: string, top: string; left: string; width: string; height: string })[];
@@ -34,7 +33,7 @@ export class HolyQuranComponent implements OnInit {
   lastTopRight: number = 0;
   lastTopLeft: number = 0;
   spansOfColoredWords: { top: string; left: string; width: string; color: string }[];
-  suras: string[] = ["البقرة", "آل عمران", "النساء", "المائدة"];
+  suras: string[] = ['البقرة', 'آل عمران', 'النساء', 'المائدة'];
   private searchWord: string;
   private x: {
     suraWithIndex: string,
@@ -54,8 +53,8 @@ export class HolyQuranComponent implements OnInit {
     arrOfColoredWords: {
       word: string,
       color: string,
-      lineIndex?:number,
-      left?:string
+      lineIndex?: number,
+      left?: string
     }[],
     sura: string,
     suraWithIndex: string,
@@ -63,10 +62,10 @@ export class HolyQuranComponent implements OnInit {
       suraWithIndex: string,
       aya?: string,
       id: string,
-      color:string
+      color: string
     }[]
   }[] = [];
-  static lastTop = 10;
+
   constructor(private _quranPages: QuranPages, private _quranInJson: QuranInJson,) {
   }
 
@@ -79,7 +78,7 @@ export class HolyQuranComponent implements OnInit {
   ngOnInit() {
     // debugger;
     HolyQuranComponent.lastTop = 10;
-    this.quranPageImage = "assets/" + this.pageNumber + ".png";
+    this.quranPageImage = 'assets/' + this.pageNumber + '.png';
 
     this.generateMotashabehatOfSelectedPage(this.pageNumber);
     console.log(this.allAyas);
@@ -91,28 +90,31 @@ export class HolyQuranComponent implements OnInit {
 
   onAyaClick($event: any) {
     // inp.isActive = true
-    this.onClick.emit($event)
+    this.onClick.emit($event);
   }
+
   onMotahabehClick($event: any) {
     // inp.isActive = true
     // debugger
-    this.motahabehClick.emit($event)
+    this.motahabehClick.emit($event);
   }
 
-  addStaticMotashabehat(ayaInPage: { index: string; id: string; customMotashabehat: { motshabeh: string, id: string, color: string, word: string,lineIndex: string ,left?: string,aya: string }[]; errorFactor: string; text: string }, ayaDetails: { aya: string; errorFactor: string; id: string; numOfCharsInWholeAya: number; ayaIndex: string; arrOfColoredWords: any[]; sura: string; suraWithIndex: string; mooade3: { suraWithIndex: string; aya?: string, id: string,color:string }[] }) {
-debugger
+  addStaticMotashabehat(ayaInPage: { index: string; id: string; customMotashabehat: { motshabeh: string, id: string, color: string, word: string, lineIndex: string, left?: string, aya: string }[]; errorFactor: string; text: string }, ayaDetails: { aya: string; errorFactor: string; id: string; numOfCharsInWholeAya: number; ayaIndex: string; arrOfColoredWords: any[]; sura: string; suraWithIndex: string; mooade3: { suraWithIndex: string; aya?: string, id: string, color: string }[] }) {
+    debugger;
     if (ayaInPage.customMotashabehat.length > 0) {
       ayaInPage.customMotashabehat.forEach(mot => {
         ayaDetails.mooade3.push({
           aya: mot.aya,
           id: mot.id,
           suraWithIndex: mot.motshabeh,
-          color:mot.color
+          color: mot.color
         });
         if (mot.color != '' && mot.color != null) {
           ayaDetails.arrOfColoredWords.push(
-            {word: mot.word, color: mot.color,lineIndex:mot.lineIndex,
-              left:mot.left}
+            {
+              word: mot.word, color: mot.color, lineIndex: mot.lineIndex,
+              left: mot.left
+            }
           );
         }
 
@@ -140,7 +142,7 @@ debugger
           suraWithIndex: string,
           aya?: string,
           id: string,
-          color:string
+          color: string
         }[]
       } = {
         arrOfColoredWords: [], errorFactor: '', id: '', mooade3: [], suraWithIndex: '', sura: '',
@@ -180,7 +182,7 @@ debugger
         });
 
         if (this.x.length == 1) {
-          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: "red",});
+          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: 'red',});
           if (!isCheckIn) {
             ayaDetails =
               {
@@ -201,7 +203,7 @@ debugger
 
           break;
         } else if (this.x.length == 2) {
-          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: "green",});
+          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: 'green',});
 
           if (!isCheckIn) {
             this.x.forEach(mode3 => {
@@ -209,7 +211,7 @@ debugger
                 id: mode3.id,
                 suraWithIndex: mode3.suraWithIndex,
                 aya: mode3.text,
-              })
+              });
             });
             ayaDetails = {
               errorFactor: this.x[0].errorFactor,
@@ -228,7 +230,7 @@ debugger
           }
 
         } else if (this.x.length == 3) {
-          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: "blue",});
+          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: 'blue',});
 
           if (!isCheckIn) {
             this.x.forEach(mode3 => {
@@ -236,7 +238,7 @@ debugger
                 id: mode3.id,
                 suraWithIndex: mode3.suraWithIndex,
                 aya: mode3.text,
-              })
+              });
             });
             ayaDetails = {
               errorFactor: this.x[0].errorFactor,
@@ -255,7 +257,7 @@ debugger
           }
 
         } else if (this.x.length == 4) {
-          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: "yellow",});
+          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: 'yellow',});
 
           if (!isCheckIn) {
             this.x.forEach(mode3 => {
@@ -263,7 +265,7 @@ debugger
                 id: mode3.id,
                 suraWithIndex: mode3.suraWithIndex,
                 aya: mode3.text,
-              })
+              });
             });
             ayaDetails = {
               errorFactor: this.x[0].errorFactor,
@@ -282,7 +284,7 @@ debugger
           }
 
         } else if (this.x.length > 4) {
-          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: "purple",});
+          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: 'purple',});
           if (countSuras.length <= 6 || this.x.length <= 7) {
             if (!isCheckIn) {
               this.x.forEach(mode3 => {
@@ -290,7 +292,7 @@ debugger
                   id: mode3.id,
                   suraWithIndex: mode3.suraWithIndex,
                   aya: mode3.text,
-                })
+                });
               });
               ayaDetails = {
                 errorFactor: this.x[0].errorFactor,
@@ -321,14 +323,16 @@ debugger
   private determineHighlight() {
     let ayasLines = [];
     this.allAyas.forEach(aya => {
-      if (parseInt(aya.ayaIndex) == 1) this.marginTop = 95;
+      if (parseInt(aya.ayaIndex) == 1) {
+        this.marginTop = 95;
+      }
       let ayaStart = this.marginTop;
       let ayaEnd;
 
       let numOfAyaChars = aya.numOfCharsInWholeAya;
-      if (aya.errorFactor != "") {
-        let operation = aya.errorFactor.split(" ")[0];
-        let factor = aya.errorFactor.split(" ")[1];
+      if (aya.errorFactor != '') {
+        let operation = aya.errorFactor.split(' ')[0];
+        let factor = aya.errorFactor.split(' ')[1];
         if (operation == '+') {
           numOfAyaChars = numOfAyaChars + parseInt(factor);
         } else {
@@ -345,7 +349,7 @@ debugger
         if (isFirst) {
           temp = [];
           if (numOfAyaChars >= 80 && ayasLines[ayasLines.length - 1] == 80) {
-            ayasLines = []
+            ayasLines = [];
           } else if (ayasLines[ayasLines.length - 1] < 80) {//if(ayasLines[ayasLines.length-1]<80)
             temp = ayasLines;
             ayasLines = [];
@@ -363,7 +367,7 @@ debugger
               // numOfAyaChars=  numOfAyaChars - (80 - temp[temp.length - 1]);
               ayasLines.push(numOfAyaChars);
               if (numOfAyaChars < 80) {
-                break
+                break;
               }
 
             } else {
@@ -390,15 +394,16 @@ debugger
           width: ayasLines[i] * 5 + 'px',
           height: '35px'
         });
-        if (i == ayasLines.length - 1 || i == 0 || ayasLines[i] == 80)
+        if (i == ayasLines.length - 1 || i == 0 || ayasLines[i] == 80) {
           this.marginTop += 43.75;
+        }
         this.isShiftedVertically = i == ayasLines.length - 1;
       }
       ayaEnd = this.marginTop;
       this.motashabehatSpans = [];
       this.inputs.push({
-        motashabehat:{top:'',height:'',isRight:true,moade3:[]},
-        ayat:[],
+        motashabehat: {top: '', height: '', isRight: true, moade3: []},
+        ayat: [],
         aya: aya.aya,
         ayaId: aya.id,
         isActive: false,
@@ -426,7 +431,7 @@ debugger
       suraWithIndex: string,
       aya?: string,
       id: string,
-      color:string
+      color: string
     }[]
   }, ayaStart: number, ayaEnd: number) {
     let height = ayaEnd - ayaStart;
@@ -434,7 +439,7 @@ debugger
     if (aya.mooade3.length > 0) {
       this.lastTopLeft = 0;
       let leftStartindex = this.fillRightArrayFirst(index, aya.mooade3, ayaStart, ayaEnd);
-       this.addMoade3(index, aya.mooade3, ayaStart, ayaEnd);
+      this.addMoade3(index, aya.mooade3, ayaStart, ayaEnd);
       if (this.allAyas[index].mooade3.length > 0) {
         let ayat = [];
         this.allAyas[index].mooade3.forEach(m => {
@@ -448,7 +453,7 @@ debugger
 
   private drawColoredWords() {
     for (let j = 0; j < this.allAyas.length; j++) {
-      debugger
+      debugger;
       this.spansOfColoredWords = [];
       let lastWord = '';
       let isMoveToNextLine = false;
@@ -456,7 +461,7 @@ debugger
       let previousColor;
       let space = 0;
       let left = parseInt(this.inputs[j].spans[lineIndex].left) + parseInt(this.inputs[j].spans[lineIndex].width);
-      let top = this.inputs[j].spans[lineIndex].top.split("px")[0];
+      let top = this.inputs[j].spans[lineIndex].top.split('px')[0];
       for (let i = 0; i < this.allAyas[j].arrOfColoredWords.length; i++) {
         let width = 0;
         if (previousColor == this.allAyas[j].arrOfColoredWords[i].color) {
@@ -469,7 +474,7 @@ debugger
           width = this.allAyas[j].arrOfColoredWords[i].word.length * 5;
           left = left - width;
           this.spansOfColoredWords.push({
-            top: parseInt(top) + 35 + "px",
+            top: parseInt(top) + 35 + 'px',
             color: this.allAyas[j].arrOfColoredWords[i].color,
             width: width + 'px',
             left: left + 'px'
@@ -480,12 +485,12 @@ debugger
           // debugger;
           let currentWord = '';
           currentWord = this.allAyas[j].arrOfColoredWords[i].word.split(lastWord)[1];
-          if(currentWord != undefined){
+          if (currentWord != undefined) {
             width = currentWord.length * 5;
 
-          }else{
-            width =  this.allAyas[j].arrOfColoredWords[i].word.length * 5;
-            if (this.allAyas[j].arrOfColoredWords[i].word != "" && this.allAyas[j].arrOfColoredWords[i].word.length > 2 && this.inputs[j].spans.length > this.allAyas[j].arrOfColoredWords[i].lineIndex) {
+          } else {
+            width = this.allAyas[j].arrOfColoredWords[i].word.length * 5;
+            if (this.allAyas[j].arrOfColoredWords[i].word != '' && this.allAyas[j].arrOfColoredWords[i].word.length > 2 && this.inputs[j].spans.length > this.allAyas[j].arrOfColoredWords[i].lineIndex) {
               top = this.inputs[j].spans[this.allAyas[j].arrOfColoredWords[i].lineIndex].top;
               left = parseInt(this.allAyas[j].arrOfColoredWords[i].left);
             }
@@ -495,7 +500,7 @@ debugger
             if ((left - width - space) > 50) {
               left = left - width - space;
               this.spansOfColoredWords.push({
-                top: parseInt(top) + 35 + "px",
+                top: parseInt(top) + 35 + 'px',
                 color: this.allAyas[j].arrOfColoredWords[i].color,
                 width: width + 'px',
                 left: left + 'px'
@@ -504,10 +509,10 @@ debugger
             } else {
               isMoveToNextLine = true;
               lineIndex++;
-              top = this.inputs[j].spans[lineIndex].top.split("px")[0];
+              top = this.inputs[j].spans[lineIndex].top.split('px')[0];
               left = parseInt(this.inputs[j].spans[lineIndex].left) + parseInt(this.inputs[j].spans[lineIndex].width) - width - space;
               this.spansOfColoredWords.push({
-                top: parseInt(top) + 35 + "px",
+                top: parseInt(top) + 35 + 'px',
                 color: this.allAyas[j].arrOfColoredWords[i].color,
                 width: width + 'px',
                 left: left + 'px'
@@ -516,7 +521,7 @@ debugger
           } else {
             left = left - width - space;
             this.spansOfColoredWords.push({
-              top: parseInt(top) + 35 + "px",
+              top: parseInt(top) + 35 + 'px',
               color: this.allAyas[j].arrOfColoredWords[i].color,
               width: width + 'px',
               left: left + 'px'
@@ -532,7 +537,7 @@ debugger
       }
       console.log(this.spansOfColoredWords);
       this.inputs[j].spansOfColoredWords = this.spansOfColoredWords;
-      console.log(this.inputs[j])
+      console.log(this.inputs[j]);
 
 
     }
@@ -571,7 +576,7 @@ debugger
           height: (ayaEnd - ayaStart - 30) + 'px'
         });
         this.inputs[index].motashabehatSpans = this.motashabehatSpans;
-        console.log(rightArr)
+        console.log(rightArr);
         return i;
       }
     }
@@ -580,15 +585,15 @@ debugger
   }
 
 
-  private addMoade3(index: number, moade3: { suraWithIndex: string; aya?: string; id: string ,color:string}[], ayaStart: number, ayaEnd: number) {
-    let motashabehat: { isRight: boolean; moade3: any[], height: string, top: string } = {top:'',height:'',isRight:true,moade3:[]};
-    let arr:{top:string,suraWithIndex: string; aya?: string; id: string,color:string}[] = [];
-    if(HolyQuranComponent.lastTop == 10){
-      HolyQuranComponent.lastTop = ayaStart
+  private addMoade3(index: number, moade3: { suraWithIndex: string; aya?: string; id: string, color: string }[], ayaStart: number, ayaEnd: number) {
+    let motashabehat: { isRight: boolean; moade3: any[], height: string, top: string } = {top: '', height: '', isRight: true, moade3: []};
+    let arr: { top: string, suraWithIndex: string; aya?: string; id: string, color: string }[] = [];
+    if (HolyQuranComponent.lastTop == 10) {
+      HolyQuranComponent.lastTop = ayaStart;
     } else {
-      HolyQuranComponent.lastTop += 25
+      HolyQuranComponent.lastTop += 25;
     }
-    if(moade3 && moade3.length>0){
+    if (moade3 && moade3.length > 0) {
       // for(let i=0;i<moade3.length&&i<parseInt(this.selectedMotashabeh2);i++){
       //   if(moade3[i].suraWithIndex!="") {
       //         arr.push({
@@ -603,21 +608,21 @@ debugger
       //   }
       // }
 
-      moade3.forEach(m=>{
-        if(m.suraWithIndex!="") {
+      moade3.forEach(m => {
+        if (m.suraWithIndex != '') {
           arr.push({
             top: HolyQuranComponent.lastTop + 'px',
             suraWithIndex: m.suraWithIndex,
             aya: m.aya,
             id: m.id,
-            color:m.color
+            color: m.color
           });
 
-          HolyQuranComponent.lastTop += 25
+          HolyQuranComponent.lastTop += 25;
         }
       });
 // debugger
-      motashabehat.height = ((parseInt(arr[arr.length-1].top)+25) - parseInt(arr[0].top))  + 'px';
+      motashabehat.height = ((parseInt(arr[arr.length - 1].top) + 25) - parseInt(arr[0].top)) + 'px';
       motashabehat.moade3 = arr;
       this.inputs[index].motashabehat = motashabehat;
 

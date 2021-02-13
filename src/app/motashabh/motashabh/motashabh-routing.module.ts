@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {RootComponent} from "../../root/root.component";
 import {MotashabhComponent} from "../motashabh.component";
 
 const routes: Routes = [ {
-  path: '',
+  path: 'motashabh',
   component: MotashabhComponent,
 },
 ];

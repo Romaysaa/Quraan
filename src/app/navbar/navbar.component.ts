@@ -396,8 +396,15 @@ searchSettings :any;
   doSearch(){
     debugger;
     // setTimeout(()=>{
-      this.showListOfAyah = false;
+    //   this.showListOfAyah = false;
+    this.ayas = [];
+    let hasSpace = false;
+    if(this.searchWord.toString().endsWith(' ')){
+      hasSpace = true;
+    }
+    this.searchWord =this.searchWord.split(' ')[0];
     // });
+
     this.searchSettings = JSON.parse( localStorage.getItem('result'))[0];
     let fromSora = this.searchSettings.fromSora &&this.searchSettings.fromSora!='.'?parseInt(this.searchSettings.fromSora):null;
     let toSora = this.searchSettings.toSora&&this.searchSettings.toSora!='.'?parseInt(this.searchSettings.toSora):null;
@@ -432,6 +439,7 @@ searchSettings :any;
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
                   الآية: aya.AyaText_Othmani,
+                  AyaText:aya.AyaText
                 });
               }
             } else {
@@ -449,8 +457,8 @@ searchSettings :any;
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
                   الآية: aya.AyaText_Othmani,
-                });
-              }
+                  AyaText:aya.AyaText
+                });}
             }
           }
         }
@@ -472,8 +480,8 @@ searchSettings :any;
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
                   الآية: aya.AyaText_Othmani,
-                });
-              }
+                  AyaText:aya.AyaText
+                });}
             } else {
               if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
                 this.ayas.push({
@@ -489,8 +497,8 @@ searchSettings :any;
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
                   الآية: aya.AyaText_Othmani,
-                });
-              }
+                  AyaText:aya.AyaText
+                });}
             }
           }
         }
@@ -512,8 +520,8 @@ searchSettings :any;
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
                   الآية: aya.AyaText_Othmani,
-                });
-              }
+                  AyaText:aya.AyaText
+                });}
             } else {
               if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
                 this.ayas.push({
@@ -529,8 +537,8 @@ searchSettings :any;
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
                   الآية: aya.AyaText_Othmani,
-                });
-              }
+                  AyaText:aya.AyaText
+                });}
             }
           }
         }
@@ -552,8 +560,8 @@ searchSettings :any;
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
                   الآية: aya.AyaText_Othmani,
-                });
-              }
+                  AyaText:aya.AyaText
+                });}
             } else {
               if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
                 this.ayas.push({
@@ -569,8 +577,8 @@ searchSettings :any;
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
                   الآية: aya.AyaText_Othmani,
-                });
-              }
+                  AyaText:aya.AyaText
+                });}
             }
           }
         }
@@ -592,8 +600,8 @@ searchSettings :any;
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
                   الآية: aya.AyaText_Othmani,
-                });
-              }
+                  AyaText:aya.AyaText
+                });}
             } else {
               if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
                 this.ayas.push({
@@ -609,22 +617,22 @@ searchSettings :any;
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
                   الآية: aya.AyaText_Othmani,
-                });
-              }
+                  AyaText:aya.AyaText
+                });}
             }
           }
         }
       });
     }else {
-      debugger
+      // debugger
       this._search.table_othmani.forEach(aya=>{
       if(fromSora && toSora){
         if(aya.nOFSura>=fromSora && aya.nOFSura<= toSora) {
 
           if (omomQuaanBoolean) {
-            debugger
+            // debugger
             if (aya.AyaText.includes(this.searchWord)) {
-              debugger
+              // debugger
               this.ayas.push({
                 رقم_السورة: aya.nOFSura,
                 بداية_السورة: aya.suraStart,
@@ -638,6 +646,7 @@ searchSettings :any;
                 بداية_الصفحة: aya.pageStart,
                 اسم_السورة: aya.Sura_Name,
                 الآية: aya.AyaText_Othmani,
+                AyaText:aya.AyaText
               });
             }
           } else {
@@ -655,6 +664,7 @@ searchSettings :any;
                 بداية_الصفحة: aya.pageStart,
                 اسم_السورة: aya.Sura_Name,
                 الآية: aya.AyaText_Othmani,
+                AyaText:aya.AyaText
               });
             }
           }
@@ -678,6 +688,7 @@ searchSettings :any;
                 بداية_الصفحة: aya.pageStart,
                 اسم_السورة: aya.Sura_Name,
                 الآية: aya.AyaText_Othmani,
+                AyaText:aya.AyaText
               });
             }
           } else {
@@ -695,6 +706,7 @@ searchSettings :any;
                 بداية_الصفحة: aya.pageStart,
                 اسم_السورة: aya.Sura_Name,
                 الآية: aya.AyaText_Othmani,
+                AyaText:aya.AyaText
               });
             }
           }
@@ -718,6 +730,7 @@ searchSettings :any;
                 بداية_الصفحة: aya.pageStart,
                 اسم_السورة: aya.Sura_Name,
                 الآية: aya.AyaText_Othmani,
+                AyaText:aya.AyaText
               });
             }
           } else {
@@ -735,6 +748,7 @@ searchSettings :any;
                 بداية_الصفحة: aya.pageStart,
                 اسم_السورة: aya.Sura_Name,
                 الآية: aya.AyaText_Othmani,
+                AyaText:aya.AyaText
               });
             }
           }
@@ -758,6 +772,7 @@ searchSettings :any;
                 بداية_الصفحة: aya.pageStart,
                 اسم_السورة: aya.Sura_Name,
                 الآية: aya.AyaText_Othmani,
+                AyaText:aya.AyaText
               });
             }
           } else {
@@ -775,6 +790,7 @@ searchSettings :any;
                 بداية_الصفحة: aya.pageStart,
                 اسم_السورة: aya.Sura_Name,
                 الآية: aya.AyaText_Othmani,
+                AyaText:aya.AyaText
               });
             }
           }
@@ -798,6 +814,7 @@ searchSettings :any;
                 بداية_الصفحة: aya.pageStart,
                 اسم_السورة: aya.Sura_Name,
                 الآية: aya.AyaText_Othmani,
+                AyaText:aya.AyaText
               });
             }
           } else {
@@ -815,6 +832,7 @@ searchSettings :any;
                 بداية_الصفحة: aya.pageStart,
                 اسم_السورة: aya.Sura_Name,
                 الآية: aya.AyaText_Othmani,
+                AyaText:aya.AyaText
               });
             }
           }
@@ -822,11 +840,31 @@ searchSettings :any;
       }
     });
     }
+    console.log(this.ayas);
+    if(hasSpace){
+      let ayas = [];
+      this.searchWord.toString().replace(' ','');
+      this.ayas.forEach(aya=>{
+        if(aya.AyaText){
+          let arrOfAyaWords = aya.AyaText.split(' ');
+          let index = arrOfAyaWords.findIndex(word=>word===this.searchWord);
+          if(index>=0){
+            ayas.push(aya);
+          }
+        }
 
-    console.log(this.ayas)
-    setTimeout(()=>{
+        // for(let i=0;i<arrOfAyaWords.length;i++){
+        //   if(arrOfAyaWords.)
+        // }
+
+      });
+      this.ayas = ayas;
+
+    }
+    // setTimeout(()=>{
+    debugger
       this.showListOfAyah = true;
-    });
+    // });
     // this.showListOfAyah = true;
 
   }

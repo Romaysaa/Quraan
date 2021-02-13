@@ -9,8 +9,8 @@ const routes: Routes = [
   {path: 'footer', loadChildren: './footer/footer/footer.module#FooterModule'},
   {path: 'readers', loadChildren: './readers/readers/readers.module#ReadersModule'},
   {path: 'qoraa', loadChildren: './qoraa/qoraa/qoraa.module#QoraaModule'},
-  {path: 'navbar', loadChildren: './navbar/navbar/navbar.module#NavbarModule'},
-
+  {path: 'quran', loadChildren: './navbar/navbar/navbar.module#NavbarModule'},
+  {path: 'search', loadChildren: './search-settings/search-settings.module#SearchSettingsModule'},
 
 
 

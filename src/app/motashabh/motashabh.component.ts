@@ -427,4 +427,28 @@ export class MotashabhComponent implements OnInit {
   wasatClicked($event: MouseEvent) {
     this.omomQuraan = false;
   }
+
+  texts: string[];
+
+  results: string[];
+
+  search1(event) {
+    debugger
+    this.results = [];
+    this.results.push('رقم_السورة');
+    this.results.push('بداية_السورة');
+    this.results.push('الربع');
+    this.results.push('الجزء');
+    this.results.push('رقم_الجزء');
+    this.results.push('الحزب');
+    this.results.push('رقم_الحزب');
+    this.results.push('رقم_الصفحة');
+    this.results.push('بداية_الربع');
+    this.results.push('بداية_الصفحة');
+    this.results.push('اسم_السورة');
+    this.results.push('الآية');
+    console.log(this.texts);
+
+  }
+
 }

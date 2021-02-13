@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-rootpage',
@@ -7,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RootComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router:Router) { }
 
   ngOnInit() {
   }
 
   callReader($event: MouseEvent) {
-    
+    this._router.navigateByUrl("/qoraa");
+
   }
 
   callFehres($event: MouseEvent) {
@@ -25,11 +27,12 @@ export class RootComponent implements OnInit {
   }
 
   callSearch($event: MouseEvent) {
-    
+    this._router.navigateByUrl("/search");
+
   }
 
   callMotashabh($event: MouseEvent) {
-    
+    this._router.navigateByUrl("/quran");
   }
 
   callHome($event: MouseEvent) {
