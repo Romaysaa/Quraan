@@ -61,13 +61,13 @@
 <!--    <p-dialog header="تفسير" [(visible)]="tafseer">-->
 <!--      {{tafseerText}}-->
 <!--    </p-dialog>-->
-<!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--      &lt;!&ndash;    <form class="form-inline my-2 my-lg-0">&ndash;&gt;-->
-<!--      &lt;!&ndash;    <a href="search">اعدادات البحث </a>&ndash;&gt;-->
-<!--      <button class="btn btn-outline-light my-2 my-sm-0" (click)="doSearch()"  >بحث</button>-->
-<!--      <p-autoComplete styleClass="prime-autoComplete-override" dir="rtl" [(ngModel)]="searchWord" [suggestions]="results" (completeMethod)="search($event)"></p-autoComplete>-->
-<!--      &lt;!&ndash;    </form>&ndash;&gt;-->
-<!--    </div>-->
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <form class="form-inline my-2 my-lg-0">
+  <a href="search">اعدادات البحث </a>
+      <button class="btn btn-outline-light my-2 my-sm-0" (click)="doSearch()"  >بحث</button>
+    <!-- <p-autoComplete styleClass="prime-autoComplete-override" dir="rtl" [(ngModel)]="searchWord" [suggestions]="results" (completeMethod)="search($event)"></p-autoComplete> -->
+    </form>
+  <!-- </div> -->
 
 <!--    <img  class="logo" src="assets/Quran_logo.png" >-->
 <!--  </nav>-->

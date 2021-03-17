@@ -14,7 +14,7 @@ import {ConfirmationService} from "primeng/api";
 import {SlideMenuModule} from 'primeng/slidemenu';
 import { RootComponent } from './root/root.component';
 import { MotashabhComponent } from './motashabh/motashabh.component';
-import { HomeComponent } from './home/home.component';
+// import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReadersComponent } from './readers/readers.component';
 import { QoraaComponent } from './qoraa/qoraa.component';
@@ -31,9 +31,9 @@ import {NavbarModule} from "./navbar/navbar/navbar.module";
     // DynamicAyaComponent,
     RootComponent,
     // MotashabhComponent,
-    HomeComponent,
+    // HomeComponent,
     FooterComponent,
-    ReadersComponent,
+    // ReadersComponent,
     // QoraaComponent
   ],
   imports: [

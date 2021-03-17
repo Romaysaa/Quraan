@@ -19,11 +19,13 @@ export class RootComponent implements OnInit {
   }
 
   callFehres($event: MouseEvent) {
-    
+
   }
 
   callTafser($event: MouseEvent) {
-    
+    debugger
+    this._router.navigateByUrl("/readers");
+
   }
 
   callSearch($event: MouseEvent) {
@@ -36,6 +38,7 @@ export class RootComponent implements OnInit {
   }
 
   callHome($event: MouseEvent) {
-    
+    this._router.navigateByUrl("/home");
+
   }
 }
