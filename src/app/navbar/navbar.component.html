@@ -56,10 +56,14 @@
   </div>
 </div>
 
-
+<!--
 <p-dialog [(visible)]="tafseer" header="تفسير">
   {{tafseerText}}
-</p-dialog>
+</p-dialog> -->
+
+<p-sidebar [(visible)]="tafseer" position="buttom" >
+  {{tafseerText}}
+</p-sidebar>
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
   <div class="row" style="float: right">

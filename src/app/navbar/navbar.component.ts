@@ -9,6 +9,7 @@ import {ConfirmationService} from "primeng/api";
 // import {ConfirmationService} from "primeng";
 import {MenuItem} from 'primeng/api';
 import {Search} from "../holy-quran/search";
+import {SidebarModule} from 'primeng/sidebar';
 
 
 
@@ -335,7 +336,7 @@ debugger
   changeMotshabeh() {
     this.externalMotsh=true;
   }
-
+  bottom:any="bottom"
   selectedRepeat:any;
   isRepeat:boolean=false;
   onClickrepeat(event) {

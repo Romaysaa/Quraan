@@ -10,11 +10,12 @@ import {FormsModule} from '@angular/forms';
 import {DialogModule} from 'primeng/dialog';
 import {MenuModule} from 'primeng/menu';
 
+import {SidebarModule} from 'primeng/sidebar';
 
 @NgModule({
   declarations: [HolyQuranComponent, NavbarComponent,DynamicAyaComponent],
   imports: [
-    CommonModule,
+    CommonModule,SidebarModule,
     NavbarRoutingModule,
     DropdownModule,
     FormsModule,
