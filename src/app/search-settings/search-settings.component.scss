@@ -11,14 +11,16 @@
   ::ng-deep .aya {
     .ui-dropdown {
       min-width: 50px !important;
+    }}
+
+    ::ng-deep  .ui-autocomplete-multiple-container {
+      height: 35px !important;
+      direction: rtl;
     }
+  //::ng-deep .ui-dropdown-item {
+  //  direction: rtl!important;
+  //  float: right;
+  //  }
 
-    //::ng-deep .select {
-    //  .autoComplete select {
-    //    float: right !important; height: 50px !important;
-    //  }
-    //
-    //}
 
-  }
 }

@@ -154,7 +154,7 @@
             </form>
             <!--            <div class="row">-->
             <!--              <div class="col-12" style="float: right; height: 50px">-->
-            <p-autoComplete class="select" [style]="{float:'right'}" [(ngModel)]="texts" [suggestions]="results" (completeMethod)="search1($event)" [dropdown]="true"style=""  [multiple]="true"></p-autoComplete>
+            <p-autoComplete class="select" [style]="{float:'right','margin-right': '33px'}" (onSelect)="onChange($event)" [suggestions]="results" (completeMethod)="search1($event)" [dropdown]="true" [multiple]="true"></p-autoComplete>
 
             <!--              </div>-->
             <!--            </div>-->

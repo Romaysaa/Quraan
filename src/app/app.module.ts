@@ -47,6 +47,9 @@ import {NavbarModule} from "./navbar/navbar/navbar.module";
     ConfirmDialogModule
   ],
   providers: [ConfirmationService],
+  exports: [
+    GridComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

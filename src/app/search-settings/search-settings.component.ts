@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Search} from '../holy-quran/search';
 import {Router} from '@angular/router';
 
@@ -38,20 +38,67 @@ export class SearchSettingsComponent implements OnInit {
   toHezp: any = {};
   fromPage: any = {};
   toPage: any = {};
-   _search: Search = new Search();
-  constructor( private router: Router) {
+  _search: Search = new Search();
+  texts: string[];
+  results: string[];
+
+  constructor(private router: Router) {
   }
 
+  // ayatClicked(event) {
+  //    
+  //   if(event.srcElement.outerText=="السور")
+  //   {
+  //     this.soraSelected=true;
+  //     this.partSelected=false;
+  //     this.soras=[];
+  //     this._search.table_othmani.forEach(aya=>{
+  //
+  //          let index =   this.soras.findIndex(sura=>{
+  //            return aya.Sura_Name ==sura.اسم_السورة
+  //          });
+  //
+  //          if(index<0) {
+  //            this.soras.push({
+  //              اسم_السورة: aya.Sura_Name,          الجزء: aya.joz,
+  //
+  //            });
+  //          }
+  //          });
+  //
+  //
+  //
+  //   }
+  //   else if (event.srcElement.outerText=="الجزء") {
+  //     this.partSelected=true;
+  //     this.soraSelected=false;
+  //     this.parts=[];
+  //     this._search.table_othmani.forEach(aya=>{
+  //
+  //       let index =   this.parts.findIndex(sura=>{
+  //         return aya.nOFJoz ==sura.الجزء
+  //       });
+  //
+  //       if(index<0) {
+  //         this.parts.push({
+  //           الجزء: aya.nOFJoz,
+  //
+  //         });
+  //       }
+  //     });
+  //   }
+  //
+  // }
+
   ngOnInit() {
+    this.texts = [];
     this.soras.push({اسم_السورة: '.', nOfAyas: 0});
     let currentSura = 'الفاتحة';
     let nOfAyas = 0;
     this._search.table_othmani.forEach(aya => {
-      debugger;
       if (currentSura == aya.Sura_Name) {
         nOfAyas++;
       } else {
-        debugger;
         this.soras.push({
           اسم_السورة: currentSura,
           nOFSura: (parseInt(aya.nOFSura) - 1).toString(),
@@ -132,56 +179,9 @@ export class SearchSettingsComponent implements OnInit {
     this.omomQuraan = true;
   }
 
-  // ayatClicked(event) {
-  //   debugger
-  //   if(event.srcElement.outerText=="السور")
-  //   {
-  //     this.soraSelected=true;
-  //     this.partSelected=false;
-  //     this.soras=[];
-  //     this._search.table_othmani.forEach(aya=>{
-  //
-  //          let index =   this.soras.findIndex(sura=>{
-  //            return aya.Sura_Name ==sura.اسم_السورة
-  //          });
-  //
-  //          if(index<0) {
-  //            this.soras.push({
-  //              اسم_السورة: aya.Sura_Name,          الجزء: aya.joz,
-  //
-  //            });
-  //          }
-  //          });
-  //
-  //
-  //
-  //   }
-  //   else if (event.srcElement.outerText=="الجزء") {
-  //     this.partSelected=true;
-  //     this.soraSelected=false;
-  //     this.parts=[];
-  //     this._search.table_othmani.forEach(aya=>{
-  //
-  //       let index =   this.parts.findIndex(sura=>{
-  //         return aya.nOFJoz ==sura.الجزء
-  //       });
-  //
-  //       if(index<0) {
-  //         this.parts.push({
-  //           الجزء: aya.nOFJoz,
-  //
-  //         });
-  //       }
-  //     });
-  //   }
-  //
-  // }
-
   fromSoraFun($event: any) {
-    debugger;
     this.fromSora = $event.value.nOFSura;
     if (this.fromSora) {
-      debugger;
       this.parts = [];
       this.hezb = [];
       this.pages = [];
@@ -198,7 +198,6 @@ export class SearchSettingsComponent implements OnInit {
       this._search.table_othmani.forEach(aya => {
 
         if (parseInt(aya.nOFSura) <= parseInt(this.toSora) && parseInt(aya.nOFSura) >= parseInt(this.fromSora)) {
-          debugger;
           let index = this.parts.findIndex(sura => {
             return aya.nOFJoz == sura.الجزء;
           });
@@ -261,11 +260,9 @@ export class SearchSettingsComponent implements OnInit {
   }
 
   toSoraFun($event: any) {
-    debugger;
     this.toSora = $event.value.nOFSura;
 
     if (this.toSora) {
-      debugger;
       this.parts = [];
       this.hezb = [];
       this.pages = [];
@@ -282,7 +279,6 @@ export class SearchSettingsComponent implements OnInit {
       this._search.table_othmani.forEach(aya => {
 
         if (parseInt(aya.nOFSura) <= parseInt(this.toSora) && parseInt(aya.nOFSura) >= parseInt(this.fromSora)) {
-          debugger;
           let index = this.parts.findIndex(sura => {
             return aya.nOFJoz == sura.الجزء;
           });
@@ -361,7 +357,6 @@ export class SearchSettingsComponent implements OnInit {
   }
 
   fromHezpFun($event: any) {
-    debugger;
     this.fromHezp = $event.value.nOFHezb;
   }
 
@@ -403,7 +398,6 @@ export class SearchSettingsComponent implements OnInit {
   }
 
   saveSearch() {
-    debugger;
     this.result.push(
       {
         'fromSora': this.fromSora, 'toSora': this.toSora,
@@ -412,11 +406,11 @@ export class SearchSettingsComponent implements OnInit {
         'fromRob': this.fromRob, 'toRob': this.toRob,
         'fromPage': this.fromPage, 'toPage': this.toPage,
         'fromAya': this.fromAya, 'toAya': this.toAya,
-        'omomQuaanBoolean': this.omomQuraan
+        'omomQuaanBoolean': this.omomQuraan,
       });
 
     localStorage.setItem('result', JSON.stringify(this.result));
-    let finalResult = JSON.parse(localStorage.getItem('result'));
+    localStorage.setItem('dynamic_cols', JSON.stringify(this.texts));
 
     this.router.navigate(['/navbar']);
     alert('تم حفظ الاعدادات ');
@@ -426,12 +420,7 @@ export class SearchSettingsComponent implements OnInit {
     this.omomQuraan = false;
   }
 
-  texts: string[];
-
-  results: string[];
-
   search1(event) {
-    debugger
     this.results = [];
     this.results.push('رقم_السورة');
     this.results.push('بداية_السورة');
@@ -445,9 +434,11 @@ export class SearchSettingsComponent implements OnInit {
     this.results.push('بداية_الصفحة');
     this.results.push('اسم_السورة');
     this.results.push('الآية');
-    console.log(this.texts);
-
   }
 
+  onChange($event: any) {
+
+    this.texts.push($event);
+  }
 }
 
