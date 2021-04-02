@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class GridComponent implements OnInit {
 
   data: Array<any>;
-  defaultCols: Array<string> = ['الأيه', 'اسم السورة', 'اسم الربع', 'ملاحظات'];
+  defaultCols: Array<string> = ['الآية', 'اسم السورة', 'اسم الربع', 'ملاحظات'];
   colInfo: Array<{ Caption: string, Field: string }>;
   rowsPerPageOptions: any[] = [25, 30, 40];
 

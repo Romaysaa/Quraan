@@ -148,7 +148,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }
@@ -166,7 +166,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });}
             }
@@ -189,7 +189,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });}
             } else {
@@ -206,7 +206,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });}
             }
@@ -229,7 +229,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });}
             } else {
@@ -246,7 +246,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });}
             }
@@ -269,7 +269,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });}
             } else {
@@ -286,7 +286,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });}
             }
@@ -309,7 +309,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });}
             } else {
@@ -326,7 +326,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });}
             }
@@ -355,7 +355,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }
@@ -373,7 +373,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }
@@ -397,7 +397,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }
@@ -415,7 +415,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }
@@ -439,7 +439,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }
@@ -457,7 +457,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }
@@ -481,7 +481,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }
@@ -499,7 +499,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }
@@ -523,7 +523,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }
@@ -541,7 +541,7 @@ export class RootComponent implements OnInit {
                   بداية_الربع: aya.rubStart,
                   بداية_الصفحة: aya.pageStart,
                   اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani,
+                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
                   AyaText:aya.AyaText
                 });
               }

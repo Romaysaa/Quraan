@@ -15,15 +15,15 @@
         [style.top]="s.top" [style.width]="s.width"
         class="aya"></span>
 
-  <span *ngFor="let word of arrOfColoredWords" [style.border-bottom]="'3px solid '+word.color" [style.left]="word.left" [style.top]="word.top"
-        [style.width]="word.width" class="aya"
-        style="cursor: pointer"
-        [title]="title"
-        (mouseenter)="onMoueHover(word)"
+<!--  <span *ngFor="let word of arrOfColoredWords" [style.border-bottom]="'3px solid '+word.color" [style.left]="word.left" [style.top]="word.top"-->
+<!--        [style.width]="word.width" class="aya"-->
+<!--        style="cursor: pointer"-->
+<!--        [title]="title"-->
+<!--        (mouseenter)="onMoueHover(word)"-->
 
-  >
+<!--  >-->
 
- </span>
+<!-- </span>-->
 </a>
 <span *ngIf="moade3&&moade3.length>0">
 <span  *ngFor="let mot of moade3"  dir="rtl" href="#aa"
@@ -106,9 +106,11 @@
   <div style="width: 700px ; height: 500px">
     <div *ngFor="let aya of ayas">
       <div>
-        <div style="margin-top:10px;padding-bottom: 10px; float: right">
-          {{aya}}
-        </div>
+        <p style="margin-top:10px;padding-bottom: 10px; float: right">
+          {{aya.aya}}
+        </p>
+        <br>
+        <p>{{aya.sura}}</p>
         <svg *ngIf="aya!=''" height="10" width="700">
           <line style="stroke:rgb(0,0,0);stroke-width:2" x1="0" x2="700" y1="0" y2="0"></line>
         </svg>

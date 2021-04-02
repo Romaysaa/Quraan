@@ -72,15 +72,18 @@ export class DynamicAyaComponent implements OnInit {
     {
       label: 'مقارنة مع الحالي', command: (event) => {
         this.ayas = [];
-        this.ayas.push(this.aya);
-        this.ayas.push(this.selectedmot.aya);
+        this.ayas.push({aya:this.aya,sura:''});
+        this.ayas.push({aya:this.selectedmot.aya,sura:this.selectedmot.suraWithIndex});
         this.showList = false;
         this.OpenDialoge = true;
       }
     },
     {
       label: 'مقارنة مع الجميع', command: (event) => {
-        this.ayas = this.ayat;
+      this.ayat.forEach(aya=>{
+        this.ayas = [];
+        this.ayas.push({aya:aya,sura:''});
+      });
         this.showList = false;
         this.OpenDialoge = true;
       }
@@ -149,6 +152,7 @@ export class DynamicAyaComponent implements OnInit {
 
   onMotashabehRightClick(event, mot) {
     event.preventDefault();
+    debugger
     // if (!this.showList) {
     this.selectedmot = mot;
       this.selectedAyaID = mot.id;
@@ -165,8 +169,8 @@ export class DynamicAyaComponent implements OnInit {
 
   }
 
-  onMoueHover(word: { top: string; left: string; width: string; color: string }) {
-    this.title = this.aya;
-  }
+  // onMoueHover(word: { top: string; left: string; width: string; color: string }) {
+  //   this.title = this.aya;
+  // }
 }
 
