@@ -9,7 +9,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {FormsModule} from '@angular/forms';
 import {DialogModule} from 'primeng/dialog';
 import {MenuModule} from 'primeng/menu';
-import {AppModule} from '../../app.module';
+// import {AppModule} from '../../app.module';
 
 
 @NgModule({
@@ -20,8 +20,9 @@ import {AppModule} from '../../app.module';
     DropdownModule,
     FormsModule,
     MenuModule,
-    DialogModule,
-    AppModule
+    DialogModule
+    
+    // AppModule
   ]
 })
 export class NavbarModule { }
