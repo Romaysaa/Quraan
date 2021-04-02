@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class GridComponent implements OnInit {
 
   data: Array<any>;
+  defaultCols: Array<string> = ['الأيه', 'اسم السورة', 'اسم الربع', 'ملاحظات'];
   colInfo: Array<{ Caption: string, Field: string }>;
   rowsPerPageOptions: any[] = [25, 30, 40];
 
@@ -16,6 +17,7 @@ export class GridComponent implements OnInit {
 
   @Input('data')
   set setData(data) {
+    debugger
     let dynamic_cols = JSON.parse(localStorage.getItem('dynamic_cols'));
     this.data = data;
     if (data == null) {
@@ -28,11 +30,17 @@ export class GridComponent implements OnInit {
             this.colInfo.push({Field: col, Caption: col.toUpperCase().replace('_', ' ')});
 
           });
+        } else {
+          this.defaultCols.forEach(col => {
+            this.colInfo.push({Field: col, Caption: col.toUpperCase().replace('_', ' ')});
+
+          });
         }
       } else {
-        for (let field in data[0]) {
-          this.colInfo.push({Field: field, Caption: field.toUpperCase().replace('_', ' ')});
-        }
+        this.defaultCols.forEach(col => {
+          this.colInfo.push({Field: col, Caption: col.toUpperCase().replace('_', ' ')});
+
+        });
       }
 
     }
