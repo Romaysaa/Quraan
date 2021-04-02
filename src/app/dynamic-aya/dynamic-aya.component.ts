@@ -23,9 +23,11 @@ export class DynamicAyaComponent implements OnInit {
   //   isRight: false,
   // }, {name: "الطور (15)", top: "45px", isRight: false,}];
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onRight: EventEmitter<any> = new EventEmitter<any>();
+
   @Output() onMotahabehClick: EventEmitter<any> = new EventEmitter<any>();
   @Input()aya = '';
- 
+
   bakgroundStyle2: { background: string; motashOpacity: number; opacity: number };
   private ayaIsClicked: boolean;
   @ViewChild('container', {static: false}) contain: ElementRef;
@@ -87,7 +89,12 @@ export class DynamicAyaComponent implements OnInit {
     this.ayaIsClicked = false;
 
   }
+  onRightClick(event){
+    return false;
 
+    this.onRight.emit(false);
+
+  }
   aya_clicked(event) {
     this.onClick.emit(this.ayaId);
     // this.activeAya = ayaNum;

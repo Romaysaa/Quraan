@@ -14,6 +14,8 @@ export class HolyQuranComponent implements OnInit {
   @Input() pageNumber: number;
   @Input() selectedMotashabeh2: string;
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onRight: EventEmitter<any> = new EventEmitter<any>();
+
   @Output() motahabehClick: EventEmitter<any> = new EventEmitter<any>();
   marginTop: number = 50;
   inputs: ({
@@ -91,6 +93,11 @@ export class HolyQuranComponent implements OnInit {
   onAyaClick($event: any) {
     // inp.isActive = true
     this.onClick.emit($event);
+  }
+  onRightClick($event:any){
+    return false;
+    this.onRight.emit(false);
+
   }
 
   onMotahabehClick($event: any) {

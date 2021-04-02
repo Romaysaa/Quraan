@@ -1,6 +1,6 @@
 <!--<div dir="rtl" style="margin-top: 5px;font-family: Othmani ;font-size: 26px">{{aya}}</div>-->
 <a (click)="aya_clicked($event)" (mouseenter)="onMouseEnter($event)" (mouseout)="onMouseOut($event)" [class.active]="activeAya === 17"
-   [href]="href" [style.left]="'35%'" class="aya_link"
+    [style.left]="'35%'" class="aya_link"
 >
   <span *ngFor="let s of spans" [style.background]="isActive?bakgroundStyle2.background:bakgroundStyle.background" [style.height]="s.height" [style.left]="s.left" [style.opacity]="bakgroundStyle.opacity"
         [style.top]="s.top" [style.width]="s.width"

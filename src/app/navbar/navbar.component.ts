@@ -259,6 +259,10 @@ searchSettings :any;
   ayaId:string = '1';
   items: MenuItem[];
   motshabhat: any[]=[];
+  onRightAyaClicked($event: any){
+    debugger
+    return $event;
+  }
   onAyaClicked($event: any) {
     debugger
     this.ayaId = $event;

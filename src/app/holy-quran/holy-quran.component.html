@@ -17,6 +17,7 @@
                              [ayaId]="inp.ayaId"
                              [activeAya]="inp.activeAya"
                              (onClick)="onAyaClick($event)"
+                             (onRight)="onRightClick"
                              (onMotahabehClick)="onMotahabehClick($event)"></app-dynamic-aya>
           </div>
       <span  [class]="(pageNumber%2 != 0)?'triangle-right':'triangle-left'"></span>
