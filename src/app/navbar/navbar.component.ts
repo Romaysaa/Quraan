@@ -262,10 +262,22 @@ searchSettings :any;
   onRightAyaClicked($event: any){
     debugger
     if ($event.item!=null&&$event.item.label==="سماع"){
+      if(this.reader!=null&&this.reader!='') {
       this.isAudio=true;
+      }
+      else{
+        alert("اختار القارئ اولا");
+
+      }
     }else if($event.item!=null&&$event.item.label==="تفسير"){
+      if(this.selectedtafseer!=null)
+    {
       this.isTafser=true;
-    }
+    }else
+    alert("اختار التفسير اولا");
+
+   }
+
   }
   onAyaClicked($event: any) {
     debugger
@@ -279,10 +291,11 @@ searchSettings :any;
     {
       this.isTafser=true;
       this.tafseer = true;
-
+debugger
       let url = 'https://api.alquran.cloud/ayah/'+this.ayaId+'/'+this.selectedtafseer.en;
       this.http.get<any>(url).subscribe(res => {
         this.tafseerText=res.data.text;
+        debugger
         console.log(res);
       });
     }
