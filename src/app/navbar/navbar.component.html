@@ -23,7 +23,7 @@
           <label class="menu-toggle" for="menu-4"><span>Toggle</span></label>
           <ul>
             <li (click)="OnChangetafseer(row)" *ngFor="let row of tafser">
-              {{row.name}}
+              <a onclick="return false;"> {{row.name}}</a>
             </li>
 
           </ul>
@@ -36,7 +36,7 @@
           <label class="menu-toggle" for="menu-5"><span>Toggle</span></label>
           <ul>
             <li (click)="OnChangeReader(row)" *ngFor="let row of readers">
-              {{row.name}}
+             <a onclick="return false;">{{row.name}}</a>
             </li>
           </ul>
         </div>
@@ -45,7 +45,7 @@
         <a (click)="changeMotshabeh()">متشابهات السور</a>
       </li>
       <li>
-        <div *ngIf="externalMotsh">
+        <div *ng  If="externalMotsh">
           <p-dropdown [options]="soar" optionLabel="name"></p-dropdown>
         </div>
       </li>
