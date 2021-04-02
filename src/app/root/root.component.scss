@@ -1,7 +1,8 @@
 #sub-nav ul li {
-  float: none ;
-  display: block ;
+  float: none;
+  display: block;
 }
+
 #hdr-box {
   width: 100%;
   display: inline-block;
@@ -25,16 +26,25 @@
 #hdr-box nav {
   line-height: 30px;
   text-align: center;
-  width: 563px;
+  //width: 563px;
   float: right;
   margin-right: 50px;
 
 }
 
-#hdr-box nav ul {list-style: none; margin: 0 auto; width: 800px;}
-#hdr-box nav li {float: left; display: inline; margin-right: 40px;}
+#hdr-box nav ul {
+  list-style: none;
+  margin: 0 auto;
+  width: 800px;
+}
 
-#hdr-box nav a,  #topbar nav a:visited{
+#hdr-box nav li {
+  float: left;
+  display: inline;
+  margin-right: 40px;
+}
+
+#hdr-box nav a, #topbar nav a:visited {
   color: #dddddd;
   display: inline-block;
   font-family: "Lato", sans-serif;
@@ -46,7 +56,7 @@
 }
 
 #hdr-box nav a:hover {
-  color:   white;
+  color: white;
   background: #f49636;
 
 }
@@ -92,7 +102,9 @@ nav li:hover > .mega-menu {
   left: 0;
 }
 
-#mainav ul.mega-menu li { display: block!important;}
+#mainav ul.mega-menu li {
+  display: block !important;
+}
 
 /*nav li > .mega-menu ul ui  {
 	display: block!important;
@@ -104,11 +116,19 @@ nav li:hover > .mega-menu {
 	float: none!important;
 }*/
 
-.mega-menu p {line-height: 23px;}
+.mega-menu p {
+  line-height: 23px;
+}
 
-.nav-column {width: 135px}
+.nav-column {
+  width: 135px
+}
 
 #sub-nav ul li {
-  float: none ;
-  display: block ;
+  float: none;
+  display: block;
+}
+
+.main-banner {
+  margin-bottom: 50px;
 }
