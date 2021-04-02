@@ -22,8 +22,6 @@ export class GridComponent implements OnInit {
       this.colInfo = null;
     } else {
       this.colInfo = [];
-      // for( let field in data[0]){
-
       if (dynamic_cols) {
         if (dynamic_cols.length > 0) {
           dynamic_cols.forEach(col => {
@@ -31,8 +29,11 @@ export class GridComponent implements OnInit {
 
           });
         }
+      } else {
+        for (let field in data[0]) {
+          this.colInfo.push({Field: field, Caption: field.toUpperCase().replace('_', ' ')});
+        }
       }
-      // }
 
     }
   }

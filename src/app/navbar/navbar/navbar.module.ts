@@ -9,20 +9,20 @@ import {DropdownModule} from 'primeng/dropdown';
 import {FormsModule} from '@angular/forms';
 import {DialogModule} from 'primeng/dialog';
 import {MenuModule} from 'primeng/menu';
-// import {AppModule} from '../../app.module';
+import {GridComponent} from '../../grid/grid.component';
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
-  declarations: [HolyQuranComponent, NavbarComponent,DynamicAyaComponent],
+  declarations: [HolyQuranComponent, NavbarComponent,DynamicAyaComponent,GridComponent],
   imports: [
     CommonModule,
     NavbarRoutingModule,
     DropdownModule,
     FormsModule,
     MenuModule,
-    DialogModule
-    
-    // AppModule
+    DialogModule,
+    TableModule
   ]
 })
 export class NavbarModule { }
