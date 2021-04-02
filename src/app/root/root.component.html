@@ -18,8 +18,18 @@
 <div id="hdr-box">
 
   <nav class="navbar bg-dark-green no-border no-margin no-padding" class="mainnav">
+
     <ul
     >
+
+      <li>
+        <button class="btn btn-outline-light my-2 my-sm-0"
+                (click)="doSearch()"  >بحث</button>
+        <p-autoComplete styleClass="prime-autoComplete-override" dir="rtl"
+                        [(ngModel)]="searchWord" [suggestions]="results"
+                        (completeMethod)="search($event)"></p-autoComplete>
+      </li>
+
       <li><a (click)="callReader($event)">قائمة المقارئ</a></li>
       <!-- <li >  <a (click)="callFehres($event)">الفهرس</a></li> -->
       <li><a (click)="callTafser($event)">التفسير</a></li>
@@ -27,9 +37,9 @@
       <li><a (click)="callMotashabh($event)">ضبط المتشابهات</a></li>
       <li class='active'><a (click)="callHome($event)">الرئيسية</a></li>
 
-
-    </ul>
-    <img id="logo" src="assets/Quran_logo.png">
+<li>    <img id="logo" src="assets/Quran_logo.png">
+</li>
+      </ul>
 
 
   </nav>
@@ -48,3 +58,5 @@
   </div>
 
 </div>
+
+<app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
