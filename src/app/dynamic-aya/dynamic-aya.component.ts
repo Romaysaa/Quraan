@@ -41,6 +41,26 @@ export class DynamicAyaComponent implements OnInit {
     height: '60px'
   };
 
+  listAyaItems: any[] = [
+    {
+      label: 'سماع', command: (event) => {
+        this.showAyaList = false;
+        this.onRight.emit(event)
+      }
+
+    },
+    {
+      label: 'تفسير', command: (event) => {
+        this.ayas = [];
+        // this.ayas.push(this.aya);
+        // this.ayas.push(this.selectedmot.aya);
+        this.onRight.emit(event)
+        this.showAyaList = false;
+        // this.OpenDialoge = true;
+      }
+    }
+  ]
+
   listMenuItems: any[] = [
     {
       label: 'ذهاب الي الايه', command: (event) => {
@@ -66,6 +86,7 @@ export class DynamicAyaComponent implements OnInit {
       }
     }
   ];
+  showAyaList: boolean = false;
   private showList: boolean = false;
   private OpenDialoge: boolean = false;
   selectedAyaID:number;
@@ -90,9 +111,15 @@ export class DynamicAyaComponent implements OnInit {
 
   }
   onRightClick(event){
-    return false;
+    debugger
+    event.preventDefault();
+    this.showAyaList=true;
 
-    this.onRight.emit(false);
+    let XL = event.clientX - this.contain.nativeElement.getBoundingClientRect().left + this.contain.nativeElement.scrollLeft - 200;
+    let YL = event.clientY - this.contain.nativeElement.getBoundingClientRect().top + this.contain.nativeElement.scrollTop;
+    this.listMenuStyle['top'] = YL + 'px';
+    this.listMenuStyle['left'] = XL + 'px';
+    this.onRight.emit(event);
 
   }
   aya_clicked(event) {
@@ -139,7 +166,6 @@ export class DynamicAyaComponent implements OnInit {
   }
 
   onMoueHover(word: { top: string; left: string; width: string; color: string }) {
-    debugger
     this.title = this.aya;
   }
 }

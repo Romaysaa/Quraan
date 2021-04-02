@@ -95,8 +95,8 @@ export class HolyQuranComponent implements OnInit {
     this.onClick.emit($event);
   }
   onRightClick($event:any){
-    return false;
-    this.onRight.emit(false);
+    debugger
+    this.onRight.emit($event);
 
   }
 

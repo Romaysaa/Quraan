@@ -261,7 +261,11 @@ searchSettings :any;
   motshabhat: any[]=[];
   onRightAyaClicked($event: any){
     debugger
-    return $event;
+    if ($event.item!=null&&$event.item.label==="سماع"){
+      this.isAudio=true;
+    }else if($event.item!=null&&$event.item.label==="تفسير"){
+      this.isTafser=true;
+    }
   }
   onAyaClicked($event: any) {
     debugger
@@ -274,6 +278,8 @@ searchSettings :any;
     if(this.selectedtafseer!=null)
     {
       this.isTafser=true;
+      this.tafseer = true;
+
       let url = 'https://api.alquran.cloud/ayah/'+this.ayaId+'/'+this.selectedtafseer.en;
       this.http.get<any>(url).subscribe(res => {
         this.tafseerText=res.data.text;
@@ -281,15 +287,16 @@ searchSettings :any;
       });
     }
   }
-  OntafserClick() {
-    debugger
-    this.tafseer = true;
-    // let url = 'https://api.alquran.cloud/ayah/'+this.ayaId+'/'+this.selectedtafseer.en;
-    // this.http.get<any>(url).subscribe(res => {
-    //   this.tafseerText=res.data.text;
-    //   console.log(res);
-    // });
-  }  OnRightClick() {
+  // OntafserClick() {
+  //   debugger
+  //   this.tafseer = true;
+  //   // let url = 'https://api.alquran.cloud/ayah/'+this.ayaId+'/'+this.selectedtafseer.en;
+  //   // this.http.get<any>(url).subscribe(res => {
+  //   //   this.tafseerText=res.data.text;
+  //   //   console.log(res);
+  //   // });
+  // }
+   OnRightClick() {
     debugger
     NavbarComponent.ind++;
 

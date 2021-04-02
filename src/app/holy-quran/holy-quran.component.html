@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container" (contextmenu)="$event.preventDefault();
+">
   <div class="row">
 
     <div class="col-3"></div>
@@ -17,7 +18,7 @@
                              [ayaId]="inp.ayaId"
                              [activeAya]="inp.activeAya"
                              (onClick)="onAyaClick($event)"
-                             (onRight)="onRightClick"
+                             (onRight)="onRightClick($event)"
                              (onMotahabehClick)="onMotahabehClick($event)"></app-dynamic-aya>
           </div>
       <span  [class]="(pageNumber%2 != 0)?'triangle-right':'triangle-left'"></span>

@@ -1,5 +1,6 @@
+
 <!-- <div > -->
-<nav *ngIf="!sagdatFlag" class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">
+ <nav *ngIf="!sagdatFlag" class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">
    <div id="wrapper" >
      <input type="checkbox" id="menu" name="menu" class="menu-checkbox">
      <div class="menu">
@@ -59,7 +60,7 @@
    </div>
  </nav>
 
-   <p-dialog header="تفسير" [(visible)]="tafseer">-->
+   <p-dialog header="تفسير" [(visible)]="tafseer">
      {{tafseerText}}
  </p-dialog>
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -82,21 +83,19 @@
     <div  class="col" *ngIf="isAudio&&!sagdatFlag">
       <p-dropdown  [options]="repeat" optionLabel="name" (onChange)="onClickrepeat($event)"></p-dropdown>
     </div>
-    <div  class="col" *ngIf="!sagdatFlag&&isTafser">
-      <button  class="col btn btn-info my-2 my-sm-0" (click)="OntafserClick()">tafseer</button>
-    </div>
   </div>
   <div  *ngFor="let img of imges" style="margin-top: -250px ">
     <app-holy-quran *ngIf="!showListOfAyah && img == selectedPage&&!sagdatFlag "
                     [pageNumber]="selectedPage"
                     (onClick)="onAyaClicked($event)"
+                    (onRight)="onRightAyaClicked($event)"
                     [selectedMotashabeh2]="selectedMotashabeh2"
                     (motahabehClick)="onMotahabehClick($event)"></app-holy-quran>
 
   </div>
 <!--  <app-grid *ngIf="sagdatFlag" [data]="sagdas"></app-grid>-->
 
-  <app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>
+<!--  <app-grid *ngIf="showListOfAyah" [data]="ayas"></app-grid>-->
   <div class="row" style="margin-top: 20px">
     <div class="col-5"></div>
     <div class="col-7">
