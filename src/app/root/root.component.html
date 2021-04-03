@@ -25,10 +25,12 @@
       <li>
         <button class="btn btn-outline-light my-2 my-sm-0"
                 (click)="doSearch()"  >بحث</button>
-        <p-autoComplete styleClass="prime-autoComplete-override" dir="rtl"
+        <p-autoComplete #autoComplete styleClass="prime-autoComplete-override" dir="rtl"
                         [(ngModel)]="searchWord" [suggestions]="results"
                         (completeMethod)="search($event)"
-                        (onSelect)="selectSearchWords($event)"   (mousedown)="getLocal($event)"
+                        (onSelect)="selectSearchWords($event)"
+                        (onFocus)="getLocal()"
+
         ></p-autoComplete>
 </li>
 

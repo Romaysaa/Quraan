@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {Search} from '../holy-quran/search';
+import {AutoComplete} from 'primeng';
 
 @Component({
   selector: 'app-rootpage',
@@ -65,6 +66,7 @@ export class RootComponent implements OnInit {
 
   search(event) {
     debugger
+    if(event != "oldSearch"){
     this.searchWord = event.query;
     this.results = [];
     let word = event.query.replace(new RegExp(String.fromCharCode(1617, 124, 1614, 124, 1611, 124, 1615, 124, 1612, 124, 1616, 124, 1613, 124, 1618,3161,1552 ), "g"), "");
@@ -99,7 +101,7 @@ export class RootComponent implements OnInit {
         }
 
       });
-    }
+    }}
 
   }
   fromSora:number;
@@ -119,20 +121,28 @@ export class RootComponent implements OnInit {
 
   fromAya:number;
   toAya:number;
-
+  @ViewChild('autoComplete', {static: false})
+  autoComplete: AutoComplete;
   omomQuaanBoolean: boolean;
 
-  getLocal($event)
+  getLocal()
   {
-    debugger
-  let finalResult = JSON.parse(localStorage.getItem('searchWord'));
-  this.showListOfAyah = true;
-  this.results=finalResult;
-    debugger
+    if (this.searchWord==''||this.searchWord==undefined||this.searchWord==null){
+      let finalResult = JSON.parse(localStorage.getItem('oldSearch'));
+      if(finalResult){
+        this.autoComplete.filled = true;
+        this.autoComplete.loading = true;
+        this.results = [];
+        this.results = finalResult;
+        this.autoComplete.completeMethod.emit('oldSearch');
+      }
+
+
+    }
   }
   doSearch(){
     debugger;
-      localStorage.setItem('searchWord', JSON.stringify( this.searchWord));
+    this.saveSearchToLocalStorage();
 
     // setTimeout(()=>{
     //   this.showListOfAyah = false;
@@ -441,4 +451,24 @@ export class RootComponent implements OnInit {
     let word = this.searchWord.replace(new RegExp(String.fromCharCode(1617, 124, 1614, 124, 1611, 124, 1615, 124, 1612, 124, 1616, 124, 1613, 124, 1618,3161,1552 ), "g"), "");
     this.hasTashkeel = word!=this.searchWord;
   }
+
+   saveSearchToLocalStorage() {
+     let isSearchFound =false;
+     let oldSearch = JSON.parse(localStorage.getItem('oldSearch'));
+     if(oldSearch == null){
+       oldSearch = [];
+     } else {
+       for(let i=0;i<oldSearch.length;i++){
+         if(oldSearch[i] == this.searchWord){
+           isSearchFound = true;
+           break;
+         }
+       }
+     }
+     if(!isSearchFound){
+       oldSearch.push(this.searchWord);
+       localStorage.setItem('oldSearch', JSON.stringify(oldSearch));
+     }
+
+   }
 }
