@@ -129,10 +129,10 @@ export class RootComponent implements OnInit {
     //   this.showListOfAyah = false;
     this.ayas = [];
     let hasSpace = false;
-    if(this.searchWord.toString().endsWith(' ')){
-      hasSpace = true;
-    }
-    this.searchWord =this.searchWord.split(' ')[0];
+    // if(this.searchWord.toString().endsWith(' ')){
+    //   hasSpace = true;
+    // }
+    // this.searchWord =this.searchWord.split(' ')[0];
     // });
 
     this.searchSettings = JSON.parse( localStorage.getItem('result'))[0];
@@ -148,7 +148,7 @@ export class RootComponent implements OnInit {
     this.toPage = this.searchSettings.toPage&&this.searchSettings.toPage !='.'?parseInt(this.searchSettings.toPage):null;
     this.fromAya = this.searchSettings.fromAya;
     this.toAya = this.searchSettings.toAya;
-    this.omomQuaanBoolean = this.searchSettings.omomQuaanBoolean?this.searchSettings.omomQuaanBoolean:true;
+    this.omomQuaanBoolean = this.searchSettings.omomQuaanBoolean?this.searchSettings.omomQuaanBoolean:false;
     if(this.hasTashkeel){
       this.searchWithTashkeel();
     }
@@ -224,6 +224,9 @@ export class RootComponent implements OnInit {
 
           this.completeSearch(aya);
         }
+      } else {
+        this.completeSearch(aya);
+
       }
     });
 
@@ -263,6 +266,9 @@ export class RootComponent implements OnInit {
           this.completeSearchWithoutTashkeel(aya)
 
         }
+      } else {
+        this.completeSearchWithoutTashkeel(aya)
+
       }
     });
 
@@ -421,4 +427,9 @@ export class RootComponent implements OnInit {
        });
      }
    }
+
+  selectSearchWords($event: any) {
+    let word = this.searchWord.replace(new RegExp(String.fromCharCode(1617, 124, 1614, 124, 1611, 124, 1615, 124, 1612, 124, 1616, 124, 1613, 124, 1618,3161,1552 ), "g"), "");
+    this.hasTashkeel = word!=this.searchWord;
+  }
 }
