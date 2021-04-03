@@ -53,7 +53,7 @@ export class RootComponent implements OnInit {
     {name: 'عموم القران', id:1 },
     {name: 'بداية الايات', id: 2},
   ];
-  searchIn = this. searchInOptions[0];
+  searchIn = {name: 'بداية الايات', id: 2};
   ayas: any[] = [];
   searchSettings :any;
   searchInput: string;
@@ -102,6 +102,26 @@ export class RootComponent implements OnInit {
     }
 
   }
+  fromSora:number;
+  toSora:number;
+
+  fromPart:number;
+  toPart:number;
+
+  fromHezp:number;
+  toHezp:number;
+
+  fromRob:number;
+  toRob:number;
+
+  fromPage:number;
+  toPage:number;
+
+  fromAya:number;
+  toAya:number;
+
+  omomQuaanBoolean: boolean;
+
 
   doSearch(){
     debugger;
@@ -116,441 +136,31 @@ export class RootComponent implements OnInit {
     // });
 
     this.searchSettings = JSON.parse( localStorage.getItem('result'))[0];
-    let fromSora = this.searchSettings.fromSora &&this.searchSettings.fromSora!='.'?parseInt(this.searchSettings.fromSora):null;
-    let toSora = this.searchSettings.toSora&&this.searchSettings.toSora!='.'?parseInt(this.searchSettings.toSora):null;
-    let fromPart = this.searchSettings.fromPart&&this.searchSettings.fromPart!='.'?parseInt(this.searchSettings.fromPart):null;
-    let toPart = this.searchSettings.toPart&&this.searchSettings.toPart!='.'?parseInt(this.searchSettings.toPart):null;
-    let fromHezp = this.searchSettings.fromHezp&&this.searchSettings.fromHezp!='.'?parseInt(this.searchSettings.fromHezp):null;
-    let toHezp = this.searchSettings.toHezp&&this.searchSettings.toHezp!='.'?parseInt(this.searchSettings.toHezp):null;
-    let fromRob = this.searchSettings.fromRob&&this.searchSettings.fromRob!='.'?parseInt(this.searchSettings.fromRob):null;
-    let toRob = this.searchSettings.toRob&&this.searchSettings.toRob!='.'?parseInt(this.searchSettings.toRob):null;
-    let fromPage = this.searchSettings.fromPage&&this.searchSettings.fromPage!='.'?parseInt(this.searchSettings.fromPage):null;
-    let toPage = this.searchSettings.toPage&&this.searchSettings.toPage !='.'?parseInt(this.searchSettings.toPage):null;
-    let fromAya = this.searchSettings.fromAya;
-    let toAya = this.searchSettings.toAya;
-    let omomQuaanBoolean = this.searchSettings.omomQuaanBoolean?this.searchSettings.omomQuaanBoolean:true;
+    this.fromSora = this.searchSettings.fromSora &&this.searchSettings.fromSora!='.'?parseInt(this.searchSettings.fromSora):null;
+    this.toSora = this.searchSettings.toSora&&this.searchSettings.toSora!='.'?parseInt(this.searchSettings.toSora):null;
+    this.fromPart = this.searchSettings.fromPart&&this.searchSettings.fromPart!='.'?parseInt(this.searchSettings.fromPart):null;
+    this.toPart = this.searchSettings.toPart&&this.searchSettings.toPart!='.'?parseInt(this.searchSettings.toPart):null;
+    this.fromHezp = this.searchSettings.fromHezp&&this.searchSettings.fromHezp!='.'?parseInt(this.searchSettings.fromHezp):null;
+    this.toHezp = this.searchSettings.toHezp&&this.searchSettings.toHezp!='.'?parseInt(this.searchSettings.toHezp):null;
+    this.fromRob = this.searchSettings.fromRob&&this.searchSettings.fromRob!='.'?parseInt(this.searchSettings.fromRob):null;
+    this.toRob = this.searchSettings.toRob&&this.searchSettings.toRob!='.'?parseInt(this.searchSettings.toRob):null;
+    this.fromPage = this.searchSettings.fromPage&&this.searchSettings.fromPage!='.'?parseInt(this.searchSettings.fromPage):null;
+    this.toPage = this.searchSettings.toPage&&this.searchSettings.toPage !='.'?parseInt(this.searchSettings.toPage):null;
+    this.fromAya = this.searchSettings.fromAya;
+    this.toAya = this.searchSettings.toAya;
+    this.omomQuaanBoolean = this.searchSettings.omomQuaanBoolean?this.searchSettings.omomQuaanBoolean:true;
     if(this.hasTashkeel){
-      this._search.table_othmani.forEach(aya=>{
-        if(fromSora && toSora){
-          if(aya.nOFSura>=fromSora && aya.nOFSura<= toSora) {
-
-            if (omomQuaanBoolean) {
-              if (aya.AyaText_Othmani.includes(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            } else {
-              if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });}
-            }
-          }
-        }
-        else if(fromPart && toPart){
-          if(aya.nOFJoz>=fromPart && aya.nOFJoz<= toPart) {
-
-            if (omomQuaanBoolean) {
-              if (aya.AyaText_Othmani.includes(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });}
-            } else {
-              if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });}
-            }
-          }
-        }
-        else if(fromHezp && toHezp){
-          if(aya.nOFHezb>=fromHezp && aya.nOFHezb<= toHezp) {
-
-            if (omomQuaanBoolean) {
-              if (aya.AyaText_Othmani.includes(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });}
-            } else {
-              if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });}
-            }
-          }
-        }
-        else if(fromRob && toRob){
-          if(aya.id>=fromRob && aya.id<= toRob) {
-
-            if (omomQuaanBoolean) {
-              if (aya.AyaText_Othmani.includes(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });}
-            } else {
-              if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });}
-            }
-          }
-        }
-        else if(fromPage && toPage){
-          if(aya.nOFPage>=fromPage && aya.nOFPage<= toPage) {
-
-            if (omomQuaanBoolean) {
-              if (aya.AyaText_Othmani.includes(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });}
-            } else {
-              if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });}
-            }
-          }
-        }
-      });
-    }else {
-      // debugger
-      this._search.table_othmani.forEach(aya=>{
-        if(fromSora && toSora){
-          if(aya.nOFSura>=fromSora && aya.nOFSura<= toSora) {
-
-            if (omomQuaanBoolean) {
-              // debugger
-              if (aya.AyaText.includes(this.searchWord)) {
-                // debugger
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            } else {
-              if (aya.AyaText.startsWith(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            }
-          }
-        }
-        else if(fromPart && toPart){
-          if(aya.nOFJoz>=fromPart && aya.nOFJoz<= toPart) {
-
-            if (omomQuaanBoolean) {
-              if (aya.AyaText.includes(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            } else {
-              if (aya.AyaText.startsWith(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            }
-          }
-        }
-        else if(fromHezp && toHezp){
-          if(aya.nOFHezb>=fromHezp && aya.nOFHezb<= toHezp) {
-
-            if (omomQuaanBoolean) {
-              if (aya.AyaText.includes(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            } else {
-              if (aya.AyaText.startsWith(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            }
-          }
-        }
-        else if(fromRob && toRob){
-          if(aya.id>=fromRob && aya.id<= toRob) {
-
-            if (omomQuaanBoolean) {
-              if (aya.AyaText.includes(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            } else {
-              if (aya.AyaText.startsWith(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            }
-          }
-        }
-        else if(fromPage && toPage){
-          if(aya.nOFPage>=fromPage && aya.nOFPage<= toPage) {
-
-            if (omomQuaanBoolean) {
-              if (aya.AyaText.includes(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            } else {
-              if (aya.AyaText.startsWith(this.searchWord)) {
-                this.ayas.push({
-                  رقم_السورة: aya.nOFSura,
-                  بداية_السورة: aya.suraStart,
-                  الربع: aya.rub,
-                  الجزء: aya.joz,
-                  رقم_الجزء: aya.nOFJoz,
-                  الحزب: aya.hezb,
-                  رقم_الحزب: aya.nOFHezb,
-                  رقم_الصفحة: aya.nOFPage,
-                  بداية_الربع: aya.rubStart,
-                  بداية_الصفحة: aya.pageStart,
-                  اسم_السورة: aya.Sura_Name,
-                  الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-                  AyaText:aya.AyaText
-                });
-              }
-            }
-          }
-        }
-      });
+      this.searchWithTashkeel();
     }
+    else {
+      this.searchWithoutTashkeel();
+    }
+
+
+
     console.log(this.ayas);
+
+
     if(hasSpace){
       let ayas = [];
       this.searchWord.toString().replace(' ','');
@@ -585,4 +195,230 @@ export class RootComponent implements OnInit {
     this.searchInput = value;
   }
 
+   searchWithTashkeel() {
+    debugger
+    this._search.table_othmani.forEach(aya=>{
+      if(this.fromSora && this.toSora){
+        this.searchFromSoraToSora(aya);
+      }
+      else if(this.fromPart && this.toPart){
+        if(aya.nOFJoz>=this.fromPart && aya.nOFJoz<= this.toPart) {
+
+          this.completeSearch(aya);
+        }
+      }
+      else if(this.fromHezp && this.toHezp){
+        if(aya.nOFHezb>=this.fromHezp && aya.nOFHezb<= this.toHezp) {
+
+          this.completeSearch(aya);
+        }
+      }
+      else if(this.fromRob && this.toRob){
+        if(aya.id>=this.fromRob && aya.id<= this.toRob) {
+
+          this.completeSearch(aya);
+        }
+      }
+      else if(this.fromPage && this.toPage){
+        if(aya.nOFPage>=this.fromPage && aya.nOFPage<= this.toPage) {
+
+          this.completeSearch(aya);
+        }
+      }
+    });
+
+  }
+
+   searchWithoutTashkeel() {
+    debugger
+    this._search.table_othmani.forEach(aya=>{
+      if(this.fromSora && this.toSora){
+        if(aya.nOFSura>=this.fromSora && aya.nOFSura<= this.toSora) {
+
+          this.completeSearchWithoutTashkeel(aya)
+        }
+      }
+      else if(this.fromPart && this.toPart){
+        if(aya.nOFJoz>=this.fromPart && aya.nOFJoz<= this.toPart) {
+          this.completeSearchWithoutTashkeel(aya)
+
+        }
+      }
+      else if(this.fromHezp && this.toHezp){
+        if(aya.nOFHezb>=this.fromHezp && aya.nOFHezb<= this.toHezp) {
+
+          this.completeSearchWithoutTashkeel(aya)
+
+        }
+      }
+      else if(this.fromRob && this.toRob){
+        if(aya.id>=this.fromRob && aya.id<= this.toRob) {
+
+          this.completeSearchWithoutTashkeel(aya)
+
+        }
+      }
+      else if(this.fromPage && this.toPage){
+        if(aya.nOFPage>=this.fromPage && aya.nOFPage<= this.toPage) {
+          this.completeSearchWithoutTashkeel(aya)
+
+        }
+      }
+    });
+
+  }
+
+   searchInOmomAlQuran(aya) {
+    debugger
+     if (aya.AyaText_Othmani.includes(this.searchWord)) {
+       this.ayas.push({
+         رقم_السورة: aya.nOFSura,
+         بداية_السورة: aya.suraStart,
+         الربع: aya.rub,
+         الجزء: aya.joz,
+         رقم_الجزء: aya.nOFJoz,
+         الحزب: aya.hezb,
+         رقم_الحزب: aya.nOFHezb,
+         رقم_الصفحة: aya.nOFPage,
+         بداية_الربع: aya.rubStart,
+         بداية_الصفحة: aya.pageStart,
+         اسم_السورة: aya.Sura_Name,
+         الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
+         AyaText:aya.AyaText
+       });
+     }
+
+   }
+
+   searchInAyaStart(aya: any) {
+    debugger
+     if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
+       this.ayas.push({
+         رقم_السورة: aya.nOFSura,
+         بداية_السورة: aya.suraStart,
+         الربع: aya.rub,
+         الجزء: aya.joz,
+         رقم_الجزء: aya.nOFJoz,
+         الحزب: aya.hezb,
+         رقم_الحزب: aya.nOFHezb,
+         رقم_الصفحة: aya.nOFPage,
+         بداية_الربع: aya.rubStart,
+         بداية_الصفحة: aya.pageStart,
+         اسم_السورة: aya.Sura_Name,
+         الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
+         AyaText:aya.AyaText
+       });}
+
+   }
+
+   searchFromSoraToSora(aya) {
+
+     if(aya.nOFSura>=this.fromSora && aya.nOFSura<= this.toSora) {
+
+      if(this.fromPart && this.toPart){
+         if(aya.nOFJoz>=this.fromPart && aya.nOFJoz<= this.toPart) {
+
+           this.completeSearch(aya);
+         }
+       } else {
+        this.completeSearch(aya);
+      }
+       // else if(this.fromHezp && this.toHezp){
+       //   if(aya.nOFHezb>=this.fromHezp && aya.nOFHezb<= this.toHezp) {
+       //
+       //     if (this.omomQuaanBoolean) {
+       //       this.searchInOmomAlQuran(aya);
+       //     }
+       //     else {
+       //       this.searchInAyaStart(aya);
+       //     }
+       //   }
+       // }
+       // else if(this.fromRob && this.toRob){
+       //   if(aya.id>=this.fromRob && aya.id<= this.toRob) {
+       //
+       //     if (this.omomQuaanBoolean) {
+       //       this.searchInOmomAlQuran(aya);
+       //     }
+       //     else {
+       //       this.searchInAyaStart(aya);
+       //     }
+       //   }
+       // }
+       // else if(this.fromPage && this.toPage){
+       //   if(aya.nOFPage>=this.fromPage && aya.nOFPage<= this.toPage) {
+       //
+       //     if (this.omomQuaanBoolean) {
+       //       this.searchInOmomAlQuran(aya);
+       //     }
+       //     else {
+       //       this.searchInAyaStart(aya);
+       //     }
+       //   }
+       // }
+
+
+
+
+
+
+     }
+
+   }
+
+   completeSearch(aya) {
+     if (this.omomQuaanBoolean) {
+       this.searchInOmomAlQuran(aya);
+     } else {
+       this.searchInAyaStart(aya);
+     }
+   }
+   completeSearchWithoutTashkeel(aya) {
+     if (this.omomQuaanBoolean) {
+       this.searchInOmomAlQuranWithoutTashkeel(aya);
+     } else {
+       this.searchInAyaStartWithoutTashkeel(aya);
+     }
+   }
+
+   searchInOmomAlQuranWithoutTashkeel(aya: any) {
+     if (aya.AyaText.includes(this.searchWord)) {
+       // debugger
+       this.ayas.push({
+         رقم_السورة: aya.nOFSura,
+         بداية_السورة: aya.suraStart,
+         الربع: aya.rub,
+         الجزء: aya.joz,
+         رقم_الجزء: aya.nOFJoz,
+         الحزب: aya.hezb,
+         رقم_الحزب: aya.nOFHezb,
+         رقم_الصفحة: aya.nOFPage,
+         بداية_الربع: aya.rubStart,
+         بداية_الصفحة: aya.pageStart,
+         اسم_السورة: aya.Sura_Name,
+         الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
+         AyaText:aya.AyaText
+       });
+     }
+  }
+
+   searchInAyaStartWithoutTashkeel(aya: any) {
+     if (aya.AyaText.startsWith(this.searchWord)) {
+       this.ayas.push({
+         رقم_السورة: aya.nOFSura,
+         بداية_السورة: aya.suraStart,
+         الربع: aya.rub,
+         الجزء: aya.joz,
+         رقم_الجزء: aya.nOFJoz,
+         الحزب: aya.hezb,
+         رقم_الحزب: aya.nOFHezb,
+         رقم_الصفحة: aya.nOFPage,
+         بداية_الربع: aya.rubStart,
+         بداية_الصفحة: aya.pageStart,
+         اسم_السورة: aya.Sura_Name,
+         الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
+         AyaText:aya.AyaText
+       });
+     }
+   }
 }
