@@ -122,9 +122,18 @@ export class RootComponent implements OnInit {
 
   omomQuaanBoolean: boolean;
 
-
+  getLocal($event)
+  {
+    debugger
+  let finalResult = JSON.parse(localStorage.getItem('searchWord'));
+  this.showListOfAyah = true;
+  this.results=finalResult;
+    debugger
+  }
   doSearch(){
     debugger;
+      localStorage.setItem('searchWord', JSON.stringify( this.searchWord));
+
     // setTimeout(()=>{
     //   this.showListOfAyah = false;
     this.ayas = [];
