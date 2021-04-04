@@ -516,8 +516,8 @@ export class HolyQuranComponent implements OnInit {
             } else {
               isMoveToNextLine = true;
               lineIndex++;
-              top = this.inputs[j].spans[lineIndex].top.split('px')[0];
-              left = parseInt(this.inputs[j].spans[lineIndex].left) + parseInt(this.inputs[j].spans[lineIndex].width) - width - space;
+              top = this.inputs[j].spans[lineIndex]?this.inputs[j].spans[lineIndex].top.split('px')[0]:'0';
+              left = this.inputs[j].spans[lineIndex]?(parseInt(this.inputs[j].spans[lineIndex].left) + parseInt(this.inputs[j].spans[lineIndex].width) - width - space):0;
               this.spansOfColoredWords.push({
                 top: parseInt(top) + 35 + 'px',
                 color: this.allAyas[j].arrOfColoredWords[i].color,
