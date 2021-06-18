@@ -15,15 +15,14 @@
         [style.top]="s.top" [style.width]="s.width"
         class="aya"></span>
 
-<!--  <span *ngFor="let word of arrOfColoredWords" [style.border-bottom]="'3px solid '+word.color" [style.left]="word.left" [style.top]="word.top"-->
-<!--        [style.width]="word.width" class="aya"-->
-<!--        style="cursor: pointer"-->
-<!--        [title]="title"-->
-<!--        (mouseenter)="onMoueHover(word)"-->
+  <span *ngFor="let word of arrOfColoredWords" [style.border-bottom]="'3px solid '+word.color" [style.left]="word.left" [style.top]="word.top"
+        [style.width]="word.width" class="aya"
+        style="cursor: pointer"
+        [title]="title"
 
-<!--  >-->
+  >
 
-<!-- </span>-->
+ </span>
 </a>
 <span *ngIf="moade3&&moade3.length>0">
 <span  *ngFor="let mot of moade3"  dir="rtl" href="#aa"
@@ -32,7 +31,7 @@
 
 >
 <span class="motashabeh"  style="width: 120px"
-      [style.left]="!motashabehat.isRight?'540px':'-95px'"
+      [style.left]="motashabehat.isRight?'540px':'-95px'"
       [style.top]="mot.top">
   <a (contextmenu)="onMotashabehRightClick($event,mot)"
      [style.color]="mot.color && mot.color!=''?mot.color:'black'"
@@ -46,7 +45,7 @@
     </span>
    <svg  height="10" width="100"
         [style.top]="lineTop"
-        [style.left]="!motashabehat.isRight?'540px':'-95px'"
+        [style.left]="motashabehat.isRight?'540px':'-95px'"
         class="motashabeh"
    >
           <line style="stroke:rgb(0,0,0);stroke-width:2" x1="0" x2="120" y1="0" y2="0"></line>
