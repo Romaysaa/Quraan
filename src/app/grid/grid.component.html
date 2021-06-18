@@ -1,29 +1,29 @@
 <div style="float: right;padding: 20px">
-  <p-table [resizableColumns]="true"
-           paginator="true"
-           [rows]="10"
-           columnResizeMode="expand"
+  <p-table [columns]="colInfo"
+           [resizableColumns]="true"
            [rowsPerPageOptions]="[10,20,30]"
-           [value]="data" [columns]="colInfo">
-    <ng-template pTemplate="header" let-columns>
+           [rows]="10"
+           [value]="data"
+           columnResizeMode="expand" paginator="true">
+    <ng-template let-columns pTemplate="header">
       <tr>
         <th *ngFor="let col of colInfo" [pSortableColumn]="col.Field">
-       <span  class="arabicText">
+       <span class="arabicText">
                  {{col.Caption}}
 
        </span>
         </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-row>
+    <ng-template let-row pTemplate="body">
       <tr>
-        <td  *ngFor="let col of colInfo">
-        <span class="arabicText" *ngIf="col.Field == 'الآية'">
+        <td *ngFor="let col of colInfo">
+        <span *ngIf="col.Field == 'الآية'" class="arabicText">
            <span *ngFor="let txt of row['highlightedAya']" [style.color]="txt.highlight? 'red':'black'">
           {{txt.text}}
         </span>
         </span>
-          <span  class="arabicText" *ngIf="col.Field != 'الآية'"> {{row[col.Field]}}</span>
+          <span *ngIf="col.Field != 'الآية'" class="arabicText"> {{row[col.Field]}}</span>
         </td>
       </tr>
     </ng-template>
@@ -36,9 +36,14 @@
   <span>
     {{numOfMoade3}} موضع
   </span>
-  <span></span>
-  في     {{data.length}}  اية  </div>
+  في     {{data.length}}  اية
+</div>
 
+<div *ngIf="numOfMoade3 == null" style="float: right;padding: 15px">
+  <span>
+   نتيجة البحث:
+  </span>
+  {{data.length}}   </div>
 
 
 <!--[rowsPerPageOptions]="rowsPerPageOptions"-->
