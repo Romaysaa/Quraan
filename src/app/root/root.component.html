@@ -62,4 +62,8 @@
   </div>
 
 </div>
-<app-grid *ngIf="showListOfAyah" [data]="ayas" [numOfMoade3]="numOfMoade3"></app-grid>
+<app-grid *ngIf="showListOfAyah"
+          [data]="ayas"
+          [numOfMoade3]="numOfMoade3"
+          (CloseGrid)="showListOfAyah=false"
+></app-grid>

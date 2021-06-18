@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-grid',
@@ -6,18 +6,18 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnInit {
-
   data: Array<any>;
   defaultCols: Array<string> = ['الآية', 'اسم السورة', 'اسم الربع', 'ملاحظات'];
   colInfo: Array<{ Caption: string, Field: string }>;
+  @Output() CloseGrid: EventEmitter<any> = new EventEmitter<any>();
+  @Input('numOfMoade3') numOfMoade3: number;
 
   constructor() {
   }
 
-  @Input('numOfMoade3') numOfMoade3:number;
   @Input('data')
   set setData(data) {
-    debugger
+    debugger;
     let dynamic_cols = JSON.parse(localStorage.getItem('dynamic_cols'));
     this.data = data;
     if (data == null) {

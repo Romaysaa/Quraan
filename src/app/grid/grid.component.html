@@ -1,4 +1,8 @@
-<div style="float: right;padding: 20px">
+<button (click)="CloseGrid.emit()" aria-label="Close" class="close" style="float: right;padding-right: 20px;cursor: pointer"
+        type="button">
+  <span aria-hidden="true">&times;</span>
+</button>
+<div style="float: right;padding-right: 20px;padding-left: 20px">
   <p-table [columns]="colInfo"
            [resizableColumns]="true"
            [rowsPerPageOptions]="[10,20,30]"
@@ -44,7 +48,3 @@
    نتيجة البحث:
   </span>
   {{data.length}}   </div>
-
-
-<!--[rowsPerPageOptions]="rowsPerPageOptions"-->
-<!--[paginator]="true"-->
