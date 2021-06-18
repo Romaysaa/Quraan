@@ -222,6 +222,7 @@ export class RootComponent implements OnInit {
             highlightedAya.push({text:this.searchWord,highlight:true});
           }
         }
+    highlightedAya[highlightedAya.length-1].text += ' ('+ aya.Aya_N+')';
     return highlightedAya;
   }
 
