@@ -28,7 +28,7 @@ export class RootComponent implements OnInit {
   }
 
   callTafser($event: MouseEvent) {
-    debugger
+     
     this._router.navigateByUrl("/readers");
 
   }
@@ -65,7 +65,7 @@ export class RootComponent implements OnInit {
 
 
   search(event) {
-    debugger
+     
     if(event != "oldSearch"){
     this.searchWord = event.query;
     this.results = [];
@@ -141,7 +141,7 @@ export class RootComponent implements OnInit {
     }
   }
   doSearch(){
-    debugger;
+     ;
     this.saveSearchToLocalStorage();
 
     // setTimeout(()=>{
@@ -201,21 +201,36 @@ export class RootComponent implements OnInit {
 
     }
     // setTimeout(()=>{
-    debugger
+     
     this.showListOfAyah = true;
     // });
     // this.showListOfAyah = true;
 
   }
+  highlightSearchWord(aya){ // it works only when search without tashkeel
+    let splittdAya;
+    let highlightedAya = [];
+          splittdAya = aya.AyaText.split(this.searchWord);
+         let len=splittdAya.length;
+        for(let i=0; i<len;i++)
+        {
+          if(splittdAya[i]!='') highlightedAya.push({text:splittdAya[i],highlight:false});
+          if(i != len-1)highlightedAya.push({text:this.searchWord,highlight:true});
+        }
+    return highlightedAya;
+  }
+
+
+
 
   changeSearchInput(value) {
-    debugger
+     
     this.currentLength = value.length;
     this.searchInput = value;
   }
 
    searchWithTashkeel() {
-    debugger
+     
     this._search.table_othmani.forEach(aya=>{
       if(this.fromSora && this.toSora){
         this.searchFromSoraToSora(aya);
@@ -252,7 +267,7 @@ export class RootComponent implements OnInit {
   }
 
    searchWithoutTashkeel() {
-    debugger
+     
     this._search.table_othmani.forEach(aya=>{
       if(this.fromSora && this.toSora){
         if(aya.nOFSura>=this.fromSora && aya.nOFSura<= this.toSora) {
@@ -294,7 +309,7 @@ export class RootComponent implements OnInit {
   }
 
    searchInOmomAlQuran(aya) {
-    debugger
+     
      if (aya.AyaText_Othmani.includes(this.searchWord)) {
        this.ayas.push({
          رقم_السورة: aya.nOFSura,
@@ -309,14 +324,15 @@ export class RootComponent implements OnInit {
          بداية_الصفحة: aya.pageStart,
          اسم_السورة: aya.Sura_Name,
          الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-         AyaText:aya.AyaText
+         AyaText:aya.AyaText,
+         highlightedAya:this.highlightSearchWord(aya)
        });
      }
 
    }
 
    searchInAyaStart(aya: any) {
-    debugger
+     
      if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
        this.ayas.push({
          رقم_السورة: aya.nOFSura,
@@ -331,7 +347,8 @@ export class RootComponent implements OnInit {
          بداية_الصفحة: aya.pageStart,
          اسم_السورة: aya.Sura_Name,
          الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-         AyaText:aya.AyaText
+         AyaText:aya.AyaText,
+         highlightedAya:this.highlightSearchWord(aya)
        });}
 
    }
@@ -408,7 +425,7 @@ export class RootComponent implements OnInit {
 
    searchInOmomAlQuranWithoutTashkeel(aya: any) {
      if (aya.AyaText.includes(this.searchWord)) {
-       // debugger
+       //  
        this.ayas.push({
          رقم_السورة: aya.nOFSura,
          بداية_السورة: aya.suraStart,
@@ -422,7 +439,8 @@ export class RootComponent implements OnInit {
          بداية_الصفحة: aya.pageStart,
          اسم_السورة: aya.Sura_Name,
          الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-         AyaText:aya.AyaText
+         AyaText:aya.AyaText,
+         highlightedAya:this.highlightSearchWord(aya)
        });
      }
   }
@@ -442,7 +460,8 @@ export class RootComponent implements OnInit {
          بداية_الصفحة: aya.pageStart,
          اسم_السورة: aya.Sura_Name,
          الآية: aya.AyaText_Othmani + ' ('+ aya.Aya_N+')',
-         AyaText:aya.AyaText
+         AyaText:aya.AyaText,
+         highlightedAya:this.highlightSearchWord(aya)
        });
      }
    }

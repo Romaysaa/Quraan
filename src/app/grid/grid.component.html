@@ -6,14 +6,19 @@
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th  *ngFor="let col of colInfo" [pSortableColumn]="col.Field">
-        {{col.Caption}}
+       {{col.Caption}}
       </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-row>
     <tr>
       <td  *ngFor="let col of colInfo">
-       {{row[col.Field]}}
+        <span *ngIf="col.Field == 'الآية'">
+           <span *ngFor="let txt of row['highlightedAya']" [style.color]="txt.highlight? 'red':'black'">
+          {{txt.text}}
+        </span>
+        </span>
+      <span *ngIf="col.Field != 'الآية'"> {{row[col.Field]}}</span>
       </td>
     </tr>
   </ng-template>
