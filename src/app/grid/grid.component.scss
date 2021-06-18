@@ -19,3 +19,9 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   box-shadow: 5px 5px 4px 4px #888888;
 }
+
+.arabicText{
+  float: right;
+  text-align: justify;
+  direction: rtl
+}

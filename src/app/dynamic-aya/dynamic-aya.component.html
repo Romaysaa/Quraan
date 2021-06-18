@@ -104,14 +104,14 @@
 </div>
 <p-dialog [(visible)]="OpenDialoge" header="">
   <div style="width: 700px ; height: 500px">
-    <div *ngFor="let aya of ayas">
+    <div *ngFor="let aya of ayas;let i = index">
       <div>
-        <p style="margin-top:10px;padding-bottom: 10px; float: right">
+        <span class="arabicText" style="margin-top:10px;padding-bottom: 10px">
           {{aya.aya}}
-        </p>
+        </span>
         <br>
-        <p>{{aya.sura}}</p>
-        <svg *ngIf="aya!=''" height="10" width="700">
+        <span>{{aya.sura}}</span>
+        <svg *ngIf="aya!='' && i < ayas.length-1" height="10" width="700">
           <line style="stroke:rgb(0,0,0);stroke-width:2" x1="0" x2="700" y1="0" y2="0"></line>
         </svg>
       </div>

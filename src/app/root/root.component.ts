@@ -60,6 +60,8 @@ export class RootComponent implements OnInit {
   searchInput: string;
   showListOfAyah: boolean = false;
   currentLength: number = 0;
+  numOfMoade3:number = 0;
+
 
 
 
@@ -141,7 +143,7 @@ export class RootComponent implements OnInit {
     }
   }
   doSearch(){
-     ;
+     this.numOfMoade3 = 0;
     this.saveSearchToLocalStorage();
 
     // setTimeout(()=>{
@@ -215,7 +217,10 @@ export class RootComponent implements OnInit {
         for(let i=0; i<len;i++)
         {
           if(splittdAya[i]!='') highlightedAya.push({text:splittdAya[i],highlight:false});
-          if(i != len-1)highlightedAya.push({text:this.searchWord,highlight:true});
+          if(i != len-1){
+            this.numOfMoade3++
+            highlightedAya.push({text:this.searchWord,highlight:true});
+          }
         }
     return highlightedAya;
   }

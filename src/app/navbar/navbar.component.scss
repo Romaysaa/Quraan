@@ -169,11 +169,14 @@ p {
 
 
 
-:host {
-  ::ng-deep .prime-autoComplete-override {
-
-    .ui-autocomplete-list-item  {
-      text-align: right !important;
-    }
-  }
-}
+//:host {
+//  ::ng-deep .ui-autocomplete-panel {
+//
+//   .ul{ .li  {
+//    .span{
+//      float: right !important;
+//
+//    }
+//    }}
+//  }
+//}

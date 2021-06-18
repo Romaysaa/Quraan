@@ -10,11 +10,11 @@ export class GridComponent implements OnInit {
   data: Array<any>;
   defaultCols: Array<string> = ['الآية', 'اسم السورة', 'اسم الربع', 'ملاحظات'];
   colInfo: Array<{ Caption: string, Field: string }>;
-  rowsPerPageOptions: any[] = [25, 30, 40];
 
   constructor() {
   }
 
+  @Input('numOfMoade3') numOfMoade3:number;
   @Input('data')
   set setData(data) {
     debugger
@@ -24,7 +24,7 @@ export class GridComponent implements OnInit {
       this.colInfo = null;
     } else {
       this.colInfo = [];
-      if (dynamic_cols) {
+      if (dynamic_cols && this.numOfMoade3) {
         if (dynamic_cols.length > 0) {
           dynamic_cols.forEach(col => {
             this.colInfo.push({Field: col, Caption: col.toUpperCase().replace('_', ' ')});
