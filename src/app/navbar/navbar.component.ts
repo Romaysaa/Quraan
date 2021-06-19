@@ -194,16 +194,22 @@ searchSettings :any;
   {
     debugger
 
-    this.sagdatFlag=true;
     let url = 'http://api.alquran.cloud/v1/sajda';
     this.http.get<any>(url ).subscribe(res => {
       console.log(res);
       this.sagdas = [];
       res.data.ayahs.forEach((sagd)=>{
-        sagd.surah=sagd.surah.name;
-        sagd.sajda=sagd.sajda.id;
-        this.sagdas.push(sagd);
-      })
+        debugger
+        // sagd.surah=sagd.surah.name;
+        // sagd.sajda=sagd.sajda.id;
+        this.sagdas.push({
+          رقم_الصفحة:sagd.page,
+          الجزء:sagd.juz,
+          اسم_السورة:sagd.surah.name,
+          الآية:sagd.text + ' ('+ sagd.numberInSurah +')',
+        });
+      });
+      this.sagdatFlag=true;
 
     }, err => {
       this.showListOfAyah = false;

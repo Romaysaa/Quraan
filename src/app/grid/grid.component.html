@@ -8,7 +8,7 @@
     <p-table [columns]="colInfo"
              [resizableColumns]="true"
              [rowsPerPageOptions]="[10,20,30]"
-             [rows]="10"
+             [rows]="rowsInPage"
              [value]="data"
              columnResizeMode="expand" paginator="true">
       <ng-template let-columns pTemplate="header">
@@ -24,12 +24,12 @@
       <ng-template let-row pTemplate="body">
         <tr>
           <td *ngFor="let col of colInfo">
-        <span *ngIf="col.Field == 'الآية'" class="arabicText">
+        <span *ngIf="displaySearchResult&& col.Field == 'الآية'" class="arabicText">
            <span *ngFor="let txt of row['highlightedAya']" [style.color]="txt.highlight? 'red':'black'">
           {{txt.text}}
         </span>
         </span>
-            <span *ngIf="col.Field != 'الآية'" class="arabicText"> {{row[col.Field]}}</span>
+            <span *ngIf="!displaySearchResult || col.Field != 'الآية'" class="arabicText"> {{row[col.Field]}}</span>
           </td>
         </tr>
       </ng-template>

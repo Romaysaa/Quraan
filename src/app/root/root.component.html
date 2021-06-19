@@ -63,7 +63,9 @@
 
 </div>
 <app-grid *ngIf="showListOfAyah"
+          [displaySearchResult]="true"
           [data]="ayas"
+          [rowsInPage]="10"
           [numOfMoade3]="numOfMoade3"
           (CloseGrid)="showListOfAyah=false"
 ></app-grid>
