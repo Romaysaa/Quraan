@@ -12,6 +12,7 @@ import {MenuModule} from 'primeng/menu';
 
 import {SidebarModule} from 'primeng/sidebar';
 import {GridModule} from "../../grid/grid/grid.module";
+import {ColorPickerModule} from "primeng/colorpicker";
 
 @NgModule({
   declarations: [HolyQuranComponent, NavbarComponent,DynamicAyaComponent],
@@ -21,7 +22,7 @@ import {GridModule} from "../../grid/grid/grid.module";
     DropdownModule,
     FormsModule,
     MenuModule,
-    DialogModule, GridModule,
+    DialogModule, GridModule, ColorPickerModule,
   ]
 })
 export class NavbarModule { }

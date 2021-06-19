@@ -34,13 +34,13 @@ body {
 }
 
 //#page {
-  //position: absolute;
-  //top: 15px;
-  //left: 1%;
-  //height: 700px;
-  //width: 480px;
-  //margin: 0;
-  //padding: 0;
+//position: absolute;
+//top: 15px;
+//left: 1%;
+//height: 700px;
+//width: 480px;
+//margin: 0;
+//padding: 0;
 //}
 
 //#page a:hover div {
@@ -82,7 +82,6 @@ body {
 }
 
 
-
 #tafseer {
   position: absolute;
   top: 15px;
@@ -98,10 +97,11 @@ a:-webkit-any-link {
   cursor: pointer;
   text-decoration: underline;
 }
+
 .triangle-right {
   position: absolute;
-  top:685px;
-  left:453px;
+  top: 685px;
+  left: 453px;
   width: 0;
   height: 0;
   border-style: solid;
@@ -111,11 +111,19 @@ a:-webkit-any-link {
 
 .triangle-left {
   position: absolute;
-  top:685px;
-  left:18px;
+  top: 685px;
+  left: 18px;
   width: 0;
   height: 0;
   border-style: solid;
   border-width: 50px 0 0 50px;
   border-color: transparent transparent transparent chocolate;
+}
+
+
+:host {
+  ::ng-deep .ui-colorpicker-preview {
+    width: 25px;
+    height: 25px;
+  }
 }

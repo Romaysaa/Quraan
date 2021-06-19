@@ -36,6 +36,14 @@ export class HolyQuranComponent implements OnInit {
   lastTopLeft: number = 0;
   spansOfColoredWords: { top: string; left: string; width: string; color: string }[];
   suras: string[] = ['البقرة', 'آل عمران', 'النساء', 'المائدة'];
+  colors = [
+    {color: '#FF0000', text: 'كلمة وحيدة بداية الأية'},
+    {color: '#00FF00', text: 'موضعين'},
+    {color: '#0000FF', text: 'ثلاث مواضع'},
+    {color: '#FFFF00', text: 'أربع مواضع'},
+    {color: '#800080', text: 'أكثر من أربع مواضع'},
+    {color: '#FFA500', text: 'كلمة وحيدة وسط الأية'},
+  ];
   private searchWord: string;
   private x: {
     suraWithIndex: string,
@@ -94,8 +102,9 @@ export class HolyQuranComponent implements OnInit {
     // inp.isActive = true
     this.onClick.emit($event);
   }
-  onRightClick($event:any){
-    debugger
+
+  onRightClick($event: any) {
+    debugger;
     this.onRight.emit($event);
 
   }
@@ -129,6 +138,10 @@ export class HolyQuranComponent implements OnInit {
 
     }
     return ayaDetails;
+  }
+
+  EmitColorChange($event: any) {
+
   }
 
   private generateMotashabehatOfSelectedPage(pageNumber) {
@@ -189,7 +202,10 @@ export class HolyQuranComponent implements OnInit {
         });
 
         if (this.x.length == 1) {
-          arrayOfWordsWithColors.push({word: this.x[0].lastWord, color: 'red',});
+          arrayOfWordsWithColors.push({
+            word: this.x[0].lastWord,
+            color: arrayOfWordsWithColors.length == 0 ? 'red' : 'orange'
+          });
           if (!isCheckIn) {
             ayaDetails =
               {
@@ -516,8 +532,8 @@ export class HolyQuranComponent implements OnInit {
             } else {
               isMoveToNextLine = true;
               lineIndex++;
-              top = this.inputs[j].spans[lineIndex]?this.inputs[j].spans[lineIndex].top.split('px')[0]:'0';
-              left = this.inputs[j].spans[lineIndex]?(parseInt(this.inputs[j].spans[lineIndex].left) + parseInt(this.inputs[j].spans[lineIndex].width) - width - space):0;
+              top = this.inputs[j].spans[lineIndex] ? this.inputs[j].spans[lineIndex].top.split('px')[0] : '0';
+              left = this.inputs[j].spans[lineIndex] ? (parseInt(this.inputs[j].spans[lineIndex].left) + parseInt(this.inputs[j].spans[lineIndex].width) - width - space) : 0;
               this.spansOfColoredWords.push({
                 top: parseInt(top) + 35 + 'px',
                 color: this.allAyas[j].arrOfColoredWords[i].color,
@@ -549,7 +565,6 @@ export class HolyQuranComponent implements OnInit {
 
     }
   }
-
 
   private fillRightArrayFirst(index, mooade3: { suraWithIndex: string; aya?: string, id: string }[], ayaStart, ayaEnd) {
     // debugger
@@ -591,9 +606,13 @@ export class HolyQuranComponent implements OnInit {
 
   }
 
-
   private addMoade3(index: number, moade3: { suraWithIndex: string; aya?: string; id: string, color: string }[], ayaStart: number, ayaEnd: number) {
-    let motashabehat: { isRight: boolean; moade3: any[], height: string, top: string } = {top: '', height: '', isRight: true, moade3: []};
+    let motashabehat: { isRight: boolean; moade3: any[], height: string, top: string } = {
+      top: '',
+      height: '',
+      isRight: true,
+      moade3: []
+    };
     let arr: { top: string, suraWithIndex: string; aya?: string; id: string, color: string }[] = [];
     if (HolyQuranComponent.lastTop == 10) {
       HolyQuranComponent.lastTop = ayaStart;
@@ -636,5 +655,6 @@ export class HolyQuranComponent implements OnInit {
 
     }
   }
+
 }
 
