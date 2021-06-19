@@ -259,6 +259,8 @@ searchSettings :any;
   }
   ayaId:string = '1';
   items: MenuItem[];
+  copyAya:boolean = false;
+  share:boolean = false;
   motshabhat: any[]=[];
   onRightAyaClicked($event: any){
     debugger
@@ -270,7 +272,8 @@ searchSettings :any;
         alert("اختار القارئ اولا");
 
       }
-    }else if($event.item!=null&&$event.item.label==="تفسير"){
+    }
+    else if($event.item!=null&&$event.item.label==="تفسير"){
       if(this.selectedtafseer!=null)
     {
       this.isTafser=true;
@@ -278,7 +281,13 @@ searchSettings :any;
     alert("اختار التفسير اولا");
 
    }
-
+    else if($event.item!=null&&$event.item.label==="نسخ"){
+      this.copyAya = true;
+      this.share = false;
+    }else if($event.item!=null&&$event.item.label==="مشاركة"){
+      this.copyAya = true;
+      this.share = true;
+    }
   }
   onAyaClicked($event: any) {
     debugger
@@ -288,8 +297,7 @@ searchSettings :any;
       this.isAudio=true;
       this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/' + this.reader + '/' + this.ayaId + '/high';
     }
-    if(this.selectedtafseer!=null)
-    {
+    if(this.selectedtafseer!=null) {
       this.isTafser=true;
       this.tafseer = true;
 debugger
@@ -299,6 +307,25 @@ debugger
         debugger
         console.log(res);
       });
+    }
+    else if(this.copyAya){
+     let ayaCopy = this._search.table_othmani[$event-1].AyaText_Othmani + ' (' + this._search.table_othmani[$event-1].Aya_N+')';
+     console.log('aya copy: '+ayaCopy);
+      let textArea = document.createElement("textarea");
+      textArea.value = ayaCopy;
+      textArea.style.width = "1px";
+      textArea.style.height = "1px";
+      document.body.appendChild(textArea);
+      textArea.select();
+      /* Select the text field */
+      // ayaCopy.setSelectionRange(0, 99999); /* For mobile devices */
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+
+    if(this.share){
+      window.open("https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse")
+
+    }
     }
   }
   // OntafserClick() {

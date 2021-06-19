@@ -57,8 +57,25 @@ export class DynamicAyaComponent implements OnInit {
         this.onRight.emit(event)
         this.showAyaList = false;
         // this.OpenDialoge = true;
+      },
+    }, {
+      label: 'نسخ', command: (event) => {
+        this.showAyaList = false;
+        this.onRight.emit(event)
       }
-    }
+
+    },{
+      label: 'مشاركة', command: (event) => {
+        this.showAyaList = false;
+        this.onRight.emit(event)
+      }
+
+    },{
+      label: 'إغلاق', command: (event) => {
+        this.showAyaList = false;
+      }
+
+    },
   ]
 
   listMenuItems: any[] = [
