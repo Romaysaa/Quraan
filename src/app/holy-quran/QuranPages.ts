@@ -1,4 +1,4 @@
-const LightOrang = "coral";
+const LightOrang = "orange";
 const LightBlue = "lightBlue";
 const LightGreen = "lightGreen";
 export class QuranPages {

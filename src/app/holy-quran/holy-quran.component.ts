@@ -43,6 +43,8 @@ export class HolyQuranComponent implements OnInit {
     {color: '#FFFF00', text: 'أربع مواضع'},
     {color: '#800080', text: 'أكثر من أربع مواضع'},
     {color: '#FFA500', text: 'كلمة وحيدة وسط الأية'},
+    {color: '#90ee90', text: 'موضعين وسط الأية'},
+    {color: '#ADD8E6', text: 'ثلاث مواضع وسط الأية'},
   ];
   private searchWord: string;
   private x: {
@@ -123,12 +125,12 @@ export class HolyQuranComponent implements OnInit {
           aya: mot.aya,
           id: mot.id,
           suraWithIndex: mot.motshabeh,
-          color: mot.color
+          color: this.getColorsInAyaMiddle(mot.color)
         });
         if (mot.color != '' && mot.color != null) {
           ayaDetails.arrOfColoredWords.push(
             {
-              word: mot.word, color: mot.color, lineIndex: mot.lineIndex,
+              word: mot.word, color:this.getColorsInAyaMiddle(mot.color), lineIndex: mot.lineIndex,
               left: mot.left
             }
           );
@@ -673,6 +675,18 @@ export class HolyQuranComponent implements OnInit {
 
 
     }
+  }
+
+  getColorsInAyaMiddle(color:string){
+  switch(color){
+    case "orange":
+      return this.colors[5].color;
+    case "lightGreen":
+      return this.colors[6].color;
+    case "lightBlue":
+      return this.colors[7].color;
+  }
+
   }
 
 }
