@@ -41,9 +41,9 @@
   <div class="row-col-12" style="direction: rtl;float: right">
     <p-colorPicker
       (onChange)="EmitColorChange($event)"
-      [ngModel]="element.color"
+      [(ngModel)]="element.color"
       appendTo="body"
-      disabled="true">
+      >
     </p-colorPicker>
     {{element.text}}
   </div>
