@@ -270,6 +270,8 @@ searchSettings :any;
   motshabhat: any[]=[];
   onRightAyaClicked($event: any){
     debugger
+    this.share = false;
+    this.copyAya = false;
     if ($event.item!=null&&$event.item.label==="سماع"){
       if(this.reader!=null&&this.reader!='') {
       this.isAudio=true;
@@ -289,7 +291,6 @@ searchSettings :any;
    }
     else if($event.item!=null&&$event.item.label==="نسخ"){
       this.copyAya = true;
-      this.share = false;
     }else if($event.item!=null&&$event.item.label==="مشاركة"){
       this.copyAya = true;
       this.share = true;

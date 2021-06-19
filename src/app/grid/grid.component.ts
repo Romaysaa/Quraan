@@ -7,7 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class GridComponent implements OnInit {
   data: Array<any>;
-  defaultCols: Array<string> = ['الآية', 'اسم السورة', 'اسم الربع', 'ملاحظات'];
+  defaultCols: Array<string> = ['رقم الصفحة', 'اسم السورة','الآية'];
   colInfo: Array<{ Caption: string, Field: string }>;
   @Output() CloseGrid: EventEmitter<any> = new EventEmitter<any>();
   @Input() numOfMoade3: number;
