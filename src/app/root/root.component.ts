@@ -24,11 +24,13 @@ export class RootComponent implements OnInit {
   }
 
   callFehres($event: MouseEvent) {
-
+    this._router.navigateByUrl("/listen");
   }
 
+
+
   callTafser($event: MouseEvent) {
-     
+
     this._router.navigateByUrl("/readers");
 
   }
@@ -67,7 +69,7 @@ export class RootComponent implements OnInit {
 
 
   search(event) {
-     
+
     if(event != "oldSearch"){
     this.searchWord = event.query;
     this.results = [];
@@ -203,7 +205,7 @@ export class RootComponent implements OnInit {
 
     }
     // setTimeout(()=>{
-     
+
     this.showListOfAyah = true;
     // });
     // this.showListOfAyah = true;
@@ -230,13 +232,13 @@ export class RootComponent implements OnInit {
 
 
   changeSearchInput(value) {
-     
+
     this.currentLength = value.length;
     this.searchInput = value;
   }
 
    searchWithTashkeel() {
-     
+
     this._search.table_othmani.forEach(aya=>{
       if(this.fromSora && this.toSora){
         this.searchFromSoraToSora(aya);
@@ -273,7 +275,7 @@ export class RootComponent implements OnInit {
   }
 
    searchWithoutTashkeel() {
-     
+
     this._search.table_othmani.forEach(aya=>{
       if(this.fromSora && this.toSora){
         if(aya.nOFSura>=this.fromSora && aya.nOFSura<= this.toSora) {
@@ -315,7 +317,7 @@ export class RootComponent implements OnInit {
   }
 
    searchInOmomAlQuran(aya) {
-     
+
      if (aya.AyaText_Othmani.includes(this.searchWord)) {
        this.ayas.push({
          رقم_السورة: aya.nOFSura,
@@ -338,7 +340,7 @@ export class RootComponent implements OnInit {
    }
 
    searchInAyaStart(aya: any) {
-     
+
      if (aya.AyaText_Othmani.startsWith(this.searchWord)) {
        this.ayas.push({
          رقم_السورة: aya.nOFSura,
@@ -431,7 +433,7 @@ export class RootComponent implements OnInit {
 
    searchInOmomAlQuranWithoutTashkeel(aya: any) {
      if (aya.AyaText.includes(this.searchWord)) {
-       //  
+       //
        this.ayas.push({
          رقم_السورة: aya.nOFSura,
          بداية_السورة: aya.suraStart,

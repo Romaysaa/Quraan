@@ -1,0 +1,104 @@
+<div id="content" style="margin-bottom: 50px">
+  <section class="library">
+    <div class="container">
+      <div class="section-title">
+        <h3>الاستماع</h3>
+        <p>اليك ايها الزائر بعض ادوات التكرار لتساعدك علي حفظك للقرآن الكريم</p>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+
+          <form accept-charset="utf-8" action="" data-grid="main" data-search method="post" role="search">
+
+                <input (click)="wasatClicked($event)" class="filled-in" id="filled-in-box2" name="remember"
+                       type="checkbox" value="1">
+                <label class="check" for="filled-in-box2">تكرار </label>
+            <div *ngFor="let row of parts">
+              <audio   autoplay controls loop src="{{row}}"></audio>
+            </div>
+<!--            <div *ngFor="let row of hezb">-->
+<!--              <audio autoplay controls loop src="{{row}}" disabled=""></audio>-->
+<!--            </div>-->
+
+            <div class="row">
+              <div class="col-6">
+              </div>
+              <div class="col-6">
+                <label for="filled-in-box2" style="float: right;margin-right: 10px;margin-top: 5px"> : سوره </label>
+                                  <p-dropdown (onChange)="fromSoraFun($event)"
+                                              [options]="soras"
+                                              [style]="{float:'right',margin:'0 5px 10px 10px',width:'200px'}"
+                                              class="sora"
+                                              optionLabel="اسم_السورة"></p-dropdown>
+  </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label class="check" for="filled-in-box2" style="float: right;margin-right: 10px;margin-top: 5px">: الي ايه</label>
+                <p-dropdown (onChange)="toAyaFun($event)"
+                            [options]="fromSoraAyat"
+                            [style]="{float:'right',margin:'0 5px 10px 10px',width:'200px'}" class="aya"
+                            optionLabel="id">
+                </p-dropdown>
+              </div>
+
+              <div class="col-6">
+
+                <label class="check" for="filled-in-box2" style="float: right;margin-right: 10px;margin-top: 5px">: من ايه</label>
+                <p-dropdown (onChange)="fromAyaFun($event)"
+                            [options]="fromSoraAyat"
+                            [style]="{float:'right',margin:'0 5px 10px 10px',width:'200px'}"
+                            class="aya"
+                            optionLabel="id"></p-dropdown>   </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label class="check" for="filled-in-box2" style="float: right;margin-top: 15px">: الي جزء</label>
+                <p-dropdown (onChange)="toPartFun($event)"
+                            [options]="parts"
+                            [style]="{float:'right',margin:'10px',width:'200px'}" optionLabel="الجزء"></p-dropdown>
+              </div>
+
+              <div class="col-6">
+                <label class="check" for="filled-in-box2" style="float: right;margin-top: 15px">: من جزء</label>
+
+                <p-dropdown (onChange)="fromPartFun($event)" [options]="parts"
+                            [style]="{float:'right',margin:'10px',width:'200px'}" optionLabel="الجزء"></p-dropdown>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label class="check" for="filled-in-box2" style="float: right;margin-top: 10px">: الي صفحه</label>
+
+                <p-dropdown (onChange)="toPageFun($event)"
+                            [options]="pages"
+                            [style]="{float:'right',margin:'0 0 10px 10px',width:'200px'}"
+                            optionLabel="nOFPage"></p-dropdown>
+              </div>
+
+              <div class="col-6">
+                <label class="check" for="filled-in-box2" style="float: right;margin-top: 10px">: من صفحه</label>
+                <p-dropdown (onChange)="fromPageFun($event)"
+                            [options]="pages"
+                            [style]="{float:'right',margin:'0 0 10px 10px',width:'200px'}"
+                            optionLabel="nOFPage"></p-dropdown>
+              </div>
+            </div>
+
+          </form>
+
+          <div class="row" style="margin-top: 100px"><span></span></div>
+          <div class="col-md-12 col-sm-12 text-center">
+
+<!--            <button (click)="saveSearch()" class="btn btn-default btn-block waves-effect waves-light" data-toggle="dropdown"-->
+<!--                    type="submit">-->
+<!--              حفظ الاعدادات-->
+<!--            </button>-->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+

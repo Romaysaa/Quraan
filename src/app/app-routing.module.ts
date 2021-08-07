@@ -11,6 +11,7 @@ const routes: Routes = [
   {path: 'qoraa', loadChildren: './qoraa/qoraa/qoraa.module#QoraaModule'},
   {path: 'quran', loadChildren: './navbar/navbar/navbar.module#NavbarModule'},
   {path: 'search', loadChildren: './search-settings/search-settings.module#SearchSettingsModule'},
+  {path: 'listen', loadChildren: './listen-setting/listen/listen.module#ListenModule'},
 
 
 
