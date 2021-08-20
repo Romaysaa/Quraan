@@ -13,9 +13,14 @@
                 <input (click)="wasatClicked($event)" class="filled-in" id="filled-in-box2" name="remember"
                        type="checkbox" value="1">
                 <label class="check" for="filled-in-box2">تكرار </label>
-            <div *ngFor="let row of parts">
-              <audio   autoplay controls loop src="{{row}}"></audio>
-            </div>
+<!--            <div *ngFor="let row of parts">-->
+<!--              <audio   autoplay controls loop src="{{row}}"></audio>-->
+<!--            </div>-->
+
+            <audio *ngFor="let row of parts" id="surahPlayer" controls="controls">
+              <source id="activeAyah" src="{{row}}" title="1" type="audio/mp3">
+            </audio>
+
 <!--            <div *ngFor="let row of hezb">-->
 <!--              <audio autoplay controls loop src="{{row}}" disabled=""></audio>-->
 <!--            </div>-->

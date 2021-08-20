@@ -48,6 +48,7 @@ export class ListenSettingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.parts=[];
     this.texts = [];
     this.soras.push({اسم_السورة: '.', nOfAyas: 0});
     let currentSura = 'الفاتحة';
@@ -136,102 +137,20 @@ export class ListenSettingComponent implements OnInit {
     this.omomQuraan = true;
   }
   ayaId =5;
+  roow:any;
   fromSoraFun($event: any) {
     debugger
+    this.parts=[];
     // this.audio = 'http://cdn.alquran.cloud/media/audio/surah/' + "ar.alafasy"+ '/' + this.ayaId + '';
     let url ="http://api.alquran.cloud/v1/surah/"+$event.value.nOFSura;
-    // this.audio ="http://api.alquran.cloud/v1/ayah/262/ar.alafasy"
     // http://api.alquran.cloud/v1/juz/2
     this.http.get<any>(url  ).subscribe(res => {
       res.data.ayahs.forEach((aya)=>{
-        aya.number=aya.number+1
-        this.parts.push('http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/'+ aya.number );
-        this.hezb.push('http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/'+ aya.number+1)
-        // this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/' + "ar.alafasy"+ '/' + aya.number + '';
+         this.roow='http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/'+ aya.number;
+        this.parts.push(this.roow );
         console.log(res);
       });
     });
-
-
-
-    this.fromSora = $event.value.nOFSura;
-    if (this.fromSora) {
-      this.parts = [];
-      this.hezb = [];
-      this.pages = [];
-      this.rob = [];
-      this.toSoraAyat = [];
-
-
-      this.parts.push({الجزء: '.'});
-      this.hezb.push({nOFHezb: '.'});
-      this.rob.push({rub: '.'});
-      this.pages.push({nOFPage: '.'});
-      this.toSoraAyat.push({id: '.'});
-
-      this._search.table_othmani.forEach(aya => {
-
-        if (parseInt(aya.nOFSura) <= parseInt(this.toSora) && parseInt(aya.nOFSura) >= parseInt(this.fromSora)) {
-          let index = this.parts.findIndex(sura => {
-            return aya.nOFJoz == sura.الجزء;
-          });
-
-          if (index < 0) {
-            this.parts.push({
-              الجزء: aya.nOFJoz,
-
-            });
-          }
-
-          index = this.hezb.findIndex(sura => {
-            return aya.nOFHezb == sura.nOFHezb;
-          });
-
-          if (index < 0) {
-            this.hezb.push({
-              nOFHezb: aya.nOFHezb,
-
-            });
-          }
-
-          index = this.pages.findIndex(sura => {
-            return aya.nOFPage == sura.nOFPage;
-          });
-
-          if (index < 0) {
-            this.pages.push({
-              nOFPage: aya.nOFPage,
-
-            });
-          }
-
-          index = this.rob.findIndex(sura => {
-            return aya.rub == sura.rub;
-          });
-
-          if (index < 0) {
-            this.rob.push({
-              rub: aya.rub,
-              ayaId: aya.id,
-            });
-          }
-
-        }
-
-      });
-
-    }
-
-    this.fromSoraAyat = [];
-    this.fromSoraAyat.push({id: '.'});
-    let nOfAyas = $event.value.nOfAyas;
-    let index = 0;
-    while (index < nOfAyas) {
-      index++;
-      this.fromSoraAyat.push({
-        id: index,
-      });
-    }
   }
 
   toSoraFun($event: any) {
