@@ -43,6 +43,7 @@ export class ListenSettingComponent implements OnInit {
   _search: Search = new Search();
   texts: string[];
   results: string[];
+  currentIndex: number;
 
   constructor(private router: Router,private http: HttpClient) {
   }
@@ -138,7 +139,8 @@ export class ListenSettingComponent implements OnInit {
   }
   ayaId =5;
   roow:any;
-  audioCount:number ;
+  audioCount:number;
+
 
   fromSoraFun($event: any) {
     debugger
@@ -150,23 +152,13 @@ export class ListenSettingComponent implements OnInit {
       this.audioCount = res.data.ayahs.length;
       res.data.ayahs.forEach((aya)=>{
         this.roow='http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/'+ aya.number;
-        this.parts.push(this.roow );
+        this.parts.push(this.roow);
         console.log(res);
       });
     });
 
   }
 
-  audioEnded(ayaNum){
-    debugger
-    if(ayaNum<this.audioCount-1)
-      this.playNextAya(ayaNum+1);
-  }
-
-  playNextAya(ayaNum){
-    var aud = document.getElementById("surahPlayer"+ayaNum);
-    aud.play();
-  }
 
   toSoraFun($event: any) {
     this.toSora = $event.value.nOFSura;
@@ -351,5 +343,29 @@ export class ListenSettingComponent implements OnInit {
   onChange($event: any) {
 
     this.texts.push($event);
+  }
+
+  audioEnded(ayaNum){
+    if(ayaNum<this.audioCount-1){
+      this.currentIndex = ayaNum+1;
+      this.playNextAya(this.currentIndex );
+    }
+  }
+
+  playNextAya(ayaNum){
+    let currentAudio:any = document.getElementById("surahPlayer"+ayaNum);
+    currentAudio.play();
+  }
+
+  onPlay(ayaNum: number) {
+    if(ayaNum != this.currentIndex+1){// handle manual play
+      for(let i=0;i<this.audioCount;i++){
+        if(i!=ayaNum){
+          let audio:any = document.getElementById("surahPlayer"+i);
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      }
+    }
   }
 }
