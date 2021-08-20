@@ -17,7 +17,7 @@
 <!--              <audio   autoplay controls loop src="{{row}}"></audio>-->
 <!--            </div>-->
 
-            <audio *ngFor="let row of parts" id="surahPlayer" controls="controls">
+            <audio *ngFor="let row of parts; let i = index" [id]="'surahPlayer'+i" controls="controls" (ended)="audioEnded(i)">
               <source id="activeAyah" src="{{row}}" title="1" type="audio/mp3">
             </audio>
 
