@@ -152,6 +152,7 @@ export class ListenSettingComponent implements OnInit {
       });
     });
   }
+  
 
   toSoraFun($event: any) {
     this.toSora = $event.value.nOFSura;
