@@ -96,6 +96,15 @@ export class DynamicAyaComponent implements OnInit {
       }
     },
     {
+      label: 'مقارنة مع الجميع بدون أنظر', command: (event) => {
+      this.ayat.forEach(aya=>{
+        this.ayas = [];
+        this.ayas.push({aya:aya,sura:''});
+      });
+        this.showList = false;
+        this.OpenDialoge = true;
+      }
+    },{
       label: 'مقارنة مع الجميع', command: (event) => {
       this.ayat.forEach(aya=>{
         this.ayas = [];
