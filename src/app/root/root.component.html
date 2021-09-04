@@ -23,6 +23,9 @@
     >
 
       <li>
+        <input (click)="sameWord($event)" class="filled-in" id="filled-in-box3" name="remember"
+               type="checkbox" value="1">
+        <label  style="margin-right: 20px;color: white"  class="check" for="filled-in-box3">متطابق</label>
         <button class="btn btn-outline-light my-2 my-sm-0"
                 (click)="doSearch()"  >بحث</button>
         <p-autoComplete #autoComplete styleClass="prime-autoComplete-override" dir="rtl"

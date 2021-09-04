@@ -25,7 +25,7 @@ const GWAZ_ALWASL = 1750;// ۖ
 export class RootComponent implements OnInit {
 
   results: string[];
-  searchWord: any;
+  searchWord: string;
   hasTashkeel: boolean = false;
   searchInOptions = [
     {name: 'عموم القران', id: 1},
@@ -53,6 +53,7 @@ export class RootComponent implements OnInit {
   @ViewChild('autoComplete', {static: false})
   autoComplete: AutoComplete;
   omomQuaanBoolean: boolean;
+  isSameWord: boolean = false;
 
   constructor(private _router: Router, private _search: Search
   ) {
@@ -156,11 +157,13 @@ export class RootComponent implements OnInit {
     //   this.showListOfAyah = false;
     this.ayas = [];
     let hasSpace = false;
-    // if(this.searchWord.toString().endsWith(' ')){
+    // if(this.searchWord.endsWith(' ')){
     //   hasSpace = true;
     // }
     // this.searchWord =this.searchWord.split(' ')[0];
     // });
+     
+    this.searchWord = this.searchWord.trim();
 
     this.searchSettings = JSON.parse(localStorage.getItem('result'))[0];
     this.fromSora = this.searchSettings.fromSora && this.searchSettings.fromSora != '.' ? parseInt(this.searchSettings.fromSora) : null;
@@ -188,7 +191,7 @@ export class RootComponent implements OnInit {
 
     if (hasSpace) {
       let ayas = [];
-      this.searchWord.toString().replace(' ', '');
+      this.searchWord.replace(' ', '');
       this.ayas.forEach(aya => {
         if (aya.AyaText) {
           let arrOfAyaWords = aya.AyaText.split(' ');
@@ -285,7 +288,38 @@ export class RootComponent implements OnInit {
 
       }
     });
-
+     
+    if(this.isSameWord == true && !this.searchWord.includes(' ')){
+      let ayat = [];
+      this.numOfMoade3 = 0;
+      this.ayas.forEach(aya=>{
+         
+        let words =  aya.AyaText_Othmani.split(' ');
+        words.forEach(word=>{
+          if(word == this.searchWord){
+            ayat.push({
+              رقم_السورة: aya.nOFSura,
+              بداية_السورة: aya.suraStart,
+              الربع: aya.rub,
+              الجزء: aya.joz,
+              رقم_الجزء: aya.nOFJoz,
+              الحزب: aya.hezb,
+              رقم_الحزب: aya.nOFHezb,
+              رقم_الصفحة: aya.nOFPage,
+              بداية_الربع: aya.rubStart,
+              بداية_الصفحة: aya.pageStart,
+              اسم_السورة: aya.Sura_Name,
+              الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
+              AyaText: aya.AyaText,
+              AyaText_Othmani:aya.AyaText_Othmani,
+              Aya_N:aya.Aya_N,
+              highlightedAya: this.highlightSearchWord(aya)
+            });
+          }
+        });
+      });
+      this.ayas = ayat;
+    }
   }
 
   searchWithoutTashkeel() {
@@ -323,7 +357,38 @@ export class RootComponent implements OnInit {
 
       }
     });
-
+     
+    if(this.isSameWord == true && !this.searchWord.includes(' ')){
+      let ayat = [];
+      this.numOfMoade3 = 0;
+      this.ayas.forEach(aya=>{
+         
+        let words =  aya.AyaText.split(' ');
+        words.forEach(word=>{
+          if(word == this.searchWord){
+            ayat.push({
+              رقم_السورة: aya.nOFSura,
+              بداية_السورة: aya.suraStart,
+              الربع: aya.rub,
+              الجزء: aya.joz,
+              رقم_الجزء: aya.nOFJoz,
+              الحزب: aya.hezb,
+              رقم_الحزب: aya.nOFHezb,
+              رقم_الصفحة: aya.nOFPage,
+              بداية_الربع: aya.rubStart,
+              بداية_الصفحة: aya.pageStart,
+              اسم_السورة: aya.Sura_Name,
+              الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
+              AyaText: aya.AyaText,
+              AyaText_Othmani:aya.AyaText_Othmani,
+              Aya_N:aya.Aya_N,
+              highlightedAya: this.highlightSearchWord(aya)
+            });
+          }
+        });
+      });
+      this.ayas = ayat;
+    }
   }
 
   searchInOmomAlQuran(aya) {
@@ -343,6 +408,8 @@ export class RootComponent implements OnInit {
         اسم_السورة: aya.Sura_Name,
         الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
         AyaText: aya.AyaText,
+        AyaText_Othmani:aya.AyaText_Othmani,
+        Aya_N:aya.Aya_N,
         highlightedAya: this.highlightSearchWord(aya)
       });
     }
@@ -366,6 +433,8 @@ export class RootComponent implements OnInit {
         اسم_السورة: aya.Sura_Name,
         الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
         AyaText: aya.AyaText,
+        AyaText_Othmani:aya.AyaText_Othmani,
+        Aya_N:aya.Aya_N,
         highlightedAya: this.highlightSearchWord(aya)
       });
     }
@@ -456,6 +525,8 @@ export class RootComponent implements OnInit {
         اسم_السورة: aya.Sura_Name,
         الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
         AyaText: aya.AyaText,
+        AyaText_Othmani:aya.AyaText_Othmani,
+        Aya_N:aya.Aya_N,
         highlightedAya: this.highlightSearchWord(aya)
       });
     }
@@ -477,6 +548,8 @@ export class RootComponent implements OnInit {
         اسم_السورة: aya.Sura_Name,
         الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
         AyaText: aya.AyaText,
+        AyaText_Othmani:aya.AyaText_Othmani,
+        Aya_N:aya.Aya_N,
         highlightedAya: this.highlightSearchWord(aya)
       });
     }
@@ -505,5 +578,9 @@ export class RootComponent implements OnInit {
       localStorage.setItem('oldSearch', JSON.stringify(oldSearch));
     }
 
+  }
+
+  sameWord($event: MouseEvent) {
+    this.isSameWord = !this.isSameWord;
   }
 }
