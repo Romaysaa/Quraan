@@ -11,10 +11,10 @@
           <form accept-charset="utf-8" action="" data-grid="main" data-search method="post" role="search">
             <div class="row">
               <div class="col-md-5 col-sm-5 col-xs-12">
-                <div class="form-group">
-                  <input class="form-control" name="filter" placeholder="بحث" type="text">
+<!--                <div class="form-group">-->
+<!--                  <input class="form-control" name="filter" placeholder="بحث" type="text">-->
 
-                </div>
+<!--                </div>-->
               </div>
               <div class="input-field">
                 <input (click)="omomClicked($event)" class="filled-in" id="filled-in-box1" name="remember"
@@ -25,6 +25,20 @@
                 <input (click)="wasatClicked($event)" class="filled-in" id="filled-in-box2" name="remember"
                        type="checkbox" value="1">
                 <label class="check" for="filled-in-box2">بدايه الايات</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5 col-sm-5 col-xs-12">
+              </div>
+              <div class="input-field">
+                <input (click)="alphabitcal_Order($event)" class="filled-in" id="filled-in-box4" name="remember"
+                       type="checkbox" value="1">
+                <label class="check" for="filled-in-box4">ترتيب أبجدي</label>
+              </div>
+              <div class="input-field">
+                <input (click)="moshafOrder($event)" class="filled-in" id="filled-in-box5" name="remember"
+                       type="checkbox" value="1">
+                <label class="check" for="filled-in-box5">ترتيب المصحف</label>
               </div>
             </div>
             <div class="row">

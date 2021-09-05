@@ -41,6 +41,7 @@ export class SearchSettingsComponent implements OnInit {
   _search: Search = new Search();
   texts: string[];
   results: string[];
+  alphabitcalOrder: boolean = true;
 
   constructor(private router: Router) {
   }
@@ -407,6 +408,7 @@ export class SearchSettingsComponent implements OnInit {
         'fromPage': this.fromPage, 'toPage': this.toPage,
         'fromAya': this.fromAya, 'toAya': this.toAya,
         'omomQuaanBoolean': this.omomQuraan,
+        'alphabitcalOrder': this.alphabitcalOrder,
       });
 
     localStorage.setItem('result', JSON.stringify(this.result));
@@ -439,6 +441,14 @@ export class SearchSettingsComponent implements OnInit {
   onChange($event: any) {
 
     this.texts.push($event);
+  }
+
+  alphabitcal_Order($event: MouseEvent) {
+    this.alphabitcalOrder = true;
+  }
+
+  moshafOrder($event: MouseEvent) {
+    this.alphabitcalOrder = false;
   }
 }
 

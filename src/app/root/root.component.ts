@@ -54,6 +54,7 @@ export class RootComponent implements OnInit {
   autoComplete: AutoComplete;
   omomQuaanBoolean: boolean;
   isSameWord: boolean = false;
+  alphabitcalOrder: boolean;
 
   constructor(private _router: Router, private _search: Search
   ) {
@@ -162,7 +163,7 @@ export class RootComponent implements OnInit {
     // }
     // this.searchWord =this.searchWord.split(' ')[0];
     // });
-     
+
     this.searchWord = this.searchWord.trim();
 
     this.searchSettings = JSON.parse(localStorage.getItem('result'))[0];
@@ -179,36 +180,37 @@ export class RootComponent implements OnInit {
     this.fromAya = this.searchSettings.fromAya;
     this.toAya = this.searchSettings.toAya;
     this.omomQuaanBoolean = this.searchSettings.omomQuaanBoolean ? this.searchSettings.omomQuaanBoolean : false;
+    this.alphabitcalOrder = this.searchSettings.alphabitcalOrder ? this.searchSettings.alphabitcalOrder : false;
     if (this.hasTashkeel) {
       this.searchWithTashkeel();
     } else {
       this.searchWithoutTashkeel();
     }
 
-
+    if (this.alphabitcalOrder) this.sortAlphabetical();
     console.log(this.ayas);
 
 
-    if (hasSpace) {
-      let ayas = [];
-      this.searchWord.replace(' ', '');
-      this.ayas.forEach(aya => {
-        if (aya.AyaText) {
-          let arrOfAyaWords = aya.AyaText.split(' ');
-          let index = arrOfAyaWords.findIndex(word => word === this.searchWord);
-          if (index >= 0) {
-            ayas.push(aya);
-          }
-        }
-
-        // for(let i=0;i<arrOfAyaWords.length;i++){
-        //   if(arrOfAyaWords.)
-        // }
-
-      });
-      this.ayas = ayas;
-
-    }
+    // if (hasSpace) {
+    //   let ayas = [];
+    //   this.searchWord.replace(' ', '');
+    //   this.ayas.forEach(aya => {
+    //     if (aya.AyaText) {
+    //       let arrOfAyaWords = aya.AyaText.split(' ');
+    //       let index = arrOfAyaWords.findIndex(word => word === this.searchWord);
+    //       if (index >= 0) {
+    //         ayas.push(aya);
+    //       }
+    //     }
+    //
+    //     // for(let i=0;i<arrOfAyaWords.length;i++){
+    //     //   if(arrOfAyaWords.)
+    //     // }
+    //
+    //   });
+    //   this.ayas = ayas;
+    //
+    // }
     // setTimeout(()=>{
 
     this.showListOfAyah = true;
@@ -288,38 +290,8 @@ export class RootComponent implements OnInit {
 
       }
     });
-     
-    if(this.isSameWord == true && !this.searchWord.includes(' ')){
-      let ayat = [];
-      this.numOfMoade3 = 0;
-      this.ayas.forEach(aya=>{
-         
-        let words =  aya.AyaText_Othmani.split(' ');
-        words.forEach(word=>{
-          if(word == this.searchWord){
-            ayat.push({
-              رقم_السورة: aya.nOFSura,
-              بداية_السورة: aya.suraStart,
-              الربع: aya.rub,
-              الجزء: aya.joz,
-              رقم_الجزء: aya.nOFJoz,
-              الحزب: aya.hezb,
-              رقم_الحزب: aya.nOFHezb,
-              رقم_الصفحة: aya.nOFPage,
-              بداية_الربع: aya.rubStart,
-              بداية_الصفحة: aya.pageStart,
-              اسم_السورة: aya.Sura_Name,
-              الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
-              AyaText: aya.AyaText,
-              AyaText_Othmani:aya.AyaText_Othmani,
-              Aya_N:aya.Aya_N,
-              highlightedAya: this.highlightSearchWord(aya)
-            });
-          }
-        });
-      });
-      this.ayas = ayat;
-    }
+
+    this.checkSameWordWithTaskeel();
   }
 
   searchWithoutTashkeel() {
@@ -357,15 +329,18 @@ export class RootComponent implements OnInit {
 
       }
     });
-     
-    if(this.isSameWord == true && !this.searchWord.includes(' ')){
+    this.checkSameWordWithOutTaskeel();
+  }
+
+  checkSameWordWithTaskeel() {
+    if (this.isSameWord == true && !this.searchWord.includes(' ')) {
       let ayat = [];
       this.numOfMoade3 = 0;
-      this.ayas.forEach(aya=>{
-         
-        let words =  aya.AyaText.split(' ');
-        words.forEach(word=>{
-          if(word == this.searchWord){
+      this.ayas.forEach(aya => {
+
+        let words = aya.AyaText_Othmani.split(' ');
+        words.forEach(word => {
+          if (word == this.searchWord) {
             ayat.push({
               رقم_السورة: aya.nOFSura,
               بداية_السورة: aya.suraStart,
@@ -380,8 +355,8 @@ export class RootComponent implements OnInit {
               اسم_السورة: aya.Sura_Name,
               الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
               AyaText: aya.AyaText,
-              AyaText_Othmani:aya.AyaText_Othmani,
-              Aya_N:aya.Aya_N,
+              AyaText_Othmani: aya.AyaText_Othmani,
+              Aya_N: aya.Aya_N,
               highlightedAya: this.highlightSearchWord(aya)
             });
           }
@@ -389,6 +364,49 @@ export class RootComponent implements OnInit {
       });
       this.ayas = ayat;
     }
+
+  }
+
+  checkSameWordWithOutTaskeel() {
+    if (this.isSameWord == true && !this.searchWord.includes(' ')) {
+      let ayat = [];
+      this.numOfMoade3 = 0;
+      this.ayas.forEach(aya => {
+
+        let words = aya.AyaText.split(' ');
+        words.forEach(word => {
+          if (word == this.searchWord) {
+            ayat.push({
+              رقم_السورة: aya.nOFSura,
+              بداية_السورة: aya.suraStart,
+              الربع: aya.rub,
+              الجزء: aya.joz,
+              رقم_الجزء: aya.nOFJoz,
+              الحزب: aya.hezb,
+              رقم_الحزب: aya.nOFHezb,
+              رقم_الصفحة: aya.nOFPage,
+              بداية_الربع: aya.rubStart,
+              بداية_الصفحة: aya.pageStart,
+              اسم_السورة: aya.Sura_Name,
+              الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
+              AyaText: aya.AyaText,
+              AyaText_Othmani: aya.AyaText_Othmani,
+              Aya_N: aya.Aya_N,
+              highlightedAya: this.highlightSearchWord(aya)
+            });
+          }
+        });
+      });
+      this.ayas = ayat;
+    }
+
+  }
+
+  sortAlphabetical() {
+
+    this.ayas.sort(function (a, b) {
+      return a.AyaText_Othmani.localeCompare(b.AyaText_Othmani, ["ar"]);
+    });
   }
 
   searchInOmomAlQuran(aya) {
@@ -408,8 +426,8 @@ export class RootComponent implements OnInit {
         اسم_السورة: aya.Sura_Name,
         الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
         AyaText: aya.AyaText,
-        AyaText_Othmani:aya.AyaText_Othmani,
-        Aya_N:aya.Aya_N,
+        AyaText_Othmani: aya.AyaText_Othmani,
+        Aya_N: aya.Aya_N,
         highlightedAya: this.highlightSearchWord(aya)
       });
     }
@@ -433,8 +451,8 @@ export class RootComponent implements OnInit {
         اسم_السورة: aya.Sura_Name,
         الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
         AyaText: aya.AyaText,
-        AyaText_Othmani:aya.AyaText_Othmani,
-        Aya_N:aya.Aya_N,
+        AyaText_Othmani: aya.AyaText_Othmani,
+        Aya_N: aya.Aya_N,
         highlightedAya: this.highlightSearchWord(aya)
       });
     }
@@ -525,8 +543,8 @@ export class RootComponent implements OnInit {
         اسم_السورة: aya.Sura_Name,
         الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
         AyaText: aya.AyaText,
-        AyaText_Othmani:aya.AyaText_Othmani,
-        Aya_N:aya.Aya_N,
+        AyaText_Othmani: aya.AyaText_Othmani,
+        Aya_N: aya.Aya_N,
         highlightedAya: this.highlightSearchWord(aya)
       });
     }
@@ -548,8 +566,8 @@ export class RootComponent implements OnInit {
         اسم_السورة: aya.Sura_Name,
         الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
         AyaText: aya.AyaText,
-        AyaText_Othmani:aya.AyaText_Othmani,
-        Aya_N:aya.Aya_N,
+        AyaText_Othmani: aya.AyaText_Othmani,
+        Aya_N: aya.Aya_N,
         highlightedAya: this.highlightSearchWord(aya)
       });
     }
