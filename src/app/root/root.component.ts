@@ -61,6 +61,7 @@ export class RootComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.callMotashabh();
   }
 
   callReader($event: MouseEvent) {
@@ -83,7 +84,7 @@ export class RootComponent implements OnInit {
 
   }
 
-  callMotashabh($event: MouseEvent) {
+  callMotashabh() {
     this._router.navigateByUrl("/quran");
   }
 
