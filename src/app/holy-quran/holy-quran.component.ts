@@ -34,7 +34,7 @@ export class HolyQuranComponent implements OnInit {
   motashabehatSpans: { isRight: boolean; top: string, moade3: string, height: string }[] = [];
   lastTopRight: number = 0;
   lastTopLeft: number = 0;
-  spansOfColoredWords: { top: string; left: string; width: string; color: string }[];
+  spansOfColoredWords: { top: string; left: string; width: string; color: string ,isStatic?:boolean}[];
   suras: string[] = ['البقرة', 'آل عمران', 'النساء', 'المائدة'];
   colors = [
     {color: '#FF0000', text: 'كلمة وحيدة بداية الأية'},
@@ -66,7 +66,8 @@ export class HolyQuranComponent implements OnInit {
       word: string,
       color: string,
       lineIndex?: number,
-      left?: string
+      left?: string,
+      isStatic?:boolean
     }[],
     sura: string,
     suraWithIndex: string,
@@ -131,7 +132,7 @@ export class HolyQuranComponent implements OnInit {
           ayaDetails.arrOfColoredWords.push(
             {
               word: mot.word, color:this.getColorsInAyaMiddle(mot.color), lineIndex: mot.lineIndex,
-              left: mot.left
+              left: mot.left,isStatic:(mot.word!="a")//to avoid duplicated border
             }
           );
         }
@@ -521,7 +522,8 @@ export class HolyQuranComponent implements OnInit {
             top: parseInt(top) + 35 + 'px',
             color: this.allAyas[j].arrOfColoredWords[i].color,
             width: width + 'px',
-            left: left + 'px'
+            left: left + 'px',
+            isStatic:this.allAyas[j].arrOfColoredWords[i].isStatic
           });
           lastWord = this.allAyas[j].arrOfColoredWords[0].word;
 
@@ -547,7 +549,8 @@ export class HolyQuranComponent implements OnInit {
                 top: parseInt(top) + 35 + 'px',
                 color: this.allAyas[j].arrOfColoredWords[i].color,
                 width: width + 'px',
-                left: left + 'px'
+                left: left + 'px',
+                isStatic:this.allAyas[j].arrOfColoredWords[i].isStatic
               });
               isMoveToNextLine = false;
             } else {
@@ -559,7 +562,8 @@ export class HolyQuranComponent implements OnInit {
                 top: parseInt(top) + 35 + 'px',
                 color: this.allAyas[j].arrOfColoredWords[i].color,
                 width: width + 'px',
-                left: left + 'px'
+                left: left + 'px',
+                isStatic:this.allAyas[j].arrOfColoredWords[i].isStatic
               });
             }
           } else {
@@ -568,7 +572,8 @@ export class HolyQuranComponent implements OnInit {
               top: parseInt(top) + 35 + 'px',
               color: this.allAyas[j].arrOfColoredWords[i].color,
               width: width + 'px',
-              left: left + 'px'
+              left: left + 'px',
+              isStatic:this.allAyas[j].arrOfColoredWords[i].isStatic
             });
           }
 

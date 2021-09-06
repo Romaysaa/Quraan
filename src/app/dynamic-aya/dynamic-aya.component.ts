@@ -12,7 +12,7 @@ export class DynamicAyaComponent implements OnInit {
   @Input() activeAya: any;
   @Input() isActive: boolean;
   @Input() spans: { top: string; left: string; width: string; height: string }[];
-  @Input() arrOfColoredWords: { top: string; left: string; width: string;color:string }[];
+  @Input() arrOfColoredWords: { top: string; left: string; width: string;color:string ,isStatic:boolean}[];
   @Input() ayat:[];
   // @Input() motashabehatSpans: { isRight: boolean; top: string; name: string,height: string }[];
   @Input() motashabehatSpans: { isRight: boolean;  moade3: string,height: string ,top: string, isRightClicked:boolean}[];
@@ -198,5 +198,11 @@ export class DynamicAyaComponent implements OnInit {
   // onMoueHover(word: { top: string; left: string; width: string; color: string }) {
   //   this.title = this.aya;
   // }
+  getTopBorder(top: string) {
+    let x = top.split('px');
+    let y = parseInt(x[0]) - 35;
+    return y +'px';
+
+  }
 }
 

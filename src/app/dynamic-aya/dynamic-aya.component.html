@@ -15,7 +15,7 @@
         [style.top]="s.top" [style.width]="s.width"
         class="aya"></span>
 
-  <span *ngFor="let word of arrOfColoredWords" [style.border-bottom]="'3px solid '+word.color" [style.left]="word.left" [style.top]="word.top"
+  <span *ngFor="let word of arrOfColoredWords" [style.border]="word.isStatic?'2px solid '+word.color:''"  [style.border-bottom]="'3px solid '+word.color" [style.height] ="word.isStatic?'35px':''" [style.left]="word.left" [style.top]="word.isStatic?getTopBorder(word.top):word.top"
         [style.width]="word.width" class="aya"
         style="cursor: pointer"
         [title]="title"
