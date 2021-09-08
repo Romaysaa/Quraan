@@ -1,6 +1,6 @@
 <!--<div dir="rtl" style="margin-top: 5px;font-family: Othmani ;font-size: 26px">{{aya}}</div>-->
 <a (click)="aya_clicked($event)" (mouseenter)="onMouseEnter($event)" (mouseout)="onMouseOut($event)" [class.active]="activeAya === 17"
-    [style.left]="'35%'" class="aya_link" (contextmenu)="onRightClick($event)"
+   [style.left]="'35%'" class="aya_link" (contextmenu)="onRightClick($event)"
 >
 <div class="help-block containerSVG" draggable=false
      oncontextmenu="return false;">
@@ -94,12 +94,14 @@
 
 <div #container class="help-block containerSVG" draggable=false
      oncontextmenu="return false;">
-  <p-menu  *ngIf="showList"
-          [model]="listMenuItems"
-          [ngStyle]="listMenuStyle"
+<!--  <p-menu  *ngIf="showList"-->
+<!--          [model]="listMenuItems"-->
+<!--          [ngStyle]="listMenuStyle"-->
 
-  >
-  </p-menu>
+<!--  >-->
+<!--  </p-menu>-->
+  <p-contextMenu  *ngIf="showList" [global]="true" [model]="listMenuItems"></p-contextMenu>
+
 </div>
 <p-dialog [(visible)]="OpenDialoge" header="">
   <div style="width: 700px ; height: 500px">

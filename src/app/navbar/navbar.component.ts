@@ -37,6 +37,7 @@ export class NavbarComponent implements OnInit {
   tafseer: boolean;
   isAudio: boolean;
   isTafser: boolean;
+  shareURL: any = '';
 
   constructor(private http: HttpClient,
               private confirmationService:ConfirmationService ,
@@ -292,8 +293,26 @@ searchSettings :any;
     else if($event.item!=null&&$event.item.label==="نسخ"){
       this.copyAya = true;
     }else if($event.item!=null&&$event.item.label==="مشاركة"){
-      this.copyAya = true;
+      debugger
       this.share = true;
+    } else {
+      debugger
+      if($event.item!=null)
+      this.shareURL = this.getShareURL($event.item.label);
+      else this.shareURL = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Your+Subject+here&ui=2&tf=1&pli=1&body=';
+    }
+  }
+
+   getShareURL(shareto){
+    switch (shareto) {
+      case 'facebook':
+        return 'https://www.facebook.com/sharer/sharer.php?quote=';
+      case 'gmail': return 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Your+Subject+here&ui=2&tf=1&pli=1&body=';
+
+      case 'whatsapp': return 'https://web.whatsapp.com/send?text=';
+      default: return'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Your+Subject+here&ui=2&tf=1&pli=1&body=';
+
+
     }
   }
   onAyaClicked($event: any) {
@@ -329,10 +348,12 @@ debugger
       document.execCommand("copy");
       document.body.removeChild(textArea);
 
-    if(this.share){
-      window.open("https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse")
 
-    }
+    } else if(this.shareURL){
+      debugger
+      let msgbody = this._search.table_othmani[$event-1].AyaText_Othmani + ' (' + this._search.table_othmani[$event-1].Aya_N+')';
+      window.open(this.shareURL+msgbody, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+
     }
   }
   // OntafserClick() {
