@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HolyQuranComponent } from './holy-quran.component';
 
@@ -6,7 +6,7 @@ describe('HolyQuranComponent', () => {
   let component: HolyQuranComponent;
   let fixture: ComponentFixture<HolyQuranComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ HolyQuranComponent ]
     })

@@ -34,7 +34,7 @@ export class DynamicAyaComponent implements OnInit {
   @Input() aya = '';
 
   bakgroundStyle2: { background: string; motashOpacity: number; opacity: number };
-  @ViewChild('container', {static: false}) contain: ElementRef;
+  @ViewChild('container') contain: ElementRef;
   listMenuStyle: Object = {
     left: '0px',
     top: '0px',

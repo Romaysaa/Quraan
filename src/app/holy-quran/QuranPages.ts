@@ -1,6 +1,8 @@
+import { Injectable } from "@angular/core";
 const LightOrang = "orange";
 const LightBlue = "lightBlue";
 const LightGreen = "lightGreen";
+@Injectable()
 export class QuranPages {
   pages: {
     pageNumber: string; ayas: ({

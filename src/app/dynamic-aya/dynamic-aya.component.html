@@ -100,10 +100,10 @@
 
 <!--  >-->
 <!--  </p-menu>-->
-  <p-contextMenu  *ngIf="showList" [global]="true" [model]="listMenuItems"></p-contextMenu>
+  <p-contextMenu  [global]="true" [model]="listMenuItems"></p-contextMenu>
 
 </div>
-<p-dialog [(visible)]="OpenDialoge" header="">
+<p-dialog  header="">
   <div style="width: 700px ; height: 500px">
     <div *ngFor="let aya of ayas;let i = index">
       <div>

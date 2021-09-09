@@ -50,7 +50,7 @@ export class RootComponent implements OnInit {
   toPage: number;
   fromAya: number;
   toAya: number;
-  @ViewChild('autoComplete', {static: false})
+  @ViewChild('autoComplete')
   autoComplete: AutoComplete;
   omomQuaanBoolean: boolean;
   isSameWord: boolean = false;
