@@ -152,6 +152,7 @@ export class RootComponent implements OnInit {
   }
 
   doSearch() {
+    debugger
     this.numOfMoade3 = 0;
     this.saveSearchToLocalStorage();
 
