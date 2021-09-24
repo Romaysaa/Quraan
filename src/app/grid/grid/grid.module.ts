@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {GridComponent} from "../grid.component";
 import {TableModule} from 'primeng/table';
 import {FormsModule} from '@angular/forms';
+import {ExportService} from "../export.service";
 // import {ExportService} from "../export.service";
 
 
@@ -14,7 +15,7 @@ import {FormsModule} from '@angular/forms';
   imports: [
     CommonModule,TableModule,FormsModule
   ],
-  // providers: [ExportService],
+  providers: [ExportService],
 
 })
 export class GridModule { }

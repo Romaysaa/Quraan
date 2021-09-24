@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-// import {ExportService} from "./export.service";
+import {ExportService} from "./export.service";
 
 @Component({
   selector: 'app-grid',
@@ -14,8 +14,10 @@ export class GridComponent implements OnInit {
   @Input() numOfMoade3: number;
   @Input() displaySearchResult: boolean = false;
   @Input() rowsInPage: number = 5;
+  dataInGrid:any = [];
 
-  constructor(){//private excelService:ExportService
+
+  constructor(private excelService:ExportService){
 
   }
 
@@ -64,11 +66,19 @@ export class GridComponent implements OnInit {
 
 
   ngOnInit() {
+    this.colInfo.forEach(col=>{
+      for (let field in this.data[0]) {
+        debugger
+      if(field!=col.Field){
+        delete this.data[field];
+      }
+      }
+    })
   }
 
   exportAsXLSX():void {
     debugger
-    // this.excelService.exportAsExcelFile(this.data, 'download');
+    this.excelService.exportAsExcelFile(this.dataInGrid, 'download');
   }
 
   exportAsPDF() {

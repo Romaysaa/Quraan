@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {Search} from '../holy-quran/search';
-import {AutoComplete} from 'primeng';
+import {AutoComplete} from 'primeng/autocomplete';
 
 const SHADDA_FATHA = 1611;
 const FATHATAN = 1613;// Tanween fatha
