@@ -292,13 +292,16 @@ searchSettings :any;
    }
     else if($event.item!=null&&$event.item.label==="نسخ"){
       this.copyAya = true;
-    }else if($event.item!=null&&$event.item.label==="مشاركة"){
+    }
+    else if($event.item!=null&&$event.item.label==="مشاركة"){
       debugger
-      this.share = true;
-    } else {
+
+    }
+    else {
       debugger
-      if($event.item!=null)
-      this.shareURL = this.getShareURL($event.item.label);
+      if($event.item!=null){
+        this.share = true;
+      this.shareURL = this.getShareURL($event.item.label);}
       else this.shareURL = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Your+Subject+here&ui=2&tf=1&pli=1&body=';
     }
   }
@@ -349,7 +352,7 @@ debugger
       document.body.removeChild(textArea);
 
 
-    } else if(this.shareURL){
+    } else if(this.share){
       debugger
       let msgbody = this._search.table_othmani[$event-1].AyaText_Othmani + ' (' + this._search.table_othmani[$event-1].Aya_N+')';
       window.open(this.shareURL+msgbody, 'sharer', 'toolbar=0,status=0,width=648,height=395');
