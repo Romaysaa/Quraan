@@ -278,8 +278,8 @@ searchSettings :any;
       this.isAudio=true;
       }
       else{
-        alert("اختار القارئ اولا");
-
+        // alert("اختار القارئ اولا");
+        this.reader="ar.hudhaify";
       }
     }
     else if($event.item!=null&&$event.item.label==="تفسير"){
@@ -287,8 +287,8 @@ searchSettings :any;
     {
       this.isTafser=true;
     }else
-    alert("اختار التفسير اولا");
-
+    // alert("اختار التفسير اولا");
+        this.selectedtafseer={name: 'الميسر', code: '1', en: 'ar.muyassar'};
    }
     else if($event.item!=null&&$event.item.label==="نسخ"){
       this.copyAya = true;

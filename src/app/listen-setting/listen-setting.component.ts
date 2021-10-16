@@ -143,6 +143,87 @@ export class ListenSettingComponent implements OnInit {
   audioCount:number;
 
 sorats:any[]=[];
+
+  toSoraFun($event: any) {
+    this.toSora = $event.value.nOFSura;
+
+    if (this.toSora) {
+      this.parts = [];
+      this.hezb = [];
+      this.pages = [];
+      this.rob = [];
+      this.toSoraAyat = [];
+
+
+      this.parts.push({الجزء: '.'});
+      this.hezb.push({nOFHezb: '.'});
+      this.rob.push({rub: '.'});
+      this.pages.push({nOFPage: '.'});
+      this.toSoraAyat.push({id: '.'});
+
+      this._search.table_othmani.forEach(aya => {
+
+        if (parseInt(aya.nOFSura) <= parseInt(this.toSora) && parseInt(aya.nOFSura) >= parseInt(this.fromSora)) {
+          let index = this.parts.findIndex(sura => {
+            return aya.nOFJoz == sura.الجزء;
+          });
+
+          if (index < 0) {
+            this.parts.push({
+              الجزء: aya.nOFJoz,
+
+            });
+          }
+
+          index = this.hezb.findIndex(sura => {
+            return aya.nOFHezb == sura.nOFHezb;
+          });
+
+          if (index < 0) {
+            this.hezb.push({
+              nOFHezb: aya.nOFHezb,
+
+            });
+          }
+
+          index = this.pages.findIndex(sura => {
+            return aya.nOFPage == sura.nOFPage;
+          });
+
+          if (index < 0) {
+            this.pages.push({
+              nOFPage: aya.nOFPage,
+
+            });
+          }
+
+          index = this.rob.findIndex(sura => {
+            return aya.rub == sura.rub;
+          });
+
+          if (index < 0) {
+            this.rob.push({
+              rub: aya.rub,
+              ayaId: aya.id,
+            });
+          }
+
+        }
+
+      });
+    }
+    let nOfAyas = $event.value.nOfAyas;
+    let index = 0;
+    while (index < nOfAyas) {
+      index++;
+      this.toSoraAyat.push({
+        id: index,
+      });
+    }
+    // this.result.push(this.toSora);
+
+  }
+
   fromSoraFun($event: any) {
     debugger
     this.sorats=[];
@@ -208,6 +289,18 @@ ayat:any[]=[]
 
   toRobFun($event: any) {
     this.toRob = $event.value.ayaId;
+    for(this.fromRob++;this.fromRob<this.toRob;this.fromRob++) {
+      let url ="http://api.quran.com/api/v4/quran/verses/uthmani_simple?rub_number="+ this.fromRob;
+
+      this.http.get<any>(url  ).subscribe(res => {
+        this.audioCount = res.verses.length;
+        res.verses.forEach((aya)=>{
+          this.roow='http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/'+ aya.id;
+          this.sorats.push(this.roow);
+          console.log(res);
+        });
+      });
+    }
 
   }
 
@@ -227,23 +320,18 @@ ayat:any[]=[]
 
   toHezpFun($event: any) {
     this.toHezp = $event.value.nOFHezb;
-    if (this.toHezp) {
-      this._search.table_othmani.forEach(aya => {
+    for(this.fromHezp++;this.fromHezp<this.toHezp;this.fromHezp++) {
+      let url ="http://api.quran.com/api/v4/quran/verses/uthmani_simple?hizb_number="+ this.fromHezp;
 
-        let index = this.hezb.findIndex(sura => {
-          return aya.nOFHezb == sura.nOFHezb;
+      this.http.get<any>(url  ).subscribe(res => {
+        this.audioCount = res.verses.length;
+        res.verses.forEach((aya)=>{
+          this.roow='http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/'+ aya.id;
+          this.sorats.push(this.roow);
+          console.log(res);
         });
-
-        if (index < 0) {
-          this.hezb.push({
-            nOFHezb: aya.nOFHezb,
-
-          });
-        }
       });
-
     }
-
   }
 
   fromPageFun($event: any) {
@@ -264,6 +352,20 @@ ayat:any[]=[]
 
   toPageFun($event: any) {
     this.toPage = $event.value.nOFPage;
+    this.fromPart = $event.value.الجزء;
+    for(this.fromPage++;this.fromPage<this.toPage;this.fromPage++) {
+      let url ="http://api.quran.com/api/v4/quran/verses/uthmani_simple?page_number="+ this.fromPage;
+
+      this.http.get<any>(url  ).subscribe(res => {
+        this.audioCount = res.verses.length;
+        res.verses.forEach((aya)=>{
+          this.roow='http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/'+ aya.id;
+          this.sorats.push(this.roow);
+          console.log(res);
+        });
+      });
+    }
+
   }
 
   fromPartFun($event: any) {
@@ -282,6 +384,18 @@ ayat:any[]=[]
 
   toPartFun($event: any) {
     this.toPart = $event.value.الجزء;
+    for(this.fromPart++;this.fromPart<this.toPart;this.fromPart++) {
+      let url ="http://api.alquran.cloud/v1/juz/"+ this.fromPart;
+
+      this.http.get<any>(url  ).subscribe(res => {
+        this.audioCount = res.verses.length;
+        res.verses.forEach((aya)=>{
+          this.roow='http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/'+ aya.id;
+          this.sorats.push(this.roow);
+          console.log(res);
+        });
+      });
+    }
   }
 
   audio: any;
