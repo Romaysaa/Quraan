@@ -345,16 +345,16 @@ export class RootComponent implements OnInit {
           if (word == this.searchWord) {
             ayat.push({
               رقم_السورة: aya.nOFSura,
-              بداية_السورة: aya.suraStart,
+              بداية_السورة: aya.بداية_السورة,
               الربع: aya.rub,
-              الجزء: aya.joz,
+              الجزء: aya.رقم_الجزء,
               رقم_الجزء: aya.nOFJoz,
               الحزب: aya.hezb,
-              رقم_الحزب: aya.nOFHezb,
-              رقم_الصفحة: aya.nOFPage,
+              رقم_الحزب: aya.رقم_الحزب,
+              رقم_الصفحة: aya.رقم_الصفحة,
               بداية_الربع: aya.rubStart,
               بداية_الصفحة: aya.pageStart,
-              اسم_السورة: aya.Sura_Name,
+              اسم_السورة: aya.اسم_السورة,
               الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
               AyaText: aya.AyaText,
               AyaText_Othmani: aya.AyaText_Othmani,
@@ -370,6 +370,7 @@ export class RootComponent implements OnInit {
   }
 
   checkSameWordWithOutTaskeel() {
+    debugger
     if (this.isSameWord == true && !this.searchWord.includes(' ')) {
       let ayat = [];
       this.numOfMoade3 = 0;
@@ -380,16 +381,16 @@ export class RootComponent implements OnInit {
           if (word == this.searchWord) {
             ayat.push({
               رقم_السورة: aya.nOFSura,
-              بداية_السورة: aya.suraStart,
+              بداية_السورة: aya.بداية_السورة,
               الربع: aya.rub,
-              الجزء: aya.joz,
+              الجزء: aya.رقم_الجزء,
               رقم_الجزء: aya.nOFJoz,
               الحزب: aya.hezb,
-              رقم_الحزب: aya.nOFHezb,
-              رقم_الصفحة: aya.nOFPage,
+              رقم_الحزب: aya.رقم_الحزب,
+              رقم_الصفحة: aya.رقم_الصفحة,
               بداية_الربع: aya.rubStart,
               بداية_الصفحة: aya.pageStart,
-              اسم_السورة: aya.Sura_Name,
+              اسم_السورة: aya.اسم_السورة,
               الآية: aya.AyaText_Othmani + ' (' + aya.Aya_N + ')',
               AyaText: aya.AyaText,
               AyaText_Othmani: aya.AyaText_Othmani,

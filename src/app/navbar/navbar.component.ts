@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
   sagdas: any[];
   tafseer: boolean;
   isAudio: boolean;
-  isTafser: boolean;
+  isTafser: boolean = false;
   shareURL: any = '';
 
   constructor(private http: HttpClient,
@@ -273,6 +273,7 @@ searchSettings :any;
     debugger
     this.share = false;
     this.copyAya = false;
+    this.tafseer =false;
     if ($event.item!=null&&$event.item.label==="سماع"){
       if(this.reader!=null&&this.reader!='') {
       this.isAudio=true;
@@ -326,7 +327,7 @@ searchSettings :any;
       this.isAudio=true;
       this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/' + this.reader + '/' + this.ayaId + '/high';
     }
-    if(this.selectedtafseer!=null) {
+    if(this.selectedtafseer!=null && this.isTafser) {
       this.isTafser=true;
       this.tafseer = true;
 debugger
@@ -950,5 +951,11 @@ debugger
     // });
     // this.showListOfAyah = true;
 
+  }
+
+  hideTafseerDialoge() {
+    debugger
+    this.tafseer =false;
+    this.isTafser =false;
   }
 }
