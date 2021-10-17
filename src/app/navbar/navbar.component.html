@@ -55,15 +55,19 @@
     </ul>
   </div>
 </div>
-
+<div style="position: absolute;
+bottom: 110px">
+  <p-sidebar [(visible)]="tafseer" position="buttom">
+    {{tafseerText}}</p-sidebar>
+</div>
 <!--
 <p-dialog [(visible)]="tafseer" header="تفسير">
   {{tafseerText}}
 </p-dialog> -->
 
-<p-sidebar [(visible)]="tafseer" position="buttom">
-  {{tafseerText}}
-</p-sidebar>
+<!--<p-sidebar [(visible)]="tafseer" position="buttom">-->
+<!--  {{tafseerText}}-->
+<!--</p-sidebar>-->
 <app-grid *ngIf="sagdatFlag" [data]="sagdas"></app-grid>
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -108,3 +112,4 @@
           [rowsInPage]="5">
 
 </app-grid>
+
