@@ -111,9 +111,9 @@ export class DynamicAyaComponent implements OnInit {
     },
   ];
   title: any = '';
-  private ayaIsClicked: boolean;
-  private showList: boolean = false;
-  private OpenDialoge: boolean = false;
+   ayaIsClicked: boolean;
+   showList: boolean = false;
+   OpenDialoge: boolean = false;
   listMenuItems: any[] = [
     {
       label: 'ذهاب الي الايه', command: (event) => {
@@ -210,7 +210,7 @@ export class DynamicAyaComponent implements OnInit {
   onMotashabehRightClick(event, mot) {
     event.preventDefault();
     debugger;
-    // if (!this.showList) {
+    if (!this.showList) {
     this.selectedmot = mot;
     this.selectedAyaID = mot.id;
     this.showList = true;
@@ -220,9 +220,9 @@ export class DynamicAyaComponent implements OnInit {
     let YL = event.clientY - this.contain.nativeElement.getBoundingClientRect().top + this.contain.nativeElement.scrollTop;
     this.listMenuStyle['top'] = YL + 'px';
     this.listMenuStyle['left'] = XL + 'px';
-    // } else {
-    //   this.showList = false;
-    // }
+    } else {
+      this.showList = false;
+    }
 
   }
 

@@ -13,9 +13,7 @@ import { RootComponent } from './root/root.component';
 import { FooterComponent } from './footer/footer.component';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {TableModule} from 'primeng/table';
-import {GridComponent} from './grid/grid.component';
 import {GridModule} from "./grid/grid/grid.module";
-import { ListenSettingComponent } from './listen-setting/listen-setting.component';
 import {DropdownModule} from 'primeng/dropdown';
 
 

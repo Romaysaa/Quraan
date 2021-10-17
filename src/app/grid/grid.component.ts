@@ -28,6 +28,17 @@ export class GridComponent implements OnInit {
 
     let dynamic_cols = JSON.parse(localStorage.getItem('dynamic_cols'));
     this.data = data;
+
+    let objectToMap = data => {
+      const keys = Object.keys(data);
+      const map = new Map();
+      for(let i = 0; i < keys.length; i++){
+        //inserting new key value pair inside map
+        map.set(keys[i], data[keys[i]]);
+      }
+      return map;
+    };
+    debugger
     if (data == null) {
       this.colInfo = null;
     } else {
@@ -94,5 +105,7 @@ export class GridComponent implements OnInit {
     // this.excelService.exportAsWordFile(this.data, 'download');
 
   }
+
+
 }
 

@@ -78,6 +78,7 @@ export class HolyQuranComponent implements OnInit {
       color: string
     }[]
   }[] = [];
+  isNextAyaLeft: boolean =false;
 
   constructor(private _quranPages: QuranPages, private _quranInJson: QuranInJson,) {
   }
@@ -392,10 +393,12 @@ export class HolyQuranComponent implements OnInit {
       let temp = [];
       while (numOfAyaChars >= 0) {
         if (isFirst) {
+          debugger
           temp = [];
           if (numOfAyaChars >= 80 && ayasLines[ayasLines.length - 1] == 80) {
             ayasLines = [];
           } else if (ayasLines[ayasLines.length - 1] < 80) {//if(ayasLines[ayasLines.length-1]<80)
+            this.isNextAyaLeft = ayasLines[ayasLines.length - 1]>45 ;
             temp = ayasLines;
             ayasLines = [];
             numOfAyaChars = numOfAyaChars - (80 - temp[temp.length - 1]);
@@ -447,7 +450,7 @@ export class HolyQuranComponent implements OnInit {
       ayaEnd = this.marginTop;
       this.motashabehatSpans = [];
       this.inputs.push({
-        motashabehat: {top: '', height: '', isRight: true, moade3: []},
+        motashabehat: {top: '', height: '', isRight: this.isNextAyaLeft, moade3: []},
         ayat: [],
         aya: aya.aya,
         ayaId: aya.id,
@@ -608,7 +611,7 @@ export class HolyQuranComponent implements OnInit {
         if (i == mooade3.length - 1) {
           this.motashabehatSpans.push({
             top: top + 'px',
-            isRight: false,
+            isRight: this.isNextAyaLeft,
             moade3: rightArr,
             height: (ayaEnd - ayaStart - 15) + 'px'
           });
@@ -619,7 +622,7 @@ export class HolyQuranComponent implements OnInit {
       } else {
         this.motashabehatSpans.push({
           top: ayaStart + 'px',
-          isRight: false,
+          isRight: this.isNextAyaLeft,
           moade3: rightArr,
           height: (ayaEnd - ayaStart - 30) + 'px'
         });
@@ -636,7 +639,7 @@ export class HolyQuranComponent implements OnInit {
     let motashabehat: { isRight: boolean; moade3: any[], height: string, top: string } = {
       top: '',
       height: '',
-      isRight: true,
+      isRight:  this.isNextAyaLeft,
       moade3: []
     };
     let arr: { top: string, suraWithIndex: string; aya?: string; id: string, color: string }[] = [];

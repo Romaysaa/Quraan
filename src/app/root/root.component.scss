@@ -135,20 +135,22 @@ nav li:hover > .mega-menu {
 
 
 :host {
-  ::ng-deep .ui-autocomplete-input{
+  ::ng-deep .p-autocomplete-input{
     width: 400px;
   }
   //.ui-state-highlight{
   //
   //
   //  }
-  ::ng-deep .ui-autocomplete-list-item {
+
+  ::ng-deep .p-autocomplete-item {
     direction: rtl;
-    text-align: initial
+    width: 400px;
+    //text-align: initial;
 
       //span{
-        //float: right;
-        //text-align: justify;
+      //  float: right;
+        text-align: justify;
         //direction: rtl
 
       //}

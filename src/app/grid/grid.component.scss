@@ -25,3 +25,9 @@ tr:nth-child(odd) {
   text-align: justify;
   direction: rtl
 }
+:host ::ng-deep {
+  .p-datatable-resizable .p-datatable-tbody>tr>td, .p-datatable-resizable .p-datatable-tfoot>tr>td, .p-datatable-resizable .p-datatable-thead>tr>th {
+    overflow: hidden;
+    white-space: break-spaces;
+  }
+}
