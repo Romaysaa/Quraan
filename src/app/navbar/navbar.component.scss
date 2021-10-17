@@ -180,5 +180,12 @@ p {
 //    }}
 //  }
 //}
-
+:host {
+  ::ng-deep .p-sidebar-active {
+    height: 3000px;
+    float: right;
+    text-align: justify;
+    direction: rtl
+  }
+} 
 
