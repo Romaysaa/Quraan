@@ -14,7 +14,7 @@
                        type="checkbox" value="1">
                 <label class="check" for="filled-in-box2">تكرار </label>
 
-            <audio *ngFor="let row of sorats; let i = index"  [id]="'surahPlayer'+i"  controls="controls" (play)="onPlay(i)" (ended)="audioEnded(i)">
+            <audio *ngFor="let row of sorats; let i = index"  [id]="'surahPlayer'+i"  controls="this.repeated" (play)="onPlay(i)" (ended)="audioEnded(i)">
               <source  id="activeAyah" src="{{row}}" title="1" type="audio/mp3">
             </audio>
 
@@ -55,7 +55,7 @@
 
         <div class="col-6">
           <div class="row-cols-6">
-            <label for="filled-in-box2" style="float: right;margin-top: 5px">: </label>
+            <label for="filled-in-box2" style="float: right;margin-top: 5px">: من سوره</label>
 
             <p-dropdown (onChange)="fromSoraFun($event)"
                         [options]="soras"
