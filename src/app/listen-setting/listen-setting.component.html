@@ -13,6 +13,11 @@
                 <input (click)="wasatClicked($event)" class="filled-in" id="filled-in-box2" name="remember"
                        type="checkbox" value="1">
                 <label class="check" for="filled-in-box2">تكرار </label>
+                
+                <input (change)="ayatReapeated(ayatsnumberRepeat)"  [ngModelOptions]="{standalone: true}"  id="filled-in-box3" 
+                type="text" [(ngModel)]="ayatsnumberRepeat">
+                <label class="check" for="filled-in-box3"> تكرار الايه ثم الجميع  </label>
+
 
             <audio *ngFor="let row of sorats; let i = index"  [id]="'surahPlayer'+i"  controls="this.repeated" (play)="onPlay(i)" (ended)="audioEnded(i)">
               <source  id="activeAyah" src="{{row}}" title="1" type="audio/mp3">

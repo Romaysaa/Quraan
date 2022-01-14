@@ -403,24 +403,44 @@ ayat:any[]=[]
 numberOfRepeated:number;
   wasatClicked($event: MouseEvent) {
     this.repeated = true;
-    this.numberOfRepeated=3;
   }
+  ayaRepeated:boolean;
 
+  ayatsnumberRepeat:number=0;
+ayatReapeated(nums:number){
+debugger
+  this.ayaRepeated=true;
+  this.numberOfRepeated=nums;
+}
   onChange($event: any) {
 
     this.texts.push($event);
   }
 played:boolean;
+k: number=0;
+
   audioEnded(ayaNum){
     debugger
+    
     if(ayaNum<this.audioCount-1){
       this.currentIndex = ayaNum+1;
       this.playNextAya(this.currentIndex );
     }
-    if(ayaNum==this.audioCount-1&&this.repeated){
-      let audio:any = document.getElementById("surahPlayer0");
-      audio.play();
+    if(ayaNum==this.audioCount-1&&this.ayaRepeated){
+      for( this.k=0;this.k<this.numberOfRepeated-1;this.k++){
+              let audio:any = document.getElementById("surahPlayer0");
+              audio.play();
+      }
+      // this.k--;
+          this.numberOfRepeated--;
+
     }
+      if(ayaNum==this.audioCount-1&&this.repeated){
+                let audio:any = document.getElementById("surahPlayer0");
+                audio.play();
+      
+    }
+    // this.k=0;
   }
 
 
@@ -443,3 +463,4 @@ played:boolean;
     }
   }
 }
+
