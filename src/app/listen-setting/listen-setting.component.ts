@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-listen-setting',
   templateUrl: './listen-setting.component.html',
-  styleUrls: ['./listen-setting.component.scss']
+  // styleUrls: ['./listen-setting.component.scss']
 })
 export class ListenSettingComponent implements OnInit {
 

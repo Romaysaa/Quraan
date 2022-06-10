@@ -12,7 +12,12 @@ export class HolyQuranComponent implements OnInit {
 
   lastTop: number = 10;
   @Input() pageNumber: number;
-  @Input() selectedMotashabeh2: string;
+  @Input('selectedMotashabeh2')
+  set setNofMotashabeh(num) {
+    this.NofMotashabeh = num;
+    this.EmitColorChange(null)
+  }
+  NofMotashabeh:number;
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
   @Output() onRight: EventEmitter<any> = new EventEmitter<any>();
 
@@ -683,20 +688,6 @@ export class HolyQuranComponent implements OnInit {
       this.lastTop += 25;
     }
     if (moade3 && moade3.length > 0) {
-      // for(let i=0;i<moade3.length&&i<parseInt(this.selectedMotashabeh2);i++){
-      //   if(moade3[i].suraWithIndex!="") {
-      //         arr.push({
-      //           top: HolyQuranComponent.lastTop + 'px',
-      //           suraWithIndex: moade3[i].suraWithIndex,
-      //           aya: moade3[i].aya,
-      //           id: moade3[i].id,
-      //           color:moade3[i].color
-      //         });
-      //         HolyQuranComponent.lastTop += 25
-      //
-      //   }
-      // }
-
       moade3.forEach(m => {
         if (m.suraWithIndex != '') {
           arr.push({
@@ -712,6 +703,7 @@ export class HolyQuranComponent implements OnInit {
       });
 // debugger
       motashabehat.height = ((parseInt(arr[arr.length - 1].top) + 25) - parseInt(arr[0].top)) + 'px';
+      arr.length = this.NofMotashabeh<arr.length?this.NofMotashabeh:arr.length;
       motashabehat.moade3 = arr;
       this.inputs[index].motashabehat = motashabehat;
 
