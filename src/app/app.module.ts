@@ -13,7 +13,9 @@ import { RootComponent } from './root/root.component';
 import { FooterComponent } from './footer/footer.component';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {TableModule} from 'primeng/table';
-import {GridComponent} from './grid/grid.component';
+import {GridModule} from "./grid/grid/grid.module";
+import {DropdownModule} from 'primeng/dropdown';
+
 
 
 @NgModule({
@@ -22,17 +24,16 @@ import {GridComponent} from './grid/grid.component';
     SliderComponent,
     RootComponent,
     FooterComponent,
-    GridComponent
   ],
-  imports: [
-    BrowserModule, SlideMenuModule,
-    AppRoutingModule,
-    // DropdownModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    ConfirmDialogModule, AutoCompleteModule,TableModule
-  ],
+    imports: [
+        BrowserModule, SlideMenuModule,
+        AppRoutingModule,
+        // DropdownModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        ConfirmDialogModule, AutoCompleteModule, TableModule, GridModule, DropdownModule
+    ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })

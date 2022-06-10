@@ -11,16 +11,19 @@ import {DialogModule} from 'primeng/dialog';
 import {MenuModule} from 'primeng/menu';
 
 import {SidebarModule} from 'primeng/sidebar';
+import {GridModule} from "../../grid/grid/grid.module";
+import {ColorPickerModule} from "primeng/colorpicker";
+import {ContextMenuModule} from "primeng/contextmenu";
 
 @NgModule({
   declarations: [HolyQuranComponent, NavbarComponent,DynamicAyaComponent],
   imports: [
-    CommonModule,SidebarModule,
+    CommonModule, SidebarModule,
     NavbarRoutingModule,
     DropdownModule,
     FormsModule,
     MenuModule,
-    DialogModule,
+    DialogModule, GridModule, ColorPickerModule, ContextMenuModule,
   ]
 })
 export class NavbarModule { }

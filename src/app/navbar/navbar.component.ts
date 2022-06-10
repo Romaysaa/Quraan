@@ -36,7 +36,8 @@ export class NavbarComponent implements OnInit {
   sagdas: any[];
   tafseer: boolean;
   isAudio: boolean;
-  isTafser: boolean;
+  isTafser: boolean = false;
+  shareURL: any = '';
 
   constructor(private http: HttpClient,
               private confirmationService:ConfirmationService ,
@@ -194,16 +195,22 @@ searchSettings :any;
   {
     debugger
 
-    this.sagdatFlag=true;
     let url = 'http://api.alquran.cloud/v1/sajda';
     this.http.get<any>(url ).subscribe(res => {
       console.log(res);
       this.sagdas = [];
       res.data.ayahs.forEach((sagd)=>{
-        sagd.surah=sagd.surah.name;
-        sagd.sajda=sagd.sajda.id;
-        this.sagdas.push(sagd);
-      })
+        debugger
+        // sagd.surah=sagd.surah.name;
+        // sagd.sajda=sagd.sajda.id;
+        this.sagdas.push({
+          رقم_الصفحة:sagd.page,
+          الجزء:sagd.juz,
+          اسم_السورة:sagd.surah.name,
+          الآية:sagd.text + ' ('+ sagd.numberInSurah +')',
+        });
+      });
+      this.sagdatFlag=true;
 
     }, err => {
       this.showListOfAyah = false;
@@ -259,26 +266,58 @@ searchSettings :any;
   }
   ayaId:string = '1';
   items: MenuItem[];
+  copyAya:boolean = false;
+  share:boolean = false;
   motshabhat: any[]=[];
   onRightAyaClicked($event: any){
     debugger
+    this.share = false;
+    this.copyAya = false;
+    this.tafseer =false;
     if ($event.item!=null&&$event.item.label==="سماع"){
       if(this.reader!=null&&this.reader!='') {
       this.isAudio=true;
       }
       else{
-        alert("اختار القارئ اولا");
-
+        // alert("اختار القارئ اولا");
+        this.reader="ar.hudhaify";
       }
-    }else if($event.item!=null&&$event.item.label==="تفسير"){
+    }
+    else if($event.item!=null&&$event.item.label==="تفسير"){
       if(this.selectedtafseer!=null)
     {
       this.isTafser=true;
     }else
-    alert("اختار التفسير اولا");
-
+    // alert("اختار التفسير اولا");
+        this.selectedtafseer={name: 'الميسر', code: '1', en: 'ar.muyassar'};
    }
+    else if($event.item!=null&&$event.item.label==="نسخ"){
+      this.copyAya = true;
+    }
+    else if($event.item!=null&&$event.item.label==="مشاركة"){
+      debugger
 
+    }
+    else {
+      debugger
+      if($event.item!=null){
+        this.share = true;
+      this.shareURL = this.getShareURL($event.item.label);}
+      else this.shareURL = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Your+Subject+here&ui=2&tf=1&pli=1&body=';
+    }
+  }
+
+   getShareURL(shareto){
+    switch (shareto) {
+      case 'facebook':
+        return 'https://www.facebook.com/sharer/sharer.php?quote=';
+      case 'gmail': return 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Your+Subject+here&ui=2&tf=1&pli=1&body=';
+
+      case 'whatsapp': return 'https://web.whatsapp.com/send?text=';
+      default: return'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Your+Subject+here&ui=2&tf=1&pli=1&body=';
+
+
+    }
   }
   onAyaClicked($event: any) {
     debugger
@@ -288,8 +327,7 @@ searchSettings :any;
       this.isAudio=true;
       this.audio = 'http://cdn.alquran.cloud/media/audio/ayah/' + this.reader + '/' + this.ayaId + '/high';
     }
-    if(this.selectedtafseer!=null)
-    {
+    if(this.selectedtafseer!=null && this.isTafser) {
       this.isTafser=true;
       this.tafseer = true;
 debugger
@@ -299,6 +337,27 @@ debugger
         debugger
         console.log(res);
       });
+    }
+    else if(this.copyAya){
+     let ayaCopy = this._search.table_othmani[$event-1].AyaText_Othmani + ' (' + this._search.table_othmani[$event-1].Aya_N+')';
+     console.log('aya copy: '+ayaCopy);
+      let textArea = document.createElement("textarea");
+      textArea.value = ayaCopy;
+      textArea.style.width = "1px";
+      textArea.style.height = "1px";
+      document.body.appendChild(textArea);
+      textArea.select();
+      /* Select the text field */
+      // ayaCopy.setSelectionRange(0, 99999); /* For mobile devices */
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+
+
+    } else if(this.share){
+      debugger
+      let msgbody = this._search.table_othmani[$event-1].AyaText_Othmani + ' (' + this._search.table_othmani[$event-1].Aya_N+')';
+      window.open(this.shareURL+msgbody, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+
     }
   }
   // OntafserClick() {
@@ -892,5 +951,11 @@ debugger
     // });
     // this.showListOfAyah = true;
 
+  }
+
+  hideTafseerDialoge() {
+    debugger
+    this.tafseer =false;
+    this.isTafser =false;
   }
 }

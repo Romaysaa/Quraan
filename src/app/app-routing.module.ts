@@ -1,24 +1,27 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 
 const routes: Routes = [
-  {path: 'root', loadChildren: './root/root/root.module#RootModule'},
-  {path: 'motsahbh', loadChildren: './motashabh/motashabh/motashabh.module#MotashabhModule'},
-  {path: 'home', loadChildren: './home/home/home.module#HomeModule'},
-  {path: 'footer', loadChildren: './footer/footer/footer.module#FooterModule'},
-  {path: 'readers', loadChildren: './readers/readers/readers.module#ReadersModule'},
-  {path: 'qoraa', loadChildren: './qoraa/qoraa/qoraa.module#QoraaModule'},
-  {path: 'quran', loadChildren: './navbar/navbar/navbar.module#NavbarModule'},
-  {path: 'search', loadChildren: './search-settings/search-settings.module#SearchSettingsModule'},
-
-
-
+  {path: 'root', loadChildren: () => import('./root/root/root.module').then(m => m.RootModule)},
+  {path: 'motsahbh', loadChildren: () => import('./motashabh/motashabh/motashabh.module').then(m => m.MotashabhModule)},
+  {path: 'home', loadChildren: () => import('./home/home/home.module').then(m => m.HomeModule)},
+  {path: 'footer', loadChildren: () => import('./footer/footer/footer.module').then(m => m.FooterModule)},
+  {path: 'readers', loadChildren: () => import('./readers/readers/readers.module').then(m => m.ReadersModule)},
+  {path: 'qoraa', loadChildren: () => import('./qoraa/qoraa/qoraa.module').then(m => m.QoraaModule)},
+  {path: 'quran', loadChildren: () => import('./navbar/navbar/navbar.module').then(m => m.NavbarModule)},
+  {
+    path: 'search',
+    loadChildren: () => import('./search-settings/search-settings.module').then(m => m.SearchSettingsModule)
+  },
+  {path: 'listen', loadChildren: () => import('./listen-setting/listen/listen.module').then(m => m.ListenModule)},
 
 
 ];
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {relativeLinkResolution: 'legacy'})],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

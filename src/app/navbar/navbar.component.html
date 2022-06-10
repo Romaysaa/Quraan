@@ -36,7 +36,7 @@
           <label class="menu-toggle" for="menu-5"><span>Toggle</span></label>
           <ul>
             <li (click)="OnChangeReader(row)" *ngFor="let row of readers">
-             <a onclick="return false;">{{row.name}}</a>
+              <a onclick="return false;">{{row.name}}</a>
             </li>
           </ul>
         </div>
@@ -45,7 +45,7 @@
         <a (click)="changeMotshabeh()">متشابهات السور</a>
       </li>
       <li>
-        <div *ng  If="externalMotsh">
+        <div *ngIf="externalMotsh">
           <p-dropdown [options]="soar" optionLabel="name"></p-dropdown>
         </div>
       </li>
@@ -55,15 +55,21 @@
     </ul>
   </div>
 </div>
-
+<div style="position: absolute;
+bottom: 300px">
+  <p-sidebar (onHide)="hideTafseerDialoge()" [(visible)]="tafseer" position="buttom">
+    {{tafseerText}}</p-sidebar>
+</div>
 <!--
 <p-dialog [(visible)]="tafseer" header="تفسير">
   {{tafseerText}}
 </p-dialog> -->
 
-<p-sidebar [(visible)]="tafseer" position="buttom" >
-  {{tafseerText}}
-</p-sidebar>
+<!--<p-sidebar [(visible)]="tafseer" position="buttom">-->
+<!--  {{tafseerText}}-->
+<!--</p-sidebar>-->
+<app-grid *ngIf="sagdatFlag" [data]="sagdas"></app-grid>
+
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
   <div class="row" style="float: right">
@@ -87,7 +93,7 @@
                     [selectedMotashabeh2]="selectedMotashabeh2"></app-holy-quran>
 
   </div>
-  <div class="row" style="margin-top: 20px">
+  <div *ngIf="!sagdatFlag" class="row" style="margin-top: 20px">
     <div class="col-5"></div>
     <div class="col-7">
       <button (click)="OnLeftClick()" class="ui-dropdown-trigger-icon" style="align-items: center ;margin-right: 50px">
@@ -99,4 +105,11 @@
     </div>
   </div>
 </div>
+
+<app-grid (CloseGrid)="sagdatFlag=false"
+          *ngIf="sagdatFlag"
+          [data]="sagdas"
+          [rowsInPage]="5">
+
+</app-grid>
 
