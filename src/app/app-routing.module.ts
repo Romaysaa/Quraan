@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'quran', loadChildren: () => import('./navbar/navbar/navbar.module').then(m => m.NavbarModule)},
   {
     path: 'search',
-    loadChildren: () => import('./search-settings/search-settings.module').then(m => m.SearchSettingsModule)
+    loadChildren: () => import('./search-settings/search.module').then(m => m.SearchSettingsModule)
   },
   {path: 'listen', loadChildren: () => import('./listen-setting/listen/listen.module').then(m => m.ListenModule)},
 
