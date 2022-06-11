@@ -81,9 +81,14 @@ export class DynamicAyaComponent implements OnInit {
        let bookmarks = localStorage.getItem('bookmarks')
        if(bookmarks==undefined||bookmarks==null){
         bookmarks=JSON.stringify([]);
+        
        }
       let allBookmarks = JSON.parse(bookmarks)
-      allBookmarks.push({page:this.pageNum,aya:this.ayaId})
+      let index = allBookmarks.findIndex(bm=>bm.aya==this.ayaId)
+      if(index==-1){
+        allBookmarks.push({page:this.pageNum,aya:this.ayaId})
+        localStorage.setItem('bookmarks',JSON.stringify(allBookmarks))
+      }
        
       }
 

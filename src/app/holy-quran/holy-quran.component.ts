@@ -112,7 +112,7 @@ export class HolyQuranComponent implements OnInit {
   ngOnInit() {
     // debugger;
     // this.lastTop = 10;
-    this.quranPageImage = 'assets/QuranImages_50/' + this.pageNumber + '.png';
+    this.quranPageImage = 'assets/' + this.pageNumber + '.png';
 
     // this.generateMotashabehatOfSelectedPage(this.pageNumber);
     // console.log(this.allAyas);

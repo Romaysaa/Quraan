@@ -34,6 +34,8 @@ export class NavbarComponent implements OnInit {
   tafseer: boolean;
   isAudio: boolean;
   isTafser: boolean = false;
+  displayBookmarks: boolean = false;
+  bookmaks:any[];
   shareURL: any = '';
 
   constructor(private http: HttpClient,
@@ -263,7 +265,7 @@ export class NavbarComponent implements OnInit {
     else if ($event.item != null && $event.item.label === "نسخ") {
       this.copyAya = true;
     }
-    else if ($event.item != null && $event.item.label === "مشاركة") {
+    else if ($event.item != null && $event.item.label === "اضافة الى المفضلة") {
       debugger
 
     }
@@ -1087,5 +1089,20 @@ export class NavbarComponent implements OnInit {
     a.focus();
     setTimeout(()=>{a.print(); a.close();}, 1000)
    
+}
+
+loadBookmarks(){
+  this.bookmaks = [];
+  let x = localStorage.getItem('bookmarks')
+  if(x!=undefined&&x!=null){
+    this.displayBookmarks = true;
+    let fav= JSON.parse(x)
+    fav.sort((a,b) => (a.aya > b.aya) ? 1 : ((b.aya > a.aya) ? -1 : 0))
+    fav.forEach(bm=>{
+      this.bookmaks.push({"الأية":this._search.table_othmani.find(aya=> bm.aya == aya.id).AyaText_Othmani})
+    });
+    
+  }
+
 }
 }
