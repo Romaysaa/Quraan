@@ -1,9 +1,8 @@
-<div (contextmenu)="$event.preventDefault();
-" class="container">
+<div (contextmenu)="$event.preventDefault();"  id="quran-page" class="container">
   <div class="row">
 
     <div class="col-3"></div>
-    <div class="col-6" style="position: relative">
+    <div  class="col-6" style="position: relative">
       <img [src]="quranPageImage" alt="Please check your internet connection" id="page"
            style="border: 4px solid chocolate">
       <!--        <div-->
@@ -14,6 +13,7 @@
                          [activeAya]="inp.activeAya"
                          [arrOfColoredWords]="inp.spansOfColoredWords"
                          [ayaId]="inp.ayaId"
+                         [pageNum]="pageNumber"
                          [aya]="inp.aya"
                          [ayat]="inp.ayat"
                          [href]="inp.href"

@@ -111,15 +111,15 @@ export class HolyQuranComponent implements OnInit {
 
   ngOnInit() {
     // debugger;
-    this.lastTop = 10;
-    this.quranPageImage = 'assets/' + this.pageNumber + '.png';
+    // this.lastTop = 10;
+    this.quranPageImage = 'assets/QuranImages_50/' + this.pageNumber + '.png';
 
-    this.generateMotashabehatOfSelectedPage(this.pageNumber);
-    console.log(this.allAyas);
+    // this.generateMotashabehatOfSelectedPage(this.pageNumber);
+    // console.log(this.allAyas);
 
-    this.determineHighlight();
+    // this.determineHighlight();
 
-    this.drawColoredWords();
+    // this.drawColoredWords();
   }
 
   onAyaClick($event: any) {
@@ -187,6 +187,7 @@ export class HolyQuranComponent implements OnInit {
     this.lastTop = 10;
     this.marginTop = 50;
     this.inputs = [];
+    this.isNextAyaLeft =false;
     this.isShiftedVertically = false;
     this.arrOfAyaWords = [];
     this.motashabehatSpans = [];

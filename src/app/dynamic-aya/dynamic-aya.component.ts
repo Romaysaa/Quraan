@@ -6,6 +6,7 @@ import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} f
   styleUrls: ['./dynamic-aya.component.scss']
 })
 export class DynamicAyaComponent implements OnInit {
+  @Input() pageNum: String;
   @Input() ayaNumber: String;
   @Input() ayaId: number;
   @Input() href: String;
@@ -74,9 +75,16 @@ export class DynamicAyaComponent implements OnInit {
       }
 
     }, {
-      label: 'مشاركة', command: (event) => {
+      label: 'اضافة الى المفضلة', command: (event) => {
         this.showAyaList = false;
         this.onRight.emit(event)
+       let bookmarks = localStorage.getItem('bookmarks')
+       if(bookmarks==undefined||bookmarks==null){
+        bookmarks=JSON.stringify([]);
+       }
+      let allBookmarks = JSON.parse(bookmarks)
+      allBookmarks.push({page:this.pageNum,aya:this.ayaId})
+       
       }
 
     },

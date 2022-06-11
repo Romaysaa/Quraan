@@ -940,4 +940,152 @@ export class NavbarComponent implements OnInit {
     this.tafseer = false;
     this.isTafser = false;
   }
+
+  printPage() {
+    // document.getElementById("quran-page").append('<img src="assets/77.png" alt="" id="page">')
+    var divContents = document.getElementById("quran-page").innerHTML;
+    
+    var a = window.open('', '', 'height=600, width=1020')
+    a.document.write('<html>');
+    a.document.write('<head><title></title>');
+    a.document.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">')
+    // a.document.write('<link href="app/navbar/page.css" rel="stylesheet" >')
+    a.document.write('</head>');
+
+    a.document.write('<body >');
+    a.document.write(`${divContents}`);
+    a.document.write('<style>');
+    a.document.write(`body {
+      direction: rtl;
+  }
+  @media print{@page {size: landscape}}
+  
+  #parent{
+    // background:url('assets/77.png')
+  }
+  #quran-page{
+    position: relative;
+   
+  }
+
+  #page {
+    border: 4px solid chocolate
+  }
+
+  #wrapper {
+      width: 960px;
+      margin: auto;
+  }
+  
+  #control {
+      text-align: center;
+      background: silver;
+  }
+  
+  #wrapper2 {
+      position: relative;
+  }
+  
+  #suras {
+      position: absolute;
+      top: 15px;
+      width: 200px;
+      height: 430px;
+      overflow: auto;
+  }
+  
+  #suras .active {
+      background: navy;
+      color: white;
+  }
+  
+  #suras .active a {
+      color: white;
+  }
+  
+  
+  #page span {
+      position: absolute;
+  }
+  
+  
+  #tafseer {
+      position: absolute;
+      top: 15px;
+      right: 520px;
+      height: 430px;
+      width: 290px;
+      background: #f8f8f8;
+      overflow: auto;
+  }
+  
+  a:-webkit-any-link {
+      color: -webkit-link;
+      cursor: pointer;
+      text-decoration: underline;
+  }
+  
+  .triangle-right {
+      position: absolute;
+      top: 685px;
+      left: 453px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 50px 50px;
+      border-color: transparent transparent chocolate transparent;
+  }
+  
+  .triangle-left {
+      position: absolute;
+      top: 685px;
+      left: 18px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 50px 0 0 50px;
+      border-color: transparent transparent transparent chocolate;
+  }
+  
+  
+  .p-inputtext {
+          width: 25px;
+          height: 25px;
+      }
+  
+  
+  a .aya_link{
+     
+      left: 45px;
+      height: 200px;
+      width: 480px;
+      margin: 0;
+      padding: 0;
+  }
+  
+  .aya {
+      position: absolute;
+  }
+  
+  .motashabeh {
+      position: absolute;
+  }
+  
+  .arabicText {
+      float: right;
+      text-align: justify;
+      direction: rtl
+  }`);
+    a.document.write('</style>');
+    a.document.write('</body>');
+    a.document.write('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>');
+
+    a.document.write('</html>');
+    console.log(a.document)
+
+    a.document.close();
+    a.focus();
+    setTimeout(()=>{a.print(); a.close();}, 1000)
+   
+}
 }
