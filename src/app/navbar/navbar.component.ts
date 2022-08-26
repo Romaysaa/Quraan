@@ -35,8 +35,12 @@ export class NavbarComponent implements OnInit {
   isAudio: boolean;
   isTafser: boolean = false;
   displayBookmarks: boolean = false;
-  bookmaks:any[];
+  bookmaks: any[];
   shareURL: any = '';
+  print: boolean = false;
+  printFrom: number;
+  printTo: number;
+  msgs: any[] = [{ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' }];
 
   constructor(private http: HttpClient,
     private confirmationService: ConfirmationService,
@@ -112,7 +116,9 @@ export class NavbarComponent implements OnInit {
   searchInput: string;
 
   //4,5,6,7,8,9,10,11,77,78,79,80,81,82,83,84,85
-  imges: any[] = [77, 4, 5, 6, 7, 8, 9, 10, 11]; selectedPage: number;
+  imges: any[] = [77];
+  tempimges: any[] = [77];
+  selectedPage: number;
 
   searchSettings: any;
 
@@ -944,9 +950,36 @@ export class NavbarComponent implements OnInit {
   }
 
   printPage() {
+    this.print = true;
+    this.printFrom = null;
+    this.printTo = null;
+  }
+  confirmPrint() {
+    if (this.printFrom && this.printTo) {
+      this.tempimges = JSON.parse(JSON.stringify(this.imges));//to deep copy
+      if (this.printFrom < this.printTo) {
+        for (let i = this.printFrom; i <= this.printTo; i++) {
+          this.imges.push(i);
+        }
+
+      } else {
+        for (let i = this.printTo; i <= this.printFrom; i++) {
+          this.imges.push(i);
+        }
+      }
+
+      console.log(this.imges)
+      setTimeout(() => {
+        this.print = false;
+        this.applyPrint()
+      }, 1000);
+
+    }
+  }
+  applyPrint() {
     // document.getElementById("quran-page").append('<img src="assets/77.png" alt="" id="page">')
-    var divContents = document.getElementById("quran-page").innerHTML;
-    
+    var pages = document.getElementsByClassName("quran-page")
+
     var a = window.open('', '', 'height=600, width=1020')
     a.document.write('<html>');
     a.document.write('<head><title></title>');
@@ -955,129 +988,143 @@ export class NavbarComponent implements OnInit {
     a.document.write('</head>');
 
     a.document.write('<body >');
-    a.document.write(`${divContents}`);
+    for (let i = 1; i < pages.length; i++)// ignore frist element from print 
+      a.document.write(`${pages.item(i).innerHTML}`);
+
     a.document.write('<style>');
     a.document.write(`body {
-      direction: rtl;
-  }
-  @media print{@page {size: landscape}}
-  
-  #parent{
-    // background:url('assets/77.png')
-  }
-  #quran-page{
-    position: relative;
-   
+  direction: rtl;
+}
+@media print{
+.container{
+  visibility: visible;
+  page-break-after: always;
+ 
+}
+@page { 
+size: 297mm 210mm; /* landscape */
+margin: 25mm;
+margin-right: 45mm; /* for compatibility with both A4 and Letter */
+}
+}
+
+#parent{
+// background:url('assets/77.png')
+}
+.container{
+// position: relative;
+// visibility: hidden;
+
+}
+
+#page {
+border: 4px solid chocolate
+}
+
+#wrapper {
+  width: 960px;
+  margin: auto;
+}
+
+#control {
+  text-align: center;
+  background: silver;
+}
+
+#wrapper2 {
+  position: relative;
+}
+
+#suras {
+  position: absolute;
+  top: 15px;
+  width: 200px;
+  height: 430px;
+  overflow: auto;
+}
+
+#suras .active {
+  background: navy;
+  color: white;
+}
+
+#suras .active a {
+  color: white;
+}
+
+
+#page span {
+  position: absolute;
+}
+
+
+#tafseer {
+  position: absolute;
+  top: 15px;
+  right: 520px;
+  height: 430px;
+  width: 290px;
+  background: #f8f8f8;
+  overflow: auto;
+}
+
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.triangle-right {
+  position: absolute;
+  top: 685px;
+  left: 453px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 50px 50px;
+  border-color: transparent transparent chocolate transparent;
+}
+
+.triangle-left {
+  position: absolute;
+  top: 685px;
+  left: 18px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 0 0 50px;
+  border-color: transparent transparent transparent chocolate;
+}
+
+
+.p-inputtext {
+      width: 25px;
+      height: 25px;
   }
 
-  #page {
-    border: 4px solid chocolate
-  }
 
-  #wrapper {
-      width: 960px;
-      margin: auto;
-  }
-  
-  #control {
-      text-align: center;
-      background: silver;
-  }
-  
-  #wrapper2 {
-      position: relative;
-  }
-  
-  #suras {
-      position: absolute;
-      top: 15px;
-      width: 200px;
-      height: 430px;
-      overflow: auto;
-  }
-  
-  #suras .active {
-      background: navy;
-      color: white;
-  }
-  
-  #suras .active a {
-      color: white;
-  }
-  
-  
-  #page span {
-      position: absolute;
-  }
-  
-  
-  #tafseer {
-      position: absolute;
-      top: 15px;
-      right: 520px;
-      height: 430px;
-      width: 290px;
-      background: #f8f8f8;
-      overflow: auto;
-  }
-  
-  a:-webkit-any-link {
-      color: -webkit-link;
-      cursor: pointer;
-      text-decoration: underline;
-  }
-  
-  .triangle-right {
-      position: absolute;
-      top: 685px;
-      left: 453px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 0 50px 50px;
-      border-color: transparent transparent chocolate transparent;
-  }
-  
-  .triangle-left {
-      position: absolute;
-      top: 685px;
-      left: 18px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 50px 0 0 50px;
-      border-color: transparent transparent transparent chocolate;
-  }
-  
-  
-  .p-inputtext {
-          width: 25px;
-          height: 25px;
-      }
-  
-  
-  a .aya_link{
-     
-      left: 45px;
-      height: 200px;
-      width: 480px;
-      margin: 0;
-      padding: 0;
-  }
-  
-  .aya {
-      position: absolute;
-  }
-  
-  .motashabeh {
-      position: absolute;
-  }
-  
-  .arabicText {
-      float: right;
-      text-align: justify;
-      direction: rtl
-  }`);
+a .aya_link{
+ 
+  left: 45px;
+  height: 200px;
+  width: 480px;
+  margin: 0;
+  padding: 0;
+}
+
+.aya {
+  position: absolute;
+}
+
+.motashabeh {
+  position: absolute;
+}
+
+.arabicText {
+  float: right;
+  text-align: justify;
+  direction: rtl
+}`);
     a.document.write('</style>');
     a.document.write('</body>');
     a.document.write('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>');
@@ -1087,22 +1134,28 @@ export class NavbarComponent implements OnInit {
 
     a.document.close();
     a.focus();
-    setTimeout(()=>{a.print(); a.close();}, 1000)
-   
-}
+    setTimeout(() => {
+      a.print();
+      a.close();
+      this.imges = JSON.parse(JSON.stringify(this.tempimges));//to deep copy
 
-loadBookmarks(){
-  this.bookmaks = [];
-  let x = localStorage.getItem('bookmarks')
-  if(x!=undefined&&x!=null){
-    this.displayBookmarks = true;
-    let fav= JSON.parse(x)
-    fav.sort((a,b) => (a.aya > b.aya) ? 1 : ((b.aya > a.aya) ? -1 : 0))
-    fav.forEach(bm=>{
-      this.bookmaks.push({"الأية":this._search.table_othmani.find(aya=> bm.aya == aya.id).AyaText_Othmani})
-    });
-    
+    }, 1000)
+
   }
 
-}
+
+  loadBookmarks() {
+    this.bookmaks = [];
+    let x = localStorage.getItem('bookmarks')
+    if (x != undefined && x != null) {
+      this.displayBookmarks = true;
+      let fav = JSON.parse(x)
+      fav.sort((a, b) => (a.aya > b.aya) ? 1 : ((b.aya > a.aya) ? -1 : 0))
+      fav.forEach(bm => {
+        this.bookmaks.push({ "الأية": this._search.table_othmani.find(aya => bm.aya == aya.id).AyaText_Othmani })
+      });
+
+    }
+
+  }
 }

@@ -101,6 +101,7 @@ export class HolyQuranComponent implements OnInit {
   }[] = [];
 
   constructor(private _quranPages: QuranPages, private _quranInJson: QuranInJson,) {
+  debugger
   }
 
   findSuras(sura) {
