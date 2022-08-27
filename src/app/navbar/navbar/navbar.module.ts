@@ -18,6 +18,8 @@ import {ButtonModule} from 'primeng/button';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+
 @NgModule({
   declarations: [HolyQuranComponent, NavbarComponent,DynamicAyaComponent],
   imports: [
@@ -34,7 +36,8 @@ import {MessageModule} from 'primeng/message';
     ButtonModule,
     InputNumberModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    InputTextareaModule
   ]
 })
 export class NavbarModule { }

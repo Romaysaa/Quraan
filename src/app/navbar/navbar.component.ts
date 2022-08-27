@@ -1152,7 +1152,7 @@ a .aya_link{
       let fav = JSON.parse(x)
       fav.sort((a, b) => (a.aya > b.aya) ? 1 : ((b.aya > a.aya) ? -1 : 0))
       fav.forEach(bm => {
-        this.bookmaks.push({ "الأية": this._search.table_othmani.find(aya => bm.aya == aya.id).AyaText_Othmani })
+        this.bookmaks.push({  "ملاحظات": bm.note?bm.note:'',"الأية": this._search.table_othmani.find(aya => bm.aya == aya.id).AyaText_Othmani})
       });
 
     }

@@ -99,3 +99,24 @@
   </div>
 </p-dialog>
 <div style="width: 400px;height: 50px;position: absolute;bottom:600px;left: 550px">{{title}}</div>
+
+<p-dialog header="إضافة ملاحظات" [(visible)]="addNote" [modal]="true" showEffect="fade" [style]="{width: '40%',direction: 'rtl'}">
+  <div class="d-flex flex-row">
+
+    <div class="p-3">
+      ملاحظات
+      <textarea class="h-50" pInputTextarea [rows]="5" [cols]="30" [(ngModel)]="bookmakNote"></textarea>
+    </div>
+
+
+  </div>
+  <!-- <p-messages [(value)]="msgs" [enableService]="false"></p-messages> -->
+
+  <ng-template pTemplate="footer">
+    <button pButton icon="pi pi-save" (click)="addToFav()" label="حفظ" class="p-button-outlined"></button>
+
+    <button type="text" (click)="addNote=false" pButton icon="pi pi-times" label="إلغاء" class="p-button-danger"
+      style="width:auto;"></button>
+
+  </ng-template>
+</p-dialog>

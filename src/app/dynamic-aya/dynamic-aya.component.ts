@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-dynamic-aya',
@@ -35,7 +35,7 @@ export class DynamicAyaComponent implements OnInit {
   @Input() aya = '';
 
   bakgroundStyle2: { background: string; motashOpacity: number; opacity: number };
-  @ViewChild('container', {static: false}) contain: ElementRef;
+  @ViewChild('container', { static: false }) contain: ElementRef;
   listMenuStyle: Object = {
     left: '0px',
     top: '0px',
@@ -47,10 +47,13 @@ export class DynamicAyaComponent implements OnInit {
   showAyaList: boolean = false;
   selectedAyaID: number;
   selectedmot: any;
-  bakgroundStyle = {background: "white", opacity: 0.0, motashOpacity: 1};
+  bakgroundStyle = { background: "white", opacity: 0.0, motashOpacity: 1 };
   moade3: any;
   lineTop: any;
   ayas: any[];
+  bookmakNote: string;
+  addNote: boolean = false;
+
   listAyaItems: any[] = [
     {
       label: 'سماع', command: (event) => {
@@ -78,18 +81,8 @@ export class DynamicAyaComponent implements OnInit {
       label: 'اضافة الى المفضلة', command: (event) => {
         this.showAyaList = false;
         this.onRight.emit(event)
-       let bookmarks = localStorage.getItem('bookmarks')
-       if(bookmarks==undefined||bookmarks==null){
-        bookmarks=JSON.stringify([]);
-        
-       }
-      let allBookmarks = JSON.parse(bookmarks)
-      let index = allBookmarks.findIndex(bm=>bm.aya==this.ayaId)
-      if(index==-1){
-        allBookmarks.push({page:this.pageNum,aya:this.ayaId})
-        localStorage.setItem('bookmarks',JSON.stringify(allBookmarks))
-      }
-       
+        this.addNote = true;
+
       }
 
     },
@@ -124,9 +117,9 @@ export class DynamicAyaComponent implements OnInit {
     },
   ];
   title: any = '';
-   ayaIsClicked: boolean;
-   showList: boolean = false;
-   OpenDialoge: boolean = false;
+  ayaIsClicked: boolean;
+  showList: boolean = false;
+  OpenDialoge: boolean = false;
   listMenuItems: any[] = [
     {
       label: 'ذهاب الي الايه', command: (event) => {
@@ -138,8 +131,8 @@ export class DynamicAyaComponent implements OnInit {
     {
       label: 'مقارنة مع الحالي', command: (event) => {
         this.ayas = [];
-        this.ayas.push({aya: this.aya, sura: ''});
-        this.ayas.push({aya: this.selectedmot.aya, sura: this.selectedmot.suraWithIndex});
+        this.ayas.push({ aya: this.aya, sura: '' });
+        this.ayas.push({ aya: this.selectedmot.aya, sura: this.selectedmot.suraWithIndex });
         this.showList = false;
         this.OpenDialoge = true;
       }
@@ -148,7 +141,7 @@ export class DynamicAyaComponent implements OnInit {
       label: 'مقارنة مع الجميع بدون أنظر', command: (event) => {
         this.ayat.forEach(aya => {
           this.ayas = [];
-          this.ayas.push({aya: aya, sura: ''});
+          this.ayas.push({ aya: aya, sura: '' });
         });
         this.showList = false;
         this.OpenDialoge = true;
@@ -157,7 +150,7 @@ export class DynamicAyaComponent implements OnInit {
       label: 'مقارنة مع الجميع', command: (event) => {
         this.ayat.forEach(aya => {
           this.ayas = [];
-          this.ayas.push({aya: aya, sura: ''});
+          this.ayas.push({ aya: aya, sura: '' });
         });
         this.showList = false;
         this.OpenDialoge = true;
@@ -205,34 +198,34 @@ export class DynamicAyaComponent implements OnInit {
     // if(this.activeAya == this.href.split('#')[1])
     // this.ayaIsClicked = true;
 
-    this.bakgroundStyle2 = {background: "blue", opacity: .2, motashOpacity: 0.2}
+    this.bakgroundStyle2 = { background: "blue", opacity: .2, motashOpacity: 0.2 }
     // event.preventDefault();
     // event.stopPropagation();
   }
 
   onMouseEnter($event) {
     // if(!this.ayaIsClicked)
-    this.bakgroundStyle = {background: "yellow", opacity: .2, motashOpacity: 0.2};
+    this.bakgroundStyle = { background: "yellow", opacity: .2, motashOpacity: 0.2 };
   }
 
   onMouseOut($event: MouseEvent) {
     // if(!this.ayaIsClicked)
-    this.bakgroundStyle = {background: "white", opacity: 0.0, motashOpacity: 1};
+    this.bakgroundStyle = { background: "white", opacity: 0.0, motashOpacity: 1 };
   }
 
   onMotashabehRightClick(event, mot) {
     event.preventDefault();
     debugger;
     if (!this.showList) {
-    this.selectedmot = mot;
-    this.selectedAyaID = mot.id;
-    this.showList = true;
-    // mot.isRightClicked= false;
-    // this.OpenDialoge = true;
-    let XL = event.clientX - this.contain.nativeElement.getBoundingClientRect().left + this.contain.nativeElement.scrollLeft - 200;
-    let YL = event.clientY - this.contain.nativeElement.getBoundingClientRect().top + this.contain.nativeElement.scrollTop;
-    this.listMenuStyle['top'] = YL + 'px';
-    this.listMenuStyle['left'] = XL + 'px';
+      this.selectedmot = mot;
+      this.selectedAyaID = mot.id;
+      this.showList = true;
+      // mot.isRightClicked= false;
+      // this.OpenDialoge = true;
+      let XL = event.clientX - this.contain.nativeElement.getBoundingClientRect().left + this.contain.nativeElement.scrollLeft - 200;
+      let YL = event.clientY - this.contain.nativeElement.getBoundingClientRect().top + this.contain.nativeElement.scrollTop;
+      this.listMenuStyle['top'] = YL + 'px';
+      this.listMenuStyle['left'] = XL + 'px';
     } else {
       this.showList = false;
     }
@@ -248,5 +241,21 @@ export class DynamicAyaComponent implements OnInit {
     return y + 'px';
 
   }
+
+  addToFav() {
+    let bookmarks = localStorage.getItem('bookmarks')
+    if (bookmarks == undefined || bookmarks == null) {
+      bookmarks = JSON.stringify([]);
+
+    }
+    let allBookmarks = JSON.parse(bookmarks)
+    let index = allBookmarks.findIndex(bm => bm.aya == this.ayaId)
+    if (index == -1) {
+      allBookmarks.push({ page: this.pageNum, aya: this.ayaId, note: this.bookmakNote })
+      localStorage.setItem('bookmarks', JSON.stringify(allBookmarks))
+    }
+
+  }
+
 }
 
